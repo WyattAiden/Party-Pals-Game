@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Box001
+    m_Weight: 0
+  - m_Path: Center
+    m_Weight: 0
+  - m_Path: Center/Bottom
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010/Bone011
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010/Bone011/Bone012
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010/Bone011/Bone012/Bone013
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010(mirrored)
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010(mirrored)/Bone011(mirrored)
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010(mirrored)/Bone011(mirrored)/Bone012(mirrored)
+    m_Weight: 0
+  - m_Path: Center/Bottom/Bone010(mirrored)/Bone011(mirrored)/Bone012(mirrored)/Bone013(mirrored)
+    m_Weight: 0
+  - m_Path: Center/Top
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005/Bone006
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005/Bone006/Bone007
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005/Bone006/Bone007/LeftHand
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005(mirrored)
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005(mirrored)/UpperArm
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005(mirrored)/UpperArm/Bone007(mirrored)
+    m_Weight: 1
+  - m_Path: Center/Top/Bone005(mirrored)/UpperArm/Bone007(mirrored)/RightHand
+    m_Weight: 1
+  - m_Path: Center/Top/Head
+    m_Weight: 1

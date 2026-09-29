@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1908723270236442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4149544121762446}
+  - component: {fileID: 114154299967025904}
+  m_Layer: 0
+  m_Name: PlayerControl1
+  m_TagString: PlayerControl
+  m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4149544121762446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908723270236442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114154299967025904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908723270236442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322fdf8ff0687a448bbcf298c05e6999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPlayerChar: {fileID: 0}
+  OtherControl: {fileID: 0}
+  PlayerPrefab1: {fileID: 1515571427069876, guid: ccceed1135cbd2840b49196ee9826f71,
+    type: 3}
+  ControllerNum: 0
+  PlayerName: Player
+  PlayerUIColor: {r: 1, g: 1, b: 1, a: 1}
+  PlayerMats:
+  - {fileID: 2100000, guid: 10374f6b7cb914c4d89bcf5f97c16938, type: 2}
+  Kills: 0
+  ReticlePosition: {x: 0, y: 0, z: 0}
+  Weapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CurrentWeaponNum: 0
+  CurrentWeapon: {fileID: 0}
+  Ammo_Mine: 2
+  TargetPlayer: {fileID: 0}
+  InputEnable: 1
+  NextSpawnPoint: {fileID: 0}
+  LastDeathPosition: {x: 0, y: 0, z: 0}

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1807787927025062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4085394973348040}
+  - component: {fileID: 114965196738708358}
+  m_Layer: 0
+  m_Name: Weapon_Sniper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4085394973348040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807787927025062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114965196738708358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807787927025062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2fdd42c8278444ba17bd03b81f5333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoFire: 1
+  FireDelay: 0.7
+  MaxAmmo: 80
+  WeaponIcon: {fileID: 21300000, guid: 31a1b89a9128df44a9026cb6d9cb7d85, type: 3}
+  InfiniteAmmo: 0
+  WeaponModelPrefab: {fileID: 1807787927025062, guid: 98843af0d5dfeba4b87464ce864462f1,
+    type: 3}
+  BulletPrefab: {fileID: 1201764331010766, guid: 4070ee58c16a8e040821af3311173f67,
+    type: 3}
+  EffectPrefab: {fileID: 1442786654504444, guid: 476a9560460f82e4a9fa68d8293045ef,
+    type: 3}
+  WeaponEnable: 1
+  AmmoCount: 50
+  CurrentWeaponModel: {fileID: 0}
+  Owner: {fileID: 0}
+  AmmoString: 00
