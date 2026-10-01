@@ -1,3 +1,4 @@
+using DuelShooter;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,10 +8,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
 
+    [Header("Shooting")]
+    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireCooldown = 0.5f;
+
 
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector3 velocity;
+    private float nextFireTime;
 
     void Awake()
     {
@@ -31,7 +38,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (Time.time < nextFireTime) return;
+
+        nextFireTime = Time.time + fireCooldown;
+        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    }
+
     void Update()
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
@@ -40,4 +55,5 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
 }

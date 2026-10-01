@@ -9,6 +9,7 @@ public class PlayerInputmanager : MonoBehaviour
 
     private bool wasdJoined = false;
     private bool arrowJoined = false;
+    private bool gamepadJoined = false;
 
     private void Update()
     {
@@ -38,9 +39,12 @@ public class PlayerInputmanager : MonoBehaviour
 
         foreach (var gamePad in Gamepad.all)
         {
-            if (gamePad.buttonSouth.wasPressedThisFrame)
+            if (gamePad.buttonSouth.wasPressedThisFrame && !gamepadJoined)
             {
-                PlayerInput.Instantiate(playerPrefab, controlScheme: "Gamepad", pairWithDevice: gamePad);
+                PlayerInput.Instantiate(playerPrefab, 
+                    controlScheme: "Gamepad", 
+                    pairWithDevice: gamePad);
+                gamepadJoined = true;
             }
         }
 
