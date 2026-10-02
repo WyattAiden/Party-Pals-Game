@@ -25,7 +25,7 @@ public class PlayerInputmanager : MonoBehaviour
             }
             wasdJoined = true;
         }
-        if (!arrowJoined && Keyboard.current.leftShiftKey.wasPressedThisFrame)
+        if (!arrowJoined && Keyboard.current.rightShiftKey.wasPressedThisFrame)
         {
             var player = PlayerInput.Instantiate(playerPrefab, controlScheme:"Arrows", pairWithDevice: Keyboard.current);
 

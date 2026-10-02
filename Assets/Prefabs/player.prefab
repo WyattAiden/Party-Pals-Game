@@ -214,6 +214,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 5
   gravity: -9.81
+  turnSpeed: 180
   projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6,
     type: 3}
   firePoint: {fileID: 5587249667997080775}

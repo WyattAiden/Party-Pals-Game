@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float turnSpeed = 120f;
 
     [Header("Shooting")]
     [SerializeField] private Projectile projectilePrefab;
@@ -49,7 +50,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+        // Left/right turns the player
+        transform.Rotate(0f, moveInput.x * turnSpeed * Time.deltaTime, 0f);
+
+        // Up/down moves forward/back relative to where the player is facing
+        Vector3 move = transform.forward * moveInput.y;
         controller.Move(move * moveSpeed * Time.deltaTime);
 
         velocity.y += gravity * Time.deltaTime;
