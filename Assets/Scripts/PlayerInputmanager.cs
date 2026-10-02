@@ -1,55 +1,60 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputmanager : MonoBehaviour
 {
-
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] public GameObject playerPrefab;
     [SerializeField] private Transform[] spawnPoints;
 
     private bool wasdJoined = false;
     private bool arrowJoined = false;
-    private bool gamepadJoined = false;
+    private readonly HashSet<Gamepad> joinedGamepads = new HashSet<Gamepad>();
+    private int nextGamepadSpawn = 2; // spawn points 0 and 1 belong to the keyboard players
 
     private void Update()
     {
-        if (Keyboard.current == null) return;
-
-        if (!wasdJoined && Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current != null)
         {
-            var player = PlayerInput.Instantiate(playerPrefab, controlScheme:"WASD", pairWithDevice: Keyboard.current);
-
-            if (spawnPoints.Length > 0)
+            if (!wasdJoined && Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                player.transform.position = spawnPoints[0].position;
+                var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "WASD", pairWithDevice: Keyboard.current);
+                if (spawnPoints.Length > 0)
+                {
+                    player.transform.position = spawnPoints[0].position;
+                }
+                wasdJoined = true;
             }
-            wasdJoined = true;
-        }
-        if (!arrowJoined && Keyboard.current.rightShiftKey.wasPressedThisFrame)
-        {
-            var player = PlayerInput.Instantiate(playerPrefab, controlScheme:"Arrows", pairWithDevice: Keyboard.current);
 
-            if (spawnPoints.Length > 1)
+            if (!arrowJoined && Keyboard.current.rightShiftKey.wasPressedThisFrame)
             {
-                player.transform.position = spawnPoints[1].position;
+                var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Arrows", pairWithDevice: Keyboard.current);
+                if (spawnPoints.Length > 1)
+                {
+                    player.transform.position = spawnPoints[1].position;
+                }
+                arrowJoined = true;
             }
-            arrowJoined = true;
         }
-
 
         foreach (var gamePad in Gamepad.all)
         {
-            if (gamePad.buttonSouth.wasPressedThisFrame && !gamepadJoined)
+            if (joinedGamepads.Contains(gamePad)) continue;
+
+            if (gamePad.buttonSouth.wasPressedThisFrame)
             {
-                PlayerInput.Instantiate(playerPrefab, 
-                    controlScheme: "Gamepad", 
+                var player = PlayerInput.Instantiate(playerPrefab,
+                    controlScheme: "Gamepad",
                     pairWithDevice: gamePad);
-                gamepadJoined = true;
-                Debug.Log("Gamepad joined: " + gamepadJoined);
+
+                if (nextGamepadSpawn < spawnPoints.Length)
+                {
+                    player.transform.position = spawnPoints[nextGamepadSpawn].position;
+                }
+
+                nextGamepadSpawn++;
+                joinedGamepads.Add(gamePad);
             }
         }
-
     }
-
-
 }
