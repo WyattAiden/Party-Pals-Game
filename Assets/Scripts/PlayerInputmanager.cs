@@ -45,6 +45,7 @@ public class PlayerInputmanager : MonoBehaviour
                     controlScheme: "Gamepad", 
                     pairWithDevice: gamePad);
                 gamepadJoined = true;
+                Debug.Log("Gamepad joined: " + gamepadJoined);
             }
         }
 
