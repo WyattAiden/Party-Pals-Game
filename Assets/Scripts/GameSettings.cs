@@ -1,18 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class GameSettings : MonoBehaviour
+public static class GameSettings
 {
-    // Start is called before the first frame update
-    void Start()
+    public struct PlayerSlot
     {
-        
+        public string scheme;
+        public InputDevice device;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static readonly List<PlayerSlot> Players = new List<PlayerSlot>();
 }
