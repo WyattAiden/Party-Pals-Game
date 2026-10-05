@@ -1,4 +1,3 @@
-using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,14 +6,19 @@ using UnityEngine.SceneManagement;
 public class LobbyMenu : MonoBehaviour
 {
     [SerializeField] private string gameSceneName = "GameScene";
-    [SerializeField] private TMP_Text lobbyLabel;
     [SerializeField] private int maxPlayers = 4;
     [SerializeField] private int minPlayersToStart = 1;
+
+    [Header("Join indicators")]
+    [SerializeField] private GameObject wasdCheck;
+    [SerializeField] private GameObject arrowsCheck;
+    [SerializeField] private GameObject gamepadCheck;
+    [SerializeField] private TMP_Text gamepadCountText; // optional, shows "x2" etc.
 
     private void Start()
     {
         GameSettings.Players.Clear();
-        UpdateLabel();
+        UpdateChecks();
     }
 
     private void Update()
@@ -49,7 +53,7 @@ public class LobbyMenu : MonoBehaviour
         if (GameSettings.Players.Exists(p => p.scheme == scheme && p.device == device)) return;
 
         GameSettings.Players.Add(new GameSettings.PlayerSlot { scheme = scheme, device = device });
-        UpdateLabel();
+        UpdateChecks();
     }
 
     public void StartGame()
@@ -58,23 +62,17 @@ public class LobbyMenu : MonoBehaviour
         SceneManager.LoadScene(gameSceneName);
     }
 
-    private void UpdateLabel()
+    private void UpdateChecks()
     {
-        if (lobbyLabel == null) return;
+        bool wasd = GameSettings.Players.Exists(p => p.scheme == "WASD");
+        bool arrows = GameSettings.Players.Exists(p => p.scheme == "Arrows");
+        int gamepads = GameSettings.Players.FindAll(p => p.scheme == "Gamepad").Count;
 
-        var sb = new StringBuilder();
-        sb.AppendLine("Space = WASD   |   Right Shift = Arrows   |   A = Gamepad");
-        sb.AppendLine();
+        if (wasdCheck != null) wasdCheck.SetActive(wasd);
+        if (arrowsCheck != null) arrowsCheck.SetActive(arrows);
+        if (gamepadCheck != null) gamepadCheck.SetActive(gamepads > 0);
 
-        for (int i = 0; i < maxPlayers; i++)
-        {
-            sb.AppendLine(i < GameSettings.Players.Count
-                ? $"Player {i + 1}: {GameSettings.Players[i].scheme}  (joined)"
-                : $"Player {i + 1}: waiting...");
-        }
-
-        sb.AppendLine();
-        sb.AppendLine("Press Enter / Start (or click Start) to begin");
-        lobbyLabel.text = sb.ToString();
+        if (gamepadCountText != null)
+            gamepadCountText.text = gamepads > 1 ? $"x{gamepads}" : "";
     }
 }
