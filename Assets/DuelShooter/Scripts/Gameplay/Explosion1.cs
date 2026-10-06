@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace DuelShooter
 {
-    public class Explosion : MonoBehaviour
+    public class Explosion1 : MonoBehaviour
     {
 
         // Use this for initialization
         public float Radius = 5;
         void Start()
         {
-            //CameraControl.MainCameraControl.StartShake(1f, 1f);
-            /*
+            CameraControl.MainCameraControl.StartShake(1f, 1f);
+
             if (transform.position.y <= 2)
             {
                 GameObject obj = Instantiate(GlobalContents.MainGlobalContent.DecalsPrefabs[0]);
@@ -20,7 +20,7 @@ namespace DuelShooter
                 obj.transform.position = pos;
                 Destroy(obj, 30);
             }
-            */
+
 
             Collider[] colls = Physics.OverlapSphere(transform.position, Radius);
             foreach (Collider col in colls)
