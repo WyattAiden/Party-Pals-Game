@@ -28,8 +28,9 @@ namespace DuelShooter
                 if (col.gameObject.tag == "Player")
                 {
                     float lerp = Vector3.Distance(col.bounds.center, transform.position) / (float)Radius;
-                    PlayerChar p = col.gameObject.GetComponent<PlayerChar>();
-                    p.MyDamageControl.ApplyDamage(Mathf.Lerp(40, 5, lerp), p.transform.position + new Vector3(0, 2, 0) - transform.position, 4);
+                    Health p = col.gameObject.GetComponent<Health>();
+                    if (p.TryGetComponent(out Health health))
+                        health.TakeDamage(20f);
                     //print(Vector3.Distance(col.bounds.center, transform.position));
                 }
                 else if (col.gameObject.tag == "Block")

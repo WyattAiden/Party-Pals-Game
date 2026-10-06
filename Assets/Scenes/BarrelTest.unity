@@ -122,6 +122,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &88126927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.403
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205321148, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_Name
+      value: player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2ed000514b6edb488197fd8919e478a, type: 3}
 --- !u!1 &545608709
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +286,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549277504
 GameObject:
@@ -315,7 +384,7 @@ GameObject:
   - component: {fileID: 628601785}
   - component: {fileID: 628601784}
   - component: {fileID: 628601783}
-  - component: {fileID: 628601781}
+  - component: {fileID: 628601787}
   - component: {fileID: 628601780}
   m_Layer: 0
   m_Name: Barrel1
@@ -338,26 +407,6 @@ CapsuleCollider:
   m_Height: 2.19
   m_Direction: 1
   m_Center: {x: 0, y: 0.00000002980233, z: 4.2351647e-22}
---- !u!114 &628601781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628601779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c485a5f980b6f4d8e9b2a2f9c3cf63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExplodeTimer: 0
-  Activated: 0
-  ExplodeParticle: {fileID: 1442786654504444, guid: 6aaba0dbad680404ba382c64c7d9f309,
-    type: 3}
-  FlameParticle: {fileID: 1442786654504444, guid: 5533175e1f59ef74db080f4a169aa255,
-    type: 3}
-  ExplodeDecalPrefab: {fileID: 0}
-  RBody: {fileID: 0}
 --- !u!54 &628601783
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -439,8 +488,28 @@ Transform:
   m_Children:
   - {fileID: 1991732214}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &628601787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628601779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c485a5f980b6f4d8e9b2a2f9c3cf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplodeTimer: 0
+  Activated: 0
+  ExplodeParticle: {fileID: 1442786654504444, guid: 6aaba0dbad680404ba382c64c7d9f309,
+    type: 3}
+  FlameParticle: {fileID: 1442786654504444, guid: 5533175e1f59ef74db080f4a169aa255,
+    type: 3}
+  ExplodeDecalPrefab: {fileID: 0}
+  RBody: {fileID: 0}
 --- !u!1 &1503759465
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +602,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1991732213
 GameObject:
