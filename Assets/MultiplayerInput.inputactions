@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "ddaf0511-cfa2-4a66-b249-5a69b20e098c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "839f33aa-22bf-4fe1-9452-798a6a70af4c",
@@ -157,41 +148,8 @@
                 },
                 {
                     "name": "",
-                    "id": "bdc8fd73-0c0a-4743-86d8-90748e0df0a5",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0f8d23c1-56e6-4999-94e3-d5fe1c8a1a01",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WASD",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "866c04e6-a5ac-4997-bc66-f3ed71bd28de",
-                    "path": "<Keyboard>/rightShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8f4cdd3c-a5fd-4ebb-8238-95b7e69ad7f5",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -202,7 +160,7 @@
                 {
                     "name": "",
                     "id": "5b13fe57-b734-4e2b-a5e9-511824143661",
-                    "path": "<Keyboard>/b",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "WASD",
@@ -213,7 +171,7 @@
                 {
                     "name": "",
                     "id": "f79289bb-f9cb-4589-a4ad-b429294562de",
-                    "path": "<Keyboard>/slash",
+                    "path": "<Keyboard>/rightShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Arrows",

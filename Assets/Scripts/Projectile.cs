@@ -1,14 +1,16 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
     [SerializeField] private float lifetime = 3f;
+    [SerializeField] private float damage = 10f;
+
+    [HideInInspector] public GameObject owner;
 
     void Start()
     {
-        Destroy(gameObject, lifetime); // cleanup if it never hits anything
+        Destroy(gameObject, lifetime);
     }
 
     void Update()
@@ -18,7 +20,11 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Apply damage here later, e.g. other.GetComponent<Health>()?.TakeDamage(1);
+        if (other.gameObject == owner) return;
+
+        if (other.TryGetComponent(out Health health))
+            health.TakeDamage(damage);
+
         Destroy(gameObject);
     }
 }
