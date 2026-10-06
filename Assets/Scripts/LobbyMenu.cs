@@ -75,4 +75,10 @@ public class LobbyMenu : MonoBehaviour
         if (gamepadCountText != null)
             gamepadCountText.text = gamepads > 1 ? $"x{gamepads}" : "";
     }
+
+    public void LoadLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
 }
