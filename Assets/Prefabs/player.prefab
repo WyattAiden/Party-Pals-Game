@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1965232311746923990}
   - component: {fileID: 8650299634992715964}
   - component: {fileID: -4287474654746257082}
+  - component: {fileID: 15175482641129923}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -211,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6402595843438280407}
   controller: {fileID: 8650299634992715964}
-  characterController: {fileID: 0}
+  characterController: {fileID: 15175482641129923}
   visuals: {fileID: 4108086922205321148}
   bodyRenderer: {fileID: 4108086922205317184}
   healthBarCanvas: {fileID: 4108086922205321148}
@@ -235,6 +236,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 5587249667997080775}
   fireCooldown: 0.5
+  knockbackDecay: 8
 --- !u!114 &-4287474654746257082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +250,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDuration: 0.25
+--- !u!143 &15175482641129923
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0
