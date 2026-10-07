@@ -62,11 +62,15 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSeconds(WinScreenDelay);
 
         var alive = GetAlivePlayers();
-        string message = alive.Count == 1
-            ? $"Player {alive[0].playerIndex + 1} wins!"
-            : "Draw!";
-
-        ShowWinScreen(message);
+        if (alive.Count == 1)
+        {
+            ShowWinScreen($"Player {alive[0].playerIndex + 1} wins!");
+        }
+        else
+        {
+            Debug.Log("Draw - restarting round");
+            PlayAgain();
+        }
     }
 
     private void ShowWinScreen(string message)

@@ -1680,7 +1680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1636001336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   WinScreenDelay: 2
-  MinimumPlayersBeforeWin: 2
+  MinimumPlayersBeforeWin: 1
   winScreen: {fileID: 1636001335}
   winnerText: {fileID: 704508011}
   firstSelectedButton: {fileID: 888761472}
