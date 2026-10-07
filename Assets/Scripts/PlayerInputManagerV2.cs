@@ -5,6 +5,9 @@ public class PlayerInputManagerV2 : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform[] spawnPoints;
+    
+    
+
 
     private void Start()
     {
@@ -33,5 +36,7 @@ public class PlayerInputManagerV2 : MonoBehaviour
             player.transform.position = spawnPoints[index].position;
             Physics.SyncTransforms();
         }
+
+
     }
 }
