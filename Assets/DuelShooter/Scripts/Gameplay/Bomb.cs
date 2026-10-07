@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace DuelShooter
 {
@@ -27,6 +28,8 @@ namespace DuelShooter
             ExplodeTimer = 2f;
             RBody = GetComponent<Rigidbody>();
         }
+
+        
 
         // Update is called once per frame
         void Update()
@@ -70,6 +73,12 @@ namespace DuelShooter
             GameObject obj = Instantiate(ExplodeParticle);
             obj.transform.position = transform.position;
             Destroy(obj, 6);
+
+            BarrelExplosion knockback = GetComponent<BarrelExplosion>();
+            if (knockback != null)
+            {
+                knockback.Explosion();
+            }
 
 
 
