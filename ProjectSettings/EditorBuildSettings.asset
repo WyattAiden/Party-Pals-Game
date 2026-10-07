@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: 2a379131e955a094c8fe797683bb4648
   - enabled: 1
-    path: Assets/Scenes/Stephans test scene.unity
+    path: Assets/Scenes/WarLevel.unity
     guid: 33c2144f82130f947bc377bde4ccc68f
   - enabled: 0
     path: Assets/DuelShooter/Scenes/Scene0.unity
@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/DuelShooter/Scenes/Scene3.unity
     guid: db3a8bfd25fd63b47b1e7bdbfeda32ee
+  - enabled: 1
+    path: Assets/Scenes/Stephans test scene 1.unity
+    guid: 7fa1a16ace97dcf43a2e06acc270a93d
+  - enabled: 1
+    path: Assets/Scenes/LevelSelection.unity
+    guid: ece34590ce3b4a4458a7180fc8ae6680
   m_configObjects: {}

@@ -55,6 +55,10 @@ public class LobbyMenu : MonoBehaviour
         GameSettings.Players.Add(new GameSettings.PlayerSlot { scheme = scheme, device = device });
         UpdateChecks();
     }
+    public void LoadLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
     public void StartGame()
     {
@@ -75,4 +79,7 @@ public class LobbyMenu : MonoBehaviour
         if (gamepadCountText != null)
             gamepadCountText.text = gamepads > 1 ? $"x{gamepads}" : "";
     }
+
+
+
 }

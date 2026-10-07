@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class PlayerInputManagerV2 : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform[] spawnPoints;
+
+    public static event Action<PlayerInput> OnPlayerJoined;
+
 
     private void Start()
     {
@@ -33,5 +36,7 @@ public class PlayerInputManagerV2 : MonoBehaviour
             player.transform.position = spawnPoints[index].position;
             Physics.SyncTransforms();
         }
+
+        OnPlayerJoined?.Invoke(player);
     }
 }
