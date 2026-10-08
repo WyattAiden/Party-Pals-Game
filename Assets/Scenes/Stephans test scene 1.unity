@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  WinScreenDelay: 2
+  WinScreenDelay: 1.5
   MinimumPlayersBeforeWin: 1
   winScreen: {fileID: 1636001335}
   winnerText: {fileID: 704508011}
