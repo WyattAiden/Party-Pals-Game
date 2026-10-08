@@ -158,7 +158,7 @@
                 {
                     "name": "",
                     "id": "8f4cdd3c-a5fd-4ebb-8238-95b7e69ad7f5",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
