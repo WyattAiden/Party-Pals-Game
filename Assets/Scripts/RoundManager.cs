@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -9,6 +11,12 @@ public class RoundManager : MonoBehaviour
     [SerializeField] List<PlayerInput> players;
     [SerializeField] private float WinScreenDelay = 3f;
     [SerializeField] private int MinimumPlayersBeforeWin = 2;
+
+    [Header("Win screen")]
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private TMP_Text winnerText;
+    [SerializeField] private GameObject firstSelectedButton;
+    [SerializeField] private string menuSceneName = "StartScreen";
 
     private bool roundOver;
 
@@ -55,9 +63,40 @@ public class RoundManager : MonoBehaviour
 
         var alive = GetAlivePlayers();
         if (alive.Count == 1)
-            Debug.Log($"Player {alive[0].playerIndex + 1} wins");
+        {
+            ShowWinScreen($"Player {alive[0].playerIndex + 1} wins!");
+        }
         else
-            Debug.Log("Draw");
+        {
+            Debug.Log("Draw - restarting round");
+            PlayAgain();
+        }
+    }
+
+    private void ShowWinScreen(string message)
+    {
+        // Stop everyone moving and shooting
+        foreach (var player in players)
+        {
+            if (player != null) player.DeactivateInput();
+        }
+
+        winnerText.text = message;
+        winScreen.SetActive(true);
+
+        // Lets a gamepad or keyboard navigate the buttons straight away
+        EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+    }
+
+    // Hook these up to the buttons' OnClick events in the Inspector
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(menuSceneName);
     }
 
     private List<PlayerInput> GetAlivePlayers()

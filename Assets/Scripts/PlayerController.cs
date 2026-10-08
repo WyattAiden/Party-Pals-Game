@@ -20,6 +20,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity;
     private float nextFireTime;
+    Vector3 knockbackVelocity;
+    public float knockbackDecay = 8f;
+   
+    public void ApplyKnockBack(Vector3 force)
+    {
+        knockbackVelocity = force;
+    }
+
 
     void Awake()
     {
@@ -48,9 +56,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+       
         // Left stick: move in world space (stick up = +Z), independent of facing
         Vector3 move = Vector3.ClampMagnitude(new Vector3(moveInput.x, 0f, moveInput.y), 1f);
-        controller.Move(move * moveSpeed * Time.deltaTime);
+       
 
         // Right stick: face the direction it is pushed; keep last facing when released
         if (lookInput.sqrMagnitude > lookDeadzone * lookDeadzone)
@@ -62,6 +71,10 @@ public class PlayerController : MonoBehaviour
         // Gravity (reset while grounded so it doesn't build up forever)
         if (controller.isGrounded && velocity.y < 0f) velocity.y = -2f;
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        
+        Vector3 total = (move * moveSpeed) + knockbackVelocity + new Vector3(0f, velocity.y, 0f);
+        controller.Move(total * Time.deltaTime);
+
+        knockbackVelocity = Vector3.Lerp(knockbackVelocity, Vector3.zero, knockbackDecay * Time.deltaTime);
     }
 }
