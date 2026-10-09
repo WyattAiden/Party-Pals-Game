@@ -33,7 +33,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ManuNavigate",
+                    "name": "MenuNavigate",
                     "type": "Value",
                     "id": "70c2eb05-495f-42a7-a303-15c5c2028f12",
                     "expectedControlType": "Vector2",
@@ -233,7 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ManuNavigate",
+                    "action": "MenuNavigate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
