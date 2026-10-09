@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4108086922205317184}
   - component: {fileID: 4108086922205317187}
   - component: {fileID: 4108086922205317186}
+  - component: {fileID: -3613923680180727081}
   - component: {fileID: 6402595843438280407}
   - component: {fileID: 1965232311746923990}
   - component: {fileID: 8650299634992715964}
@@ -180,11 +181,41 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 996e179e-2468-4656-8d07-18eef1b5cd60
     m_ActionName: Gameplay/Look[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 70c2eb05-495f-42a7-a303-15c5c2028f12
+    m_ActionName: Gameplay/MenuNavigate
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e8804032-c585-454a-aa86-01d95201e6e8
+    m_ActionName: Gameplay/Confirm
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1db55311-2fc9-4a91-9c8b-d773b2dcd079
+    m_ActionName: Gameplay/Cancel
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-3613923680180727081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777eaff2dca1c4e4f94a796cb7ab3a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  bodyrenderer: {fileID: 4108086922205317184}
 --- !u!114 &6402595843438280407
 MonoBehaviour:
   m_ObjectHideFlags: 0
