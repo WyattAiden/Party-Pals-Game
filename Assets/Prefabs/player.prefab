@@ -211,10 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColor:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0.18039216, a: 0}
+  - {r: 0.90188676, g: 0, b: 0.70121795, a: 0}
+  - {r: 0.18946753, g: 0.86415094, b: 0, a: 0}
+  - {r: 1, g: 0.985673, b: 0, a: 0}
   bodyrenderer: {fileID: 4108086922205317184}
 --- !u!114 &6402595843438280407
 MonoBehaviour:
