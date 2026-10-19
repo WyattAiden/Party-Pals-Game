@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerColor:
   - {r: 1, g: 0, b: 0.18039216, a: 0}
-  - {r: 0.90188676, g: 0, b: 0.70121795, a: 0}
+  - {r: 0.9019608, g: 0, b: 0.75103027, a: 0}
   - {r: 0.18946753, g: 0.86415094, b: 0, a: 0}
   - {r: 1, g: 0.985673, b: 0, a: 0}
   bodyrenderer: {fileID: 4108086922205317184}

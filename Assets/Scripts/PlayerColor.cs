@@ -12,7 +12,7 @@ public class PlayerColor : MonoBehaviour
     void Start()
     {
         int Palet = GetComponent<PlayerInput>().playerIndex;
-        Color playercolor = playerColor[Palet];
+        Color playercolor = GameSettings.playerColors[Palet];
         bodyrenderer.material.color = playercolor;
 
     }
