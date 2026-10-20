@@ -185,7 +185,7 @@
                 {
                     "name": "",
                     "id": "8f4cdd3c-a5fd-4ebb-8238-95b7e69ad7f5",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -211,6 +211,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Arrows",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "008d7918-92c7-4657-a4b5-f4e7d77258c3",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
