@@ -7751,8 +7751,8 @@ MonoBehaviour:
   MinimumPlayersBeforeWin: 1
   winScreen: {fileID: 1537080246}
   winnerText: {fileID: 2121121247}
-  firstSelectedButton: {fileID: 0}
-  menuSceneName: LevelSelection
+  firstSelectedButton: {fileID: 790631135}
+  menuSceneName: PlayReady
 --- !u!4 &2032831671
 Transform:
   m_ObjectHideFlags: 0
