@@ -9,7 +9,7 @@ public class CannonBallMove : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float speed = 15f;
 
-    [SerializeField] private float knockbackForce = 30f;
+    [SerializeField] private float knockbackForce = 15f;
 
     private Vector3 direction;
 
