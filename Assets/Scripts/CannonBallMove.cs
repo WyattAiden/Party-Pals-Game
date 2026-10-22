@@ -9,6 +9,8 @@ public class CannonBallMove : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float speed = 15f;
 
+    [SerializeField] private float knockbackForce = 30f;
+
     private Vector3 direction;
 
     public void SetDirection(Vector3 newDirection, float newSpeed)
@@ -33,6 +35,9 @@ public class CannonBallMove : MonoBehaviour
         if (other.TryGetComponent(out Health health))
         {
             health.TakeDamage(damage);
+
+            if (other.TryGetComponent(out EnemyKnockBack enemy))
+                enemy.ApplyKnockback(transform.forward, knockbackForce);
         }
 
         // Destroy the projectile after hitting something
