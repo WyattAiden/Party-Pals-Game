@@ -69,7 +69,7 @@ public class RoundManager : MonoBehaviour
         else
         {
             Debug.Log("Draw - restarting round");
-            PlayAgain();
+            //PlayAgain();
         }
     }
 
@@ -89,10 +89,10 @@ public class RoundManager : MonoBehaviour
     }
 
     // Hook these up to the buttons' OnClick events in the Inspector
-    public void PlayAgain()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    //public void PlayAgain()
+   // {
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+   // }
 
     public void LoadMenu()
     {
