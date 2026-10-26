@@ -768,13 +768,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSceneName: LevelSelection
   maxPlayers: 4
-  minPlayersToStart: 1
+  minPlayersToStart: 2
   playerIcons:
   - {fileID: 2027220707}
   - {fileID: 1810780789}
   - {fileID: 575456833}
   - {fileID: 1726598896}
   emptyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  uIModule: {fileID: 305311001}
 --- !u!4 &1114155474
 Transform:
   m_ObjectHideFlags: 0
@@ -892,7 +893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8.036316}
+  m_AnchoredPosition: {x: 0, y: 8.036377}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624906664
