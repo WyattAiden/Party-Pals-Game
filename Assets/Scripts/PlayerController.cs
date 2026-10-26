@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fireCooldown = 0.5f;
 
     private CharacterController controller;
+    private PlayerWeaponHandler weapons;
+    public Transform FirePoint => firePoint;
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        weapons = GetComponent<PlayerWeaponHandler>();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -47,6 +50,10 @@ public class PlayerController : MonoBehaviour
     public void Shoot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
+        // Power weapon takes over the shot while the player is holding one
+        if (weapons != null && weapons.TryFire(firePoint, gameObject)) return;
+
         if (Time.time < nextFireTime) return;
 
         nextFireTime = Time.time + fireCooldown;
