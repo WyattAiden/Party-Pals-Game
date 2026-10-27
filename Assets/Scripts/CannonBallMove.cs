@@ -34,7 +34,7 @@ public class CannonBallMove : MonoBehaviour
         // Deal damage to anything with a Health component
         if (other.TryGetComponent(out Health health))
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, gameObject);
 
             if (other.TryGetComponent(out EnemyKnockBack enemy))
                 enemy.ApplyKnockback(transform.forward, knockbackForce);

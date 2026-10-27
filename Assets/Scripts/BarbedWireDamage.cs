@@ -7,6 +7,6 @@ public class BarbedWireDamage : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Health health))
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, gameObject);
     }
 }

@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "2b72d2bd-a033-4318-901a-c26ab23dcbf5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -217,17 +226,6 @@
                 },
                 {
                     "name": "",
-                    "id": "008d7918-92c7-4657-a4b5-f4e7d77258c3",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "45e50cf1-7cad-43ed-bee6-22e61542c3a1",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -267,6 +265,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a47b4e7-2b43-4ec7-8723-bae46ee84e4b",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69f8d97e-46a0-4305-9232-0f77c4b09e5e",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

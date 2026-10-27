@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8650299634992715964}
   - component: {fileID: -4287474654746257082}
   - component: {fileID: 15175482641129923}
-  - component: {fileID: 5477053313691257409}
+  - component: {fileID: -9007545354000997154}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -34,7 +34,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4108086922205321148}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -43,6 +42,7 @@ Transform:
   - {fileID: 5587249667997080775}
   - {fileID: 5408658753050853063}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4108086922205317185
 MeshFilter:
@@ -69,11 +69,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -95,11 +90,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &4108086922205317187
 CapsuleCollider:
@@ -109,17 +102,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4108086922205321148}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -136,7 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 47a7c3db994cc6b4f993367c13199dc9, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 47a7c3db994cc6b4f993367c13199dc9,
+    type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -164,7 +149,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: c032fd2e-7b49-421e-986a-f9ff890fc873
-    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+    m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8650299634992715964}
@@ -180,7 +165,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 839f33aa-22bf-4fe1-9452-798a6a70af4c
-    m_ActionName: 'Gameplay/Shoot[/Keyboard/leftCtrl,/Keyboard/slash]'
+    m_ActionName: Gameplay/Shoot[/Keyboard/leftCtrl,/Keyboard/slash]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8650299634992715964}
@@ -196,7 +181,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 996e179e-2468-4656-8d07-18eef1b5cd60
-    m_ActionName: 'Gameplay/Look[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]'
+    m_ActionName: Gameplay/Look[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 70c2eb05-495f-42a7-a303-15c5c2028f12
@@ -209,6 +194,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1db55311-2fc9-4a91-9c8b-d773b2dcd079
     m_ActionName: Gameplay/Cancel
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8650299634992715964}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2b72d2bd-a033-4318-901a-c26ab23dcbf5
+    m_ActionName: Gameplay/Dash[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -278,11 +279,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   gravity: -9.81
-  turnSpeed: 120
+  turnSpeed: 180
   lookDeadzone: 0.2
-  projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6, type: 3}
+  projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6,
+    type: 3}
   firePoint: {fileID: 5587249667997080775}
   fireCooldown: 0.5
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
   knockbackDecay: 8
 --- !u!114 &-4287474654746257082
 MonoBehaviour:
@@ -297,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDuration: 0.25
+  knockbackVelocity: 0.2
 --- !u!143 &15175482641129923
 CharacterController:
   m_ObjectHideFlags: 0
@@ -305,16 +311,9 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4108086922205321148}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
@@ -322,7 +321,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5477053313691257409
+--- !u!114 &-9007545354000997154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,11 +330,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4108086922205321148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f51d11e7308db41a6c5accd24818bf, type: 3}
+  m_Script: {fileID: 11500000, guid: fb5460a777b354542810e00404c87a68, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponHandler
-  weaponSocket: {fileID: 0}
-  allowSwapping: 1
+  m_EditorClassIdentifier: 
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +371,7 @@ RectTransform:
   - {fileID: 7220135088803122988}
   - {fileID: 3863847945045747054}
   m_Father: {fileID: 4108086922205317190}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -395,9 +396,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -479,17 +478,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6929994614271055164}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4108086922205317190}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &6329468530330640500
 LineRenderer:
-  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -505,11 +503,6 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -531,23 +524,20 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 3}
-  - {x: 0, y: 0, z: 18.75}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.09198706
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 1
+        time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -585,19 +575,16 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
-  m_ApplyActiveColorSpace: 0
 --- !u!1 &7180826225062346075
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +616,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5408658753050853063}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -704,6 +692,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5408658753050853063}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
