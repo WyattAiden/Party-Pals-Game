@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: fa4c144f83c22cd40b1f9ff8ab9c9abf, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 5000d1a9f1c06d54cafd1f4ae1a7962f, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1901095074e7d09458d468e202289ef5, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -771,13 +771,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSceneName: LevelSelection
   maxPlayers: 4
-  minPlayersToStart: 1
+  minPlayersToStart: 2
   playerIcons:
   - {fileID: 2027220707}
   - {fileID: 1810780789}
   - {fileID: 575456833}
   - {fileID: 1726598896}
   emptyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  uIModule: {fileID: 305311001}
 --- !u!4 &1114155474
 Transform:
   m_ObjectHideFlags: 0
