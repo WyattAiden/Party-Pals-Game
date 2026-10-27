@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fireCooldown = 0.5f;
 
     private CharacterController controller;
+    public Vector2 MoveInput => moveInput;
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
@@ -25,7 +26,8 @@ public class PlayerController : MonoBehaviour
    
     public void ApplyKnockBack(Vector3 force)
     {
-        knockbackVelocity = force;
+        Debug.Log("Knockback applied: " + force);
+        knockbackVelocity += force;
     }
 
 
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
         Projectile proj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         proj.owner = gameObject;
     }
+
+
 
     void Update()
     {
