@@ -9,13 +9,16 @@ public class Health : MonoBehaviour
 
     public event Action<float, float> Changed; // current, max
     public event Action Died;
+    public event Action<float, GameObject> Damaged; // amount lost, source (player or hazard, may be null)
 
     void Awake() => Current = maxHealth;
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, GameObject source = null)
     {
         if (IsDead) return;
+        float before = Current;
         Current = Mathf.Max(0f, Current - amount);
+        Damaged?.Invoke(before - Current, source);
         Changed?.Invoke(Current, maxHealth);
         if (IsDead) Died?.Invoke();
     }

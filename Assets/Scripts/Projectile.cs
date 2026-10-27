@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject == owner) return;
 
         if (other.TryGetComponent(out Health health))
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, owner);
 
         if (other.TryGetComponent(out EnemyKnockBack enemy))
             enemy.ApplyKnockback(transform.forward, knockbackForce);
