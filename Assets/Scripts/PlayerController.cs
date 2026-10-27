@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
         nextFireTime = Time.time + fireCooldown;
         Projectile proj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         proj.owner = gameObject;
+        PlaytestLogger.Shot(gameObject);
     }
 
     void Update()

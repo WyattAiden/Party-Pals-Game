@@ -62,6 +62,7 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSeconds(WinScreenDelay);
 
         var alive = GetAlivePlayers();
+        PlaytestLogger.RoundEnded(alive.Count == 1 ? alive[0] : null);
         if (alive.Count == 1)
         {
             ShowWinScreen($"Player {alive[0].playerIndex + 1} wins!");
