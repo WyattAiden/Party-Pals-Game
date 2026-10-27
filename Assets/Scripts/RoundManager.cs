@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class RoundManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private TMP_Text winnerText;
     [SerializeField] private GameObject firstSelectedButton;
     [SerializeField] private string menuSceneName = "StartScreen";
+    [SerializeField] private Image winnerFace;
 
     private bool roundOver;
 
@@ -64,6 +66,7 @@ public class RoundManager : MonoBehaviour
         var alive = GetAlivePlayers();
         if (alive.Count == 1)
         {
+            winnerFace.color = GameSettings.playerColors[alive[0].playerIndex];
             ShowWinScreen($"Player {alive[0].playerIndex + 1} wins!");
         }
         else
