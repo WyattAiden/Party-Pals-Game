@@ -196,13 +196,13 @@ MonoBehaviour:
     m_ActionName: Gameplay/Cancel
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 8650299634992715964}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -279,12 +279,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   gravity: -9.81
-  turnSpeed: 120
+  turnSpeed: 180
   lookDeadzone: 0.2
   projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6,
     type: 3}
   firePoint: {fileID: 5587249667997080775}
   fireCooldown: 0.5
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
   knockbackDecay: 8
 --- !u!114 &-4287474654746257082
 MonoBehaviour:
