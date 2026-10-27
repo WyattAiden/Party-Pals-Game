@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private Transform firePoint;
+    public Transform FirePoint => firePoint;
     [SerializeField] private float fireCooldown = 0.5f;
 
     [Header("Dash Settings")]

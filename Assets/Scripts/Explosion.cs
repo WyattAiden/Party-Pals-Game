@@ -28,8 +28,8 @@ namespace DuelShooter
                 if (col.gameObject.tag == "Player")
                 {
                     float lerp = Vector3.Distance(col.bounds.center, transform.position) / (float)Radius;
-                    Health p = col.gameObject.GetComponent<Health>();
-                    if (p.TryGetComponent(out Health health))
+                    Health health = col.GetComponentInParent<Health>();
+                    if (health != null)
                         health.TakeDamage(20f);
                     //print(Vector3.Distance(col.bounds.center, transform.position));
                 }
@@ -41,12 +41,6 @@ namespace DuelShooter
                         rb.AddForceAtPosition(col.gameObject.transform.position - transform.forward, transform.position);
                     }
 
-                    DamageControl d = col.gameObject.GetComponent<DamageControl>();
-                    if (d != null)
-                    {
-                        float lerp = Vector3.Distance(col.bounds.center, transform.position) / Radius;
-                        d.ApplyDamage(Mathf.Lerp(10, 1, lerp), transform.forward, 1);
-                    }
                 }
             }
         }
