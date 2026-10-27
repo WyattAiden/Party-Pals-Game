@@ -134,6 +134,56 @@ PrefabInstance:
       propertyPath: characterController
       value: 
       objectReference: {fileID: 1845359359}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 2b72d2bd-a033-4318-901a-c26ab23dcbf5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: Gameplay/Dash[/Keyboard/b]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 88126928}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerDash, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108086922205317186, guid: e2ed000514b6edb488197fd8919e478a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4108086922205317190, guid: e2ed000514b6edb488197fd8919e478a,
         type: 3}
       propertyPath: m_RootOrder
@@ -196,6 +246,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2ed000514b6edb488197fd8919e478a, type: 3}
+--- !u!114 &88126928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -9007545354000997154, guid: e2ed000514b6edb488197fd8919e478a,
+    type: 3}
+  m_PrefabInstance: {fileID: 88126927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845359347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5460a777b354542810e00404c87a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &545608709
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +453,6 @@ GameObject:
   - component: {fileID: 628601783}
   - component: {fileID: 628601787}
   - component: {fileID: 628601780}
-  - component: {fileID: 628601788}
   m_Layer: 0
   m_Name: Barrel1
   m_TagString: Block
@@ -508,6 +569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c485a5f980b6f4d8e9b2a2f9c3cf63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionRadius: 5
+  knockBackForce: 15
   ExplodeTimer: 0
   Activated: 0
   ExplodeParticle: {fileID: 1442786654504444, guid: 6aaba0dbad680404ba382c64c7d9f309,
@@ -516,20 +579,6 @@ MonoBehaviour:
     type: 3}
   ExplodeDecalPrefab: {fileID: 0}
   RBody: {fileID: 0}
---- !u!114 &628601788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628601779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a27732dae1ba442b531f2e0b04bfcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionRadius: 5
-  knockBackForce: 15
 --- !u!1 &1503759465
 GameObject:
   m_ObjectHideFlags: 0

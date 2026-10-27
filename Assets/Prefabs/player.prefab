@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8650299634992715964}
   - component: {fileID: -4287474654746257082}
   - component: {fileID: 15175482641129923}
+  - component: {fileID: -9007545354000997154}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -193,6 +194,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1db55311-2fc9-4a91-9c8b-d773b2dcd079
     m_ActionName: Gameplay/Cancel
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8650299634992715964}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2b72d2bd-a033-4318-901a-c26ab23dcbf5
+    m_ActionName: Gameplay/Dash[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -262,12 +279,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   gravity: -9.81
-  turnSpeed: 120
+  turnSpeed: 180
   lookDeadzone: 0.2
   projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6,
     type: 3}
   firePoint: {fileID: 5587249667997080775}
   fireCooldown: 0.5
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
   knockbackDecay: 8
 --- !u!114 &-4287474654746257082
 MonoBehaviour:
@@ -282,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDuration: 0.25
+  knockbackVelocity: 0.2
 --- !u!143 &15175482641129923
 CharacterController:
   m_ObjectHideFlags: 0
@@ -300,6 +321,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-9007545354000997154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5460a777b354542810e00404c87a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0

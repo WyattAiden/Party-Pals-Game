@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyKnockBack : MonoBehaviour
 {
     public float knockbackDuration = 0.25f;
+    public float knockbackVelocity = 0.20f;
 
     Vector3 velocity;
     float timer;
@@ -16,6 +17,8 @@ public class EnemyKnockBack : MonoBehaviour
         direction.y = 0f;                       // keep it on the ground
         velocity = direction.normalized * force;
         timer = knockbackDuration;
+        Debug.Log("ApplyKnockBack called:" + force);
+        knockbackVelocity = force;
     }
 
     // Update is called once per frame

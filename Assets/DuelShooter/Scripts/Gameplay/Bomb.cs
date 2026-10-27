@@ -7,6 +7,9 @@ namespace DuelShooter
     public class Bomb : MonoBehaviour
     {
 
+        public float explosionRadius = 5f;
+        public float knockBackForce = 15f;
+
         [HideInInspector]
         public float ExplodeTimer = 0;
         [HideInInspector]
@@ -70,6 +73,8 @@ namespace DuelShooter
 
         public void Explode()
         {
+            Explosion();
+
             GameObject obj = Instantiate(ExplodeParticle);
             obj.transform.position = transform.position;
             Destroy(obj, 6);
@@ -81,7 +86,8 @@ namespace DuelShooter
             }
 
 
-
+            
+            
             //obj = Instantiate(ExplodeDecalPrefab);
             //Vector3 pos = transform.position;
             //pos.y = 0.2f;
@@ -93,6 +99,25 @@ namespace DuelShooter
 
 
             Destroy(gameObject);
+        }
+
+        public void Explosion()
+        {
+            Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRadius);
+
+            foreach (Collider hit in objectsInRange)
+            {
+                var player = hit.GetComponentInParent<PlayerController>();
+                if (player != null)
+                {
+                    Vector3 dir = (player.transform.position - transform.position);
+                    dir.y = Mathf.Max(dir.y, 0.5f);
+                    dir.Normalize();
+
+                    float falloff = 1f - Mathf.Clamp01(Vector3.Distance(transform.position, player.transform.position) / explosionRadius);
+                    player.ApplyKnockBack(dir * knockBackForce * falloff);
+                }
+            }
         }
 
         public void Activate()
