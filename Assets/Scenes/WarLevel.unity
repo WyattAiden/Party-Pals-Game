@@ -269,6 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 35745331}
+  - component: {fileID: 35745332}
   m_Layer: 0
   m_Name: Bombspawn2
   m_TagString: Untagged
@@ -291,6 +292,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35745332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35745330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1001 &73976890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -464,6 +485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116706019}
+  - component: {fileID: 116706020}
   m_Layer: 0
   m_Name: Bombspawn12
   m_TagString: Untagged
@@ -486,6 +508,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &116706020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116706018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &133082037
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 163652186}
+  - component: {fileID: 163652187}
   m_Layer: 0
   m_Name: Bombspawn10
   m_TagString: Untagged
@@ -556,6 +599,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &163652187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163652185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1001 &171494534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,6 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 171945431}
+  - component: {fileID: 171945432}
   m_Layer: 0
   m_Name: Bombspawn7
   m_TagString: Untagged
@@ -669,6 +733,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &171945432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171945430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1001 &202396426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2140,6 +2224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 529405440}
+  - component: {fileID: 529405441}
   m_Layer: 0
   m_Name: Bombspawn6
   m_TagString: Untagged
@@ -2162,6 +2247,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &529405441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529405439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &581043038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,6 +2276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581043039}
+  - component: {fileID: 581043040}
   m_Layer: 0
   m_Name: Bombspawn9
   m_TagString: Untagged
@@ -2193,6 +2299,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &581043040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581043038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &582739075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2332,7 @@ GameObject:
   - component: {fileID: 582739078}
   - component: {fileID: 582739077}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3875,6 +4001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981094035}
+  - component: {fileID: 981094036}
   m_Layer: 0
   m_Name: Point 4
   m_TagString: Untagged
@@ -3897,6 +4024,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473879815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &981094036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981094034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.6
+  arrowDirection: {x: 0, y: 0, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1001 &989981621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4009,6 +4156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1018925648}
+  - component: {fileID: 1018925649}
   m_Layer: 0
   m_Name: Point 3
   m_TagString: Untagged
@@ -4031,6 +4179,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473879815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018925649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018925647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.6
+  arrowDirection: {x: 0, y: 0, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1025930466
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,6 +4379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061473359}
+  - component: {fileID: 1061473360}
   m_Layer: 0
   m_Name: Bombspawn4
   m_TagString: Untagged
@@ -4233,6 +4402,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1061473360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061473358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1084131030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4539,6 +4728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172625326}
+  - component: {fileID: 1172625327}
   m_Layer: 0
   m_Name: Point 2
   m_TagString: Untagged
@@ -4561,6 +4751,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473879815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172625327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172625325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.6
+  arrowDirection: {x: 0, y: 0, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1001 &1184802333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5052,6 +5262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301725992}
+  - component: {fileID: 1301725993}
   m_Layer: 0
   m_Name: Bombspawn8
   m_TagString: Untagged
@@ -5074,6 +5285,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301725993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301725991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1317851393
 GameObject:
   m_ObjectHideFlags: 0
@@ -5083,6 +5314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1317851394}
+  - component: {fileID: 1317851395}
   m_Layer: 0
   m_Name: Bombspawn3
   m_TagString: Untagged
@@ -5105,6 +5337,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1317851395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317851393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1324077197
 GameObject:
   m_ObjectHideFlags: 0
@@ -5738,6 +5990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1382294281}
+  - component: {fileID: 1382294282}
   m_Layer: 0
   m_Name: Bombspawn1
   m_TagString: Untagged
@@ -5760,6 +6013,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382294282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382294280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1387729143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5769,6 +6042,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1387729144}
+  - component: {fileID: 1387729145}
   m_Layer: 0
   m_Name: Bombspawn5
   m_TagString: Untagged
@@ -5791,6 +6065,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1387729145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387729143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1397782710
 GameObject:
   m_ObjectHideFlags: 0
@@ -5800,6 +6094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1397782711}
+  - component: {fileID: 1397782712}
   m_Layer: 0
   m_Name: Bombspawn11
   m_TagString: Untagged
@@ -5822,6 +6117,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1397782712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397782710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 1
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.4
+  arrowDirection: {x: 0, y: -1, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1404804348
 GameObject:
   m_ObjectHideFlags: 0
@@ -5831,6 +6146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1404804349}
+  - component: {fileID: 1404804350}
   m_Layer: 0
   m_Name: Point 1
   m_TagString: Untagged
@@ -5853,6 +6169,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 473879815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404804350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404804348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
+  kind: 0
+  useCustomColor: 0
+  customColor: {r: 1, g: 1, b: 1, a: 1}
+  radius: 0.6
+  arrowDirection: {x: 0, y: 0, z: 0}
+  arrowLength: 2
+  showLabel: 1
+  label: 
 --- !u!1 &1422494470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6604,8 +6940,9 @@ GameObject:
   - component: {fileID: 1670138738}
   - component: {fileID: 1670138737}
   - component: {fileID: 1670138736}
+  - component: {fileID: 1670138739}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Turret
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6705,6 +7042,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670138734}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1670138739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670138734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc035d23a6b76c499faa084f7081810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomTurretRotation
+  turnSpeed: 30
+  maxAngleFromStart: 180
+  minTurnAmount: 30
+  minPause: 1
+  maxPause: 3
 --- !u!1001 &1718085025
 PrefabInstance:
   m_ObjectHideFlags: 0

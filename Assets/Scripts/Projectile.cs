@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == owner) return;
+        if (other.GetComponent<WeaponPickup>() != null) return; // fly through pickups
 
         if (other.TryGetComponent(out Health health))
             health.TakeDamage(damage, owner);
