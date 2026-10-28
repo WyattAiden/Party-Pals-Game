@@ -224,7 +224,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 2b72d2bd-a033-4318-901a-c26ab23dcbf5
-    m_ActionName: Gameplay/Dash[/Keyboard/b]
+    m_ActionName: 'Gameplay/Dash[/Keyboard/b]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8650299634992715964}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Running
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ca6e782a-78de-4b17-8e88-fe3e2b296ace
+    m_ActionName: Gameplay/Running
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -299,6 +315,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6, type: 3}
   firePoint: {fileID: 5587249667997080775}
   fireCooldown: 0.5
+  runSpeed: 10
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
