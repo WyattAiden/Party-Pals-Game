@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/WarLevel.unity
     guid: 33c2144f82130f947bc377bde4ccc68f
   - enabled: 1
-    path: Assets/Scenes/Stephans test scene 1.unity
-    guid: 7fa1a16ace97dcf43a2e06acc270a93d
-  - enabled: 1
     path: Assets/Scenes/PlayerReady.unity
     guid: ece34590ce3b4a4458a7180fc8ae6680
   - enabled: 1
