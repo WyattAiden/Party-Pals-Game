@@ -2332,7 +2332,7 @@ GameObject:
   - component: {fileID: 582739078}
   - component: {fileID: 582739077}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6940,8 +6940,9 @@ GameObject:
   - component: {fileID: 1670138738}
   - component: {fileID: 1670138737}
   - component: {fileID: 1670138736}
+  - component: {fileID: 1670138739}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Turret
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7041,6 +7042,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670138734}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1670138739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670138734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc035d23a6b76c499faa084f7081810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomTurretRotation
+  turnSpeed: 30
+  maxAngleFromStart: 180
+  minTurnAmount: 30
+  minPause: 1
+  maxPause: 3
 --- !u!1001 &1718085025
 PrefabInstance:
   m_ObjectHideFlags: 0
