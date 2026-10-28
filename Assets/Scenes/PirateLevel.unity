@@ -5332,6 +5332,7 @@ MonoBehaviour:
   winnerText: {fileID: 2121121247}
   firstSelectedButton: {fileID: 790631135}
   menuSceneName: PlayerReady
+  winnerFace: {fileID: 0}
 --- !u!4 &2032831671
 Transform:
   m_ObjectHideFlags: 0
