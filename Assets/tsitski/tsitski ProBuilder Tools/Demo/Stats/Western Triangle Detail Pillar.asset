@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae63a5e50afdf04dae95f5996595950, type: 3}
+  m_Name: Western Triangle Detail Pillar
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderPillarStats
+  shape: 1
+  autoSnapToPath: 1
+  snapToFlats: 1
+  generateDownwards: 1
+  cornerLength: 0.1
+  roundBevel: 0
+  bottomProfile:
+    points:
+    - {x: 0.018919628, y: 0.0000073043057}
+    - {x: 0.018919628, y: 1}
+    - {x: 0.03740756, y: 1}
+    radii:
+    - 0
+    - 0
+    - 0
+  bottomHeight: 0.071401834
+  centerProfile:
+    points:
+    - {x: 0.03740756, y: 0}
+    - {x: 0.03740756, y: 0.9999996}
+    - {x: 0.06486511, y: 1}
+    radii:
+    - 0
+    - 0
+    - 0
+  stretchCenter: 1
+  centerHeight: 0.5
+  topProfile:
+    points:
+    - {x: 0.06486511, y: 0}
+    - {x: 0.06486511, y: 1}
+    radii:
+    - 0
+    - 0
+  topHeight: 0.11594871
+  sides: 12
+  roundingSegments: 8
+  smoothingAngle: 40
+  legacyProfile: []
+  legacyProfileRadii: []

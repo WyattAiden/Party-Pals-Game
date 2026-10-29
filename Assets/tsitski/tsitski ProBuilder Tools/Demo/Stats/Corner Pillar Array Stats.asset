@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39004218e31d7f4f8bbdabac2fbf6f8, type: 3}
+  m_Name: Corner Pillar Array Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderArrayStats
+  source: {fileID: 0}
+  storeSource: 0
+  sourceMesh:
+    positions: []
+    uvs: []
+    faces: []
+    materials: []
+  pillarStats: {fileID: 11400000, guid: ab8c069ec746db74f9a996421f534292, type: 2}
+  pillarHeight: 4
+  mergeIntoMesh: 1
+  spacing: 4
+  offset: 0
+  fitSpacing: 1
+  splitAtCorners: 1
+  divisionLength: 0
+  skipCorners: 0
+  skipDivisions: 1
+  alignToPath: 1
+  roundingSegments: 8
+  storePath: 0
+  path:
+  - {x: 7.5, y: 0.25, z: -20.5}
+  - {x: 7.5, y: 0.25, z: -17.5}
+  - {x: 12.5, y: 0.25, z: -17.5}
+  - {x: 12.5, y: 0.25, z: 0}
+  - {x: 0, y: 0.25, z: 0}
+  - {x: 0, y: 0.25, z: -3}
+  - {x: -3, y: 0.25, z: -3}
+  - {x: -3, y: 0.25, z: -17.5}
+  - {x: 2.5, y: 0.25, z: -17.5}
+  - {x: 2.5, y: 0.25, z: -20.5}
+  pathRadii: []
+  closed: 1

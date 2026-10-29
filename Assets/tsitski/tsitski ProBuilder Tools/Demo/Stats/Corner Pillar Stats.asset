@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae63a5e50afdf04dae95f5996595950, type: 3}
+  m_Name: Corner Pillar Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderPillarStats
+  shape: 1
+  autoSnapToPath: 1
+  snapToFlats: 1
+  generateDownwards: 0
+  cornerLength: 0.3
+  roundBevel: 4
+  bottomProfile:
+    points:
+    - {x: 0.090448216, y: 0}
+    - {x: 0.09044808, y: 0.30891111}
+    - {x: 0.09044647, y: 0.9381376}
+    - {x: 0.040447235, y: 1}
+    radii:
+    - 0
+    - 0
+    - 0
+    - 0
+  bottomHeight: 0.75
+  centerProfile:
+    points:
+    - {x: 0.040447235, y: 0}
+    - {x: 0.03395569, y: 1}
+    radii:
+    - 0
+    - 0
+  stretchCenter: 1
+  centerHeight: 0.5
+  topProfile:
+    points:
+    - {x: 0.03395569, y: 0}
+    - {x: 0.06720242, y: 0.04771406}
+    - {x: 0.06720352, y: 0.20305319}
+    - {x: 0.0906094, y: 0.2387871}
+    - {x: 0.090611115, y: 1}
+    radii:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  topHeight: 0.7664523
+  sides: 12
+  roundingSegments: 3
+  smoothingAngle: 22.9
+  legacyProfile: []
+  legacyProfileRadii: []

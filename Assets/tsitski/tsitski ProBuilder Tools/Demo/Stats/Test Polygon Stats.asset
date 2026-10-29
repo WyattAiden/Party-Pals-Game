@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7eff33a55c629a4e95ed30b0ba7dbdf, type: 3}
+  m_Name: Test Polygon Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderPolygonStats
+  thickness: 0.25
+  savePolygon: 1
+  path:
+  - {x: -4.753889, y: 0, z: -3.2656288}
+  - {x: 6.996111, y: 0, z: -2.7656288}
+  - {x: 7.996111, y: 0, z: 6.984371}
+  - {x: -2.503889, y: 0, z: 8.734371}
+  - {x: -1.5038891, y: 0, z: 1.9843712}
+  pathRadii:
+  - 0
+  - 0
+  - 2.1693368
+  - 0
+  - 0
+  holes:
+  - path:
+    - {x: 2.746111, y: 0, z: -0.2656288}
+    - {x: 4.746111, y: 0, z: -0.2656288}
+    - {x: 4.746111, y: 0, z: 4.984371}
+    - {x: 1.7461109, y: 0, z: 2.2343712}
+    pathRadii:
+    - 0
+    - 0
+    - 0
+    - 1.0308616
+  - path:
+    - {x: 0.5586109, y: 0, z: 2.9843712}
+    - {x: 3.496111, y: 0, z: 2.7343712}
+    - {x: 4.058611, y: 0, z: 4.984371}
+    - {x: 0.5586109, y: 0, z: 4.984371}
+    pathRadii:
+    - 0
+    - 1.5212168
+    - 0.8095766
+    - 0
+  - path:
+    - {x: 1.4961109, y: 0, z: 6.734371}
+    - {x: 4.246111, y: 0, z: 5.984371}
+    - {x: 3.746111, y: 0, z: 10.984371}
+    - {x: 1.7461109, y: 0, z: 10.984371}
+    pathRadii:
+    - 0
+    - 0
+    - 0
+    - 0
