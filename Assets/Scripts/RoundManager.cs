@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private TMP_Text roundTitleText;
     [SerializeField] private TMP_Text[] scoreTexts;
     [SerializeField] private float roundScreenTime = 3f;
+    [SerializeField] private TMP_Text[] finalScoreText;
 
     [Header("Win screen")]
     [SerializeField] private GameObject winScreen;
@@ -74,20 +75,11 @@ public class RoundManager : MonoBehaviour
         StartCoroutine(EndRoundAfterDelay());
     }
 
-    private IEnumerator ShowRoundScreen (string title)
+    private IEnumerator ShowRoundScreen(string title)
     {
         roundTitleText.text = title;
 
-        for (int i = 0; i < scoreTexts.Length; i ++)
-        {
-            bool joined = i < players.Count;
-            scoreTexts[i].gameObject.SetActive(joined);
-            if (joined)
-            {
-                scoreTexts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
-                scoreTexts[i].color = GameSettings.playerColors[i];
-            }
-        }
+        FillScoreboard(scoreTexts);
 
         foreach (var p in players)
         {
@@ -110,7 +102,7 @@ public class RoundManager : MonoBehaviour
         foreach (var winner in pointWinners)
         {
             GameSettings.scores[winner.playerIndex]++;
-            Debug.Log ("Scores: " + string.Join(",", GameSettings.scores));
+            Debug.Log("Scores: " + string.Join(",", GameSettings.scores));
         }
 
         string roundMessage = alive.Count == 1 ? $"Player {alive[0].playerIndex + 1} wins the round!" : "Draw";
@@ -123,6 +115,10 @@ public class RoundManager : MonoBehaviour
         }
         else
         {
+            if (GameSettings.roundsPlayed >= GameSettings.totalRounds)
+            {
+                roundMessage += "\nTied overall: one more round!";
+            }
             StartCoroutine(ShowRoundScreen(roundMessage));
         }
     }
@@ -135,6 +131,8 @@ public class RoundManager : MonoBehaviour
             if (player != null) player.DeactivateInput();
         }
 
+        FillScoreboard(finalScoreText);
+
         winnerText.text = message;
         winScreen.SetActive(true);
 
@@ -144,13 +142,29 @@ public class RoundManager : MonoBehaviour
 
     // Hook these up to the buttons' OnClick events in the Inspector
     //public void PlayAgain()
-   // {
-       // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-   // }
+    // {
+    // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    // }
 
     public void LoadMenu()
     {
         SceneManager.LoadScene(menuSceneName);
+    }
+
+    private void FillScoreboard(TMP_Text[] texts)
+    {
+
+        for (int i = 0; i < scoreTexts.Length; i++)
+        {
+            bool joined = i < players.Count;
+            scoreTexts[i].gameObject.SetActive(joined);
+            if (joined)
+            {
+                scoreTexts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
+                scoreTexts[i].color = GameSettings.playerColors[i];
+            }
+        }
+
     }
 
     private List<PlayerInput> GetAlivePlayers()
@@ -170,7 +184,7 @@ public class RoundManager : MonoBehaviour
         int leader = -1;
         int best = -1;
         bool tie = false;
-        for (int i =0; i < players.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             int s = GameSettings.scores[i];
             if (s > best)
