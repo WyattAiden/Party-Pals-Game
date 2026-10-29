@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     public Transform FirePoint => firePoint;
     [SerializeField] private float fireCooldown = 0.5f;
 
+    [Header("Running")]
+    [SerializeField] private float runSpeed = 8f;
+    private bool isRunning;
+
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.2f;
@@ -35,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private float nextFireTime;
     Vector3 knockbackVelocity;
     public float knockbackDecay = 8f;
-   
+
     public void ApplyKnockBack(Vector3 force)
     {
         Debug.Log("Knockback applied: " + force);
@@ -87,13 +91,18 @@ public class PlayerController : MonoBehaviour
         cooldownTimer = dashCooldown;
     }
 
+    public void Running(InputAction.CallbackContext context)
+    {
+        isRunning = context.ReadValueAsButton();
+        Debug.Log("Running: " + isRunning);
+    }
 
     void Update()
     {
-       
+
         // Left stick: move in world space (stick up = +Z), independent of facing
         Vector3 move = Vector3.ClampMagnitude(new Vector3(moveInput.x, 0f, moveInput.y), 1f);
-       
+
 
         // Right stick: face the direction it is pushed; keep last facing when released
         if (lookInput.sqrMagnitude > lookDeadzone * lookDeadzone)
@@ -105,8 +114,9 @@ public class PlayerController : MonoBehaviour
         // Gravity (reset while grounded so it doesn't build up forever)
         if (controller.isGrounded && velocity.y < 0f) velocity.y = -2f;
         velocity.y += gravity * Time.deltaTime;
-        
-        Vector3 total = (move * moveSpeed) + knockbackVelocity + new Vector3(0f, velocity.y, 0f);
+
+        float speed = isRunning ? runSpeed : moveSpeed;
+        Vector3 total = (move * speed) + knockbackVelocity + new Vector3(0f, velocity.y, 0f);
         controller.Move(total * Time.deltaTime);
 
         knockbackVelocity = Vector3.Lerp(knockbackVelocity, Vector3.zero, knockbackDecay * Time.deltaTime);
@@ -127,5 +137,6 @@ public class PlayerController : MonoBehaviour
                 isDashing = false;
             }
         }
+        
     }
 }
