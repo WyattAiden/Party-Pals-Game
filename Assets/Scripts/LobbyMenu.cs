@@ -20,6 +20,7 @@ public class LobbyMenu : MonoBehaviour
     private void Start()
     {
         GameSettings.Players.Clear();
+        GameSettings.ResetMatch();
         UpdateChecks();
     }
 
