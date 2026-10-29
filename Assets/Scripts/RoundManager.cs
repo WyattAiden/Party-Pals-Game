@@ -9,9 +9,14 @@ using TMPro;
 
 public class RoundManager : MonoBehaviour
 {
+    [Header("Round settings")]
     [SerializeField] List<PlayerInput> players;
     [SerializeField] private float WinScreenDelay = 3f;
     [SerializeField] private int MinimumPlayersBeforeWin = 2;
+    [SerializeField] private GameObject roundScreen;
+    [SerializeField] private TMP_Text roundTitleText;
+    [SerializeField] private TMP_Text[] scoreTexts;
+    [SerializeField] private float roundScreenTime = 3f;
 
     [Header("Win screen")]
     [SerializeField] private GameObject winScreen;
@@ -19,6 +24,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private GameObject firstSelectedButton;
     [SerializeField] private string menuSceneName = "StartScreen";
     [SerializeField] private Image winnerFace;
+
+    [Header("Points")]
+    private List<PlayerInput> aliveBeforeDeath;
+    private List<PlayerInput> finalists;
 
     private bool roundOver;
 
@@ -52,10 +61,41 @@ public class RoundManager : MonoBehaviour
     {
         if (roundOver) return;                                // already counting down
         if (players.Count < MinimumPlayersBeforeWin) return;  // solo-testing guard
-        if (GetAlivePlayers().Count > 1) return;              // 2+ alive, keep playing
+        if (aliveBeforeDeath == null) aliveBeforeDeath = new List<PlayerInput>(players);
+        var aliveNow = GetAlivePlayers();
+        if (aliveNow.Count > 1)
+        {
+            aliveBeforeDeath = aliveNow;
+            return;
+        }
+        finalists = aliveBeforeDeath;
 
         roundOver = true;
         StartCoroutine(EndRoundAfterDelay());
+    }
+
+    private IEnumerator ShowRoundScreen (string title)
+    {
+        roundTitleText.text = title;
+
+        for (int i = 0; i < scoreTexts.Length; i ++)
+        {
+            bool joined = i < players.Count;
+            scoreTexts[i].gameObject.SetActive(joined);
+            if (joined)
+            {
+                scoreTexts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
+                scoreTexts[i].color = GameSettings.playerColors[i];
+            }
+        }
+
+        foreach (var p in players)
+        {
+            if (p != null) p.DeactivateInput();
+        }
+        roundScreen.SetActive(true);
+        yield return new WaitForSeconds(roundScreenTime);
+        NextRound();
     }
 
     private IEnumerator EndRoundAfterDelay()
@@ -65,15 +105,25 @@ public class RoundManager : MonoBehaviour
 
         var alive = GetAlivePlayers();
         PlaytestLogger.RoundEnded(alive.Count == 1 ? alive[0] : null);
-        if (alive.Count == 1)
+
+        var pointWinners = alive.Count == 1 ? alive : finalists;
+        foreach (var winner in pointWinners)
         {
-            winnerFace.color = GameSettings.playerColors[alive[0].playerIndex];
-            ShowWinScreen($"Player {alive[0].playerIndex + 1} wins!");
+            GameSettings.scores[winner.playerIndex]++;
+            Debug.Log ("Scores: " + string.Join(",", GameSettings.scores));
+        }
+
+        string roundMessage = alive.Count == 1 ? $"Player {alive[0].playerIndex + 1} wins the round!" : "Draw";
+
+        if (IsMatchOver())
+        {
+            int leader = GetLeader();
+            winnerFace.color = GameSettings.playerColors[leader];
+            ShowWinScreen($"Player {leader + 1} wins!!");
         }
         else
         {
-            Debug.Log("Draw - restarting round");
-            //PlayAgain();
+            StartCoroutine(ShowRoundScreen(roundMessage));
         }
     }
 
@@ -113,5 +163,38 @@ public class RoundManager : MonoBehaviour
                 alive.Add(player);
         }
         return alive;
+    }
+
+    private int GetLeader()
+    {
+        int leader = -1;
+        int best = -1;
+        bool tie = false;
+        for (int i =0; i < players.Count; i++)
+        {
+            int s = GameSettings.scores[i];
+            if (s > best)
+            {
+                best = s;
+                leader = i;
+                tie = false;
+
+            }
+            else if (s == best)
+            {
+                tie = true;
+            }
+        }
+        return tie ? -1 : leader;
+    }
+    private bool IsMatchOver()
+    {
+        return GameSettings.roundsPlayed >= GameSettings.totalRounds && GetLeader() != -1;
+    }
+
+    private void NextRound()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameSettings.ResetMatch();
     }
 }
