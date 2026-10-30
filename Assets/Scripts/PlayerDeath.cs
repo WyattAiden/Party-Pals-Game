@@ -17,7 +17,8 @@ public class PlayerDeath : MonoBehaviour
     {
         controller.enabled = false;
         characterController.enabled = false;
-        bodyRenderer.enabled = false;
+        if (bodyRenderer != null) bodyRenderer.enabled = false;
+        if (visuals != null) visuals.SetActive(false);
         healthBarCanvas.SetActive(false);
         aimline.enabled = false;
     }
