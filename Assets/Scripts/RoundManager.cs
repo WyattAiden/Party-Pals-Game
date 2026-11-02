@@ -210,6 +210,8 @@ public class RoundManager : MonoBehaviour
 
     private void NextRound()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        string nextMap = GameSettings.mapNames[Random.Range(0, GameSettings.mapNames.Length)];
+        Debug.Log("Next map: " + nextMap);
+        SceneManager.LoadScene(nextMap);
     }
 }
