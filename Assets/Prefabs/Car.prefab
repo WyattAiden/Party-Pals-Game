@@ -121,7 +121,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5006852588535078166}
+  - component: {fileID: -1091203033152694577}
   - component: {fileID: 4051131887360980675}
+  - component: {fileID: 6437897633132738780}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -153,6 +155,27 @@ Transform:
   - {fileID: 9207215055047300728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-1091203033152694577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767491506155126719}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.431, y: 2.401, z: 5.3890014}
+  m_Center: {x: 2.19874, y: -0.36131006, z: 1.6075001}
 --- !u!114 &4051131887360980675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +191,41 @@ MonoBehaviour:
   speed: 10
   destroyDistance: 80
   localDirection: {x: 0, y: 0, z: -1}
+  damage: 10
+  knockbackForce: 25
+  sidewaysPush: 1.25
+  upwardForce: 0
+  hitEachPlayerOnce: 1
+  rehitCooldown: 0.75
+  autoFitHitbox: 1
+  hitboxPadding: 0.3
+--- !u!54 &6437897633132738780
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767491506155126719}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2927334780234217638
 GameObject:
   m_ObjectHideFlags: 0
