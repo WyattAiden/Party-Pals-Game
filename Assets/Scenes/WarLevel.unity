@@ -7892,11 +7892,11 @@ MonoBehaviour:
   players: []
   WinScreenDelay: 2
   MinimumPlayersBeforeWin: 1
-  winScreen: {fileID: 1537080246}
-  winnerText: {fileID: 2121121247}
-  firstSelectedButton: {fileID: 790631135}
+  winScreen: {fileID: 0}
+  winnerText: {fileID: 0}
+  firstSelectedButton: {fileID: 0}
   menuSceneName: PlayerReady
-  winnerFace: {fileID: 2066324883}
+  winnerFace: {fileID: 0}
 --- !u!4 &2032831671
 Transform:
   m_ObjectHideFlags: 0

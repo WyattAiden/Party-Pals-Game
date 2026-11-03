@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -4287474654746257082}
   - component: {fileID: 15175482641129923}
   - component: {fileID: -9007545354000997154}
+  - component: {fileID: 5187576610338745572}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -224,7 +225,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 2b72d2bd-a033-4318-901a-c26ab23dcbf5
-    m_ActionName: Gameplay/Dash[/Keyboard/b]
+    m_ActionName: 'Gameplay/Dash[/Keyboard/b]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -357,6 +358,30 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
+--- !u!114 &5187576610338745572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3817f3f9dff60640afa6f936ec91756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerOcclusionIndicator
+  occluderLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  ignoreOtherPlayers: 1
+  hiddenFraction: 0.6
+  showDelay: 0.1
+  pointerSize: 48
+  screenOffset: 30
+  fadeSpeed: 10
+  bobAmount: 6
+  bobSpeed: 5
+  showPlayerNumber: 1
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0
