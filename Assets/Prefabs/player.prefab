@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 15175482641129923}
   - component: {fileID: -9007545354000997154}
   - component: {fileID: 5802651828648839476}
+  - component: {fileID: 8681321899328664148}
+  - component: {fileID: 787206253858394611}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -404,6 +406,35 @@ MonoBehaviour:
   animator: {fileID: 1656909359005421682}
   sprintBlend: 1.6
   dampTime: 0.1
+--- !u!114 &8681321899328664148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f51d11e7308db41a6c5accd24818bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponHandler
+  weaponSocket: {fileID: 0}
+  allowSwapping: 1
+--- !u!114 &787206253858394611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787bbab7a8ed1064faa96caa14fd717d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffects
+  glueTint: {r: 1, g: 0.85, b: 0.35, a: 1}
+  tintStrength: 0.6
+  burnTickInterval: 0.5
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0

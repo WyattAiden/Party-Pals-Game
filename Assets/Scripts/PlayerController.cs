@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public bool IsDashing => isDashing;
 
     private CharacterController controller;
+    private PlayerWeaponHandler weaponHandler;
+    private PlayerStatusEffects statusEffects;
     public Vector2 MoveInput => moveInput;
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -54,6 +56,8 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        weaponHandler = GetComponent<PlayerWeaponHandler>();
+        statusEffects = GetComponent<PlayerStatusEffects>();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -69,6 +73,20 @@ public class PlayerController : MonoBehaviour
     public void Shoot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
+        // Power weapon takes over the shot while the player has one
+        if (weaponHandler != null && weaponHandler.HasPowerWeapon)
+        {
+            int ammoBefore = weaponHandler.Ammo;
+            weaponHandler.TryFire(firePoint, gameObject);
+            if (weaponHandler.Ammo != ammoBefore) // a shot actually went out (not on cooldown)
+            {
+                PlaytestLogger.Shot(gameObject);
+                Shot?.Invoke();
+            }
+            return;
+        }
+
         if (Time.time < nextFireTime) return;
 
         nextFireTime = Time.time + fireCooldown;
@@ -121,6 +139,7 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         float speed = isRunning ? runSpeed : moveSpeed;
+        if (statusEffects != null) speed *= statusEffects.SpeedMultiplier; // e.g. glued
         Vector3 total = (move * speed) + knockbackVelocity + new Vector3(0f, velocity.y, 0f);
         controller.Move(total * Time.deltaTime);
 
