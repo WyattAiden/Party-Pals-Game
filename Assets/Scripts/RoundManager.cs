@@ -105,6 +105,8 @@ public class RoundManager : MonoBehaviour
             Debug.Log("Scores: " + string.Join(",", GameSettings.scores));
         }
 
+        GameSettings.roundsPlayed++;
+
         string roundMessage = alive.Count == 1 ? $"Player {alive[0].playerIndex + 1} wins the round!" : "Draw";
 
         if (IsMatchOver())
@@ -154,14 +156,14 @@ public class RoundManager : MonoBehaviour
     private void FillScoreboard(TMP_Text[] texts)
     {
 
-        for (int i = 0; i < scoreTexts.Length; i++)
+        for (int i = 0; i < texts.Length; i++)
         {
             bool joined = i < players.Count;
-            scoreTexts[i].gameObject.SetActive(joined);
+            texts[i].gameObject.SetActive(joined);
             if (joined)
             {
-                scoreTexts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
-                scoreTexts[i].color = GameSettings.playerColors[i];
+                texts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
+                texts[i].color = GameSettings.playerColors[i];
             }
         }
 
@@ -209,6 +211,5 @@ public class RoundManager : MonoBehaviour
     private void NextRound()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameSettings.ResetMatch();
     }
 }
