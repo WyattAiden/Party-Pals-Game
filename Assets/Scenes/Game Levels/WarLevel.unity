@@ -5905,6 +5905,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7054618050024422177, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+      propertyPath: 'spawnPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1404804349}
+    - target: {fileID: 7054618050024422177, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+      propertyPath: 'spawnPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1172625326}
+    - target: {fileID: 7054618050024422177, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+      propertyPath: 'spawnPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1018925648}
+    - target: {fileID: 7054618050024422177, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+      propertyPath: 'spawnPoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 981094035}
     - target: {fileID: 7914599855700180709, guid: 360574102679d9f49bd674033c79e96d, type: 3}
       propertyPath: m_Name
       value: --Important level stuff--
