@@ -20,6 +20,12 @@ public class PowerWeaponData : ScriptableObject
     [Tooltip("Total spread angle in degrees when firing more than one projectile.")]
     [Range(0f, 90f)] public float spreadAngle = 20f;
 
+    [Header("Placeable (instead of shooting)")]
+    [Tooltip("If set, pressing shoot places this in front of the player instead of firing a projectile (mines, traps...).")]
+    public GameObject placeablePrefab;
+    [Tooltip("How far in front of the player it gets placed.")]
+    public float placeDistance = 0.9f;
+
     [Header("Limits")]
     [Tooltip("Seconds before the weapon is taken away even with ammo left. 0 = no time limit.")]
     [Min(0f)] public float maxHoldTime = 0f;

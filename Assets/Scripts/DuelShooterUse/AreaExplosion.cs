@@ -31,7 +31,7 @@ public class AreaExplosion : MonoBehaviour
     }
 
     public static void Detonate(Vector3 center, float radius, float maxDamage, float minDamage,
-                                float knockbackForce, float physicsForce)
+                                float knockbackForce, float physicsForce, GameObject source = null)
     {
         var damaged = new HashSet<Health>();
         var pushedPlayers = new HashSet<PlayerController>();
@@ -45,7 +45,7 @@ public class AreaExplosion : MonoBehaviour
 
             Health health = col.GetComponentInParent<Health>();
             if (health != null && damaged.Add(health))
-                health.TakeDamage(Mathf.Lerp(maxDamage, minDamage, t));
+                health.TakeDamage(Mathf.Lerp(maxDamage, minDamage, t), source);
 
             PlayerController player = col.GetComponentInParent<PlayerController>();
             if (player != null && pushedPlayers.Add(player))
