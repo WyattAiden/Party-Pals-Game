@@ -49,8 +49,9 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent(out EnemyKnockBack enemy))
             enemy.ApplyKnockback(transform.forward, knockbackForce);
 
-        if (TryGetComponent(out GlueOnHit glue))
-            glue.Apply(other, owner, LastPosition);
+        // Special effects on this projectile (glue, etc.) - see IProjectileHitEffect
+        foreach (var effect in GetComponents<IProjectileHitEffect>())
+            effect.OnProjectileHit(other, owner, LastPosition);
 
         Destroy(gameObject);
     }

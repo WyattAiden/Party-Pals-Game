@@ -52,21 +52,50 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (Time.time < nextFireTime) return true;
         nextFireTime = Time.time + Current.fireCooldown;
 
-        int count = Current.projectilesPerShot;
-        for (int i = 0; i < count; i++)
+        if (Current.placeablePrefab != null)
         {
-            float angle = count > 1
-                ? Mathf.Lerp(-Current.spreadAngle * 0.5f, Current.spreadAngle * 0.5f, i / (float)(count - 1))
-                : 0f;
-            Quaternion rot = firePoint.rotation * Quaternion.Euler(0f, angle, 0f);
-            Projectile proj = Instantiate(Current.projectilePrefab, firePoint.position, rot);
-            proj.owner = owner;
+            Place(owner);
+        }
+        else
+        {
+            int count = Current.projectilesPerShot;
+            for (int i = 0; i < count; i++)
+            {
+                float angle = count > 1
+                    ? Mathf.Lerp(-Current.spreadAngle * 0.5f, Current.spreadAngle * 0.5f, i / (float)(count - 1))
+                    : 0f;
+                Quaternion rot = firePoint.rotation * Quaternion.Euler(0f, angle, 0f);
+                Projectile proj = Instantiate(Current.projectilePrefab, firePoint.position, rot);
+                proj.owner = owner;
+            }
         }
 
         Ammo--;
         AmmoChanged?.Invoke(Current, Ammo);
         if (Ammo <= 0) Unequip();
         return true;
+    }
+
+    // Drops the weapon's placeable on the ground in front of the player
+    private void Place(GameObject owner)
+    {
+        Vector3 fwd = owner.transform.forward;
+        fwd.y = 0f;
+        fwd = fwd.sqrMagnitude > 0.001f ? fwd.normalized : Vector3.forward;
+
+        Vector3 spot = owner.transform.position + fwd * Current.placeDistance;
+        Vector3 pos;
+        if (Physics.Raycast(spot + Vector3.up, Vector3.down, out RaycastHit hit, 6f, ~0, QueryTriggerInteraction.Ignore))
+            pos = hit.point;
+        else
+        {
+            var cc = owner.GetComponent<CharacterController>();
+            pos = new Vector3(spot.x, cc != null ? cc.bounds.min.y : owner.transform.position.y, spot.z);
+        }
+
+        GameObject placed = Instantiate(Current.placeablePrefab, pos, Quaternion.LookRotation(fwd));
+        foreach (var p in placed.GetComponentsInChildren<IPlacedByPlayer>())
+            p.SetOwner(owner);
     }
 
     public void Unequip()

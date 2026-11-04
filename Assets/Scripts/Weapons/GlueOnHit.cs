@@ -2,7 +2,7 @@ using UnityEngine;
 
 // Put on a projectile prefab (next to Projectile).
 // Hitting a player burns + slows them. Hitting a surface (ground, wall, tank...) leaves a sticky puddle there.
-public class GlueOnHit : MonoBehaviour
+public class GlueOnHit : MonoBehaviour, IProjectileHitEffect
 {
     [Header("Burn (hot glue)")]
     [SerializeField] private float burnDamagePerSecond = 4f;
@@ -18,7 +18,7 @@ public class GlueOnHit : MonoBehaviour
     [SerializeField] private GluePuddle puddlePrefab;
 
     // Called by Projectile when it hits something
-    public void Apply(Collider target, GameObject owner, Vector3 fromPosition)
+    public void OnProjectileHit(Collider target, GameObject owner, Vector3 fromPosition)
     {
         var status = target.GetComponentInParent<PlayerStatusEffects>();
         if (status != null)
