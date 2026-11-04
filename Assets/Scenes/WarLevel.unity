@@ -5452,6 +5452,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405979921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1384838663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1576628799154684082, guid: 5aca10929ecbc6146aed439063ce4f4b, type: 3}
+  m_PrefabInstance: {fileID: 3798933650580587060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798933650580587067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25006ef03c4666545930da4a0cf2874b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapVote
 --- !u!1 &1387729143
 GameObject:
   m_ObjectHideFlags: 0
@@ -8125,6 +8136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2058700741985251080, guid: 43eff084631b35044832f266f3d97a58, type: 3}
+      propertyPath: mapVote
+      value: 
+      objectReference: {fileID: 1384838663}
     - target: {fileID: 2058700741985251080, guid: 43eff084631b35044832f266f3d97a58, type: 3}
       propertyPath: winScreen
       value: 
