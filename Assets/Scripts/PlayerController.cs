@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     [Header("Running")]
     [SerializeField] private float runSpeed = 8f;
     private bool isRunning;
+    public bool IsRunning => isRunning;
+
+    // Raised every time a shot is fired (used by PlayerAnimator)
+    public event System.Action Shot;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 20f;
@@ -71,6 +75,7 @@ public class PlayerController : MonoBehaviour
         Projectile proj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         proj.owner = gameObject;
         PlaytestLogger.Shot(gameObject);
+        Shot?.Invoke();
     }
 
 
