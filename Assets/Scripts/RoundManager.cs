@@ -18,6 +18,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private TMP_Text[] scoreTexts;
     [SerializeField] private float roundScreenTime = 3f;
     [SerializeField] private TMP_Text[] finalScoreText;
+    [SerializeField] private MapVote mapVote;
 
     [Header("Win screen")]
     [SerializeField] private GameObject winScreen;
@@ -80,6 +81,7 @@ public class RoundManager : MonoBehaviour
         roundTitleText.text = title;
 
         FillScoreboard(scoreTexts);
+        mapVote.ShowBallot();
 
         foreach (var p in players)
         {
