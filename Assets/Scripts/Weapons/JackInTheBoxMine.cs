@@ -40,6 +40,8 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
     [Tooltip("Tinted with the owner's player colour so everyone can tell whose mine it is.")]
     [SerializeField] private Renderer[] ownerTintRenderers;
     [SerializeField] private float crankSpeed = 180f;
+    [Tooltip("Turn so the front of the box (where the jack's face points) faces the camera when placed.")]
+    [SerializeField] private bool faceCamera = true;
 
     private GameObject owner;
     private float placedTime;
@@ -61,6 +63,23 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
             jack.gameObject.SetActive(false);
         }
         if (visualRoot != null) visualBasePos = visualRoot.localPosition;
+    }
+
+    void Start()
+    {
+        if (faceCamera) FaceCamera();
+    }
+
+    // Yaw only, so it still sits flat on the ground. Uses the camera's facing (not its position)
+    // so every mine on screen points the same way.
+    private void FaceCamera()
+    {
+        Camera cam = Camera.main;
+        if (cam == null) return;
+        Vector3 toCamera = -cam.transform.forward;
+        toCamera = Vector3.ProjectOnPlane(toCamera, transform.up);
+        if (toCamera.sqrMagnitude < 0.001f) return;
+        transform.rotation = Quaternion.LookRotation(toCamera, transform.up);
     }
 
     public void SetOwner(GameObject newOwner)
