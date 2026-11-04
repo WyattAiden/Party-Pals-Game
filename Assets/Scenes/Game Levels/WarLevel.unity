@@ -1572,6 +1572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405979921}
+  - component: {fileID: 405979922}
   m_Layer: 0
   m_Name: Bombpoints
   m_TagString: Untagged
@@ -1606,6 +1607,35 @@ Transform:
   - {fileID: 116706019}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &405979922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405979920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecad2454a5adbaa4698c7ef63df91890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombSpawn
+  bomb: {fileID: 3828778563617412976, guid: 617129ed087971a42b0af5ffda31e585, type: 3}
+  spawnPointsB:
+  - {fileID: 1382294281}
+  - {fileID: 35745331}
+  - {fileID: 1317851394}
+  - {fileID: 1061473359}
+  - {fileID: 1387729144}
+  - {fileID: 529405440}
+  - {fileID: 171945431}
+  - {fileID: 1301725992}
+  - {fileID: 581043039}
+  - {fileID: 163652186}
+  - {fileID: 1397782711}
+  - {fileID: 116706019}
+  startDelay: 5
+  bombInterval: 1
+  restInterval: 5
 --- !u!1001 &416534403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5925,7 +5955,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: --Important level stuff--
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8902519311963775582, guid: 360574102679d9f49bd674033c79e96d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
