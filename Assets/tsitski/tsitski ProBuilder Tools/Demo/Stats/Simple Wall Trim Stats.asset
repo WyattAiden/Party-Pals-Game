@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430cbf4d1c8c5834ab87906b616a65d2, type: 3}
+  m_Name: Simple Wall Trim Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderTrimStats
+  profile:
+  - {x: 0.0000001937151, y: -0.07001138}
+  - {x: 0.09418713, y: -0.07001189}
+  - {x: 0.09418708, y: 0.1161108}
+  - {x: 0.12942687, y: 0.13299546}
+  - {x: 0.12942705, y: 0.2739407}
+  - {x: -0.0000001937151, y: 0.27394122}
+  profileRadii:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  roundingSegments: 8
+  profileMirror: 0
+  storePath: 0
+  path:
+  - {x: 0, y: 0, z: 0}
+  pathRadii: []
+  closed: 0
+  loopCutStep: 1
+  roundBevel: 4
+  flattenAngledEnds: 0
