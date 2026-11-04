@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430cbf4d1c8c5834ab87906b616a65d2, type: 3}
+  m_Name: Simple Baseboard Trim Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderTrimStats
+  profile:
+  - {x: -0.048300117, y: 0.0000016391277}
+  - {x: 0.07117304, y: -0.0000016391277}
+  - {x: 0.07117009, y: 0.15858829}
+  - {x: 0.053900152, y: 0.18342069}
+  - {x: 0.053900152, y: 0.21398313}
+  - {x: 0.022681557, y: 0.21398313}
+  - {x: 0.02268261, y: 0.32225412}
+  - {x: -0.048302118, y: 0.32225806}
+  profileRadii:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  roundingSegments: 12
+  profileMirror: 0
+  storePath: 0
+  path:
+  - {x: 0, y: 0, z: 0}
+  pathRadii: []
+  closed: 0
+  loopCutStep: 1
+  roundBevel: 0
+  flattenAngledEnds: 1

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f3f518cc655a6498c4ec4931b55c25, type: 3}
+  m_Name: Explosion Cutter Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderCutterStats
+  shape: 3
+  cornerRadius:
+    topLeft: 0
+    topRight: 0
+    bottomLeft: 0
+    bottomRight: 0
+  cornerSegments: 56
+  cylinderSegments: 16
+  explosionSeed: 95
+  explosionSpikes: 10
+  explosionMinorSpikes: 1
+  explosionJaggedness: 0.268
+  polygonPoints:
+  - {x: -0.5, y: -0.5}
+  - {x: 0.5, y: -0.5}
+  - {x: 0.5, y: 0.5}
+  - {x: -0.5, y: 0.5}
+  polygonRadii: []
+  pathPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 2}
+  pathRadii: []
+  pathRotations: []
+  pathWidth: 1
+  pathHeight: 2
+  center: {x: 0, y: 0, z: 0}
+  size: {x: 5.0000057, y: 3.7462158, z: 2.0423484}
+  createMesh: 1
+  cutMode: 0
+  cutThroughParent: 0
+  ignorePrefabMeshes: 0
+  generateFaces:
+    x: 1
+    y: 1
+    z: 1
+  clipToTunnel:
+    x: 0
+    y: 0
+    z: 0
+  revealMaterial: {fileID: 0}

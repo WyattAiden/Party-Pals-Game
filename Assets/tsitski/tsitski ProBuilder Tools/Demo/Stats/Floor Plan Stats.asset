@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981195aeb72da294da08ba34e2f86938, type: 3}
+  m_Name: Floor Plan Stats
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderFloorPlanStats
+  height: 4
+  thickness: 0.25
+  alignment: 0
+  wallsAroundHoles: 0
+  squareCorners: 0
+  loopCutStep: 1
+  verticalLoopCutStep: 1
+  roundingSegments: 8
+  floorPlanOutlineSettings:
+  - trimStats: {fileID: 0}
+    arrayStats: {fileID: 11400000, guid: 2cdb88af8ee1a584680d0e2ff93c0060, type: 2}
+    wallSide: 0
+    height: 0
+    heightFromTop: 0
+  - trimStats: {fileID: 0}
+    arrayStats: {fileID: 11400000, guid: 81cff44427a409542afb1e76a85c96a6, type: 2}
+    wallSide: 0
+    height: 0.7
+    heightFromTop: 1
+  - trimStats: {fileID: 11400000, guid: 822e15ab58d8e254da26e5441de35d5c, type: 2}
+    arrayStats: {fileID: 0}
+    wallSide: 0
+    height: 0
+    heightFromTop: 1
+  - trimStats: {fileID: 11400000, guid: e7aa9a4b0d40dd34d9b120108c041303, type: 2}
+    arrayStats: {fileID: 0}
+    wallSide: 0
+    height: 0
+    heightFromTop: 0
+  - trimStats: {fileID: 11400000, guid: aae81400d204f4141b8651688aa491f2, type: 2}
+    arrayStats: {fileID: 0}
+    wallSide: 1
+    height: 0
+    heightFromTop: 0

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430cbf4d1c8c5834ab87906b616a65d2, type: 3}
+  m_Name: Pillar Trim
+  m_EditorClassIdentifier: Tsitski.ProBuilderTools::Tsitski.ProBuilderTools.ProBuilderTrimStats
+  profile:
+  - {x: -0.000001464028, y: 0.000998972}
+  - {x: 0.23603241, y: 0.000998972}
+  - {x: 0.23603009, y: 0.4}
+  - {x: 0.18095732, y: 0.4}
+  - {x: 0.16714296, y: 1.7305142}
+  - {x: 0.19994919, y: 1.7305142}
+  - {x: 0.19994919, y: 1.7797493}
+  - {x: 0.24999847, y: 1.7797493}
+  - {x: 0.25000033, y: 2}
+  - {x: 0.00000054017823, y: 2}
+  profileRadii:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  roundingSegments: 12
+  profileMirror: 0
+  storePath: 1
+  path:
+  - {x: -0.0000012218806, y: 0, z: -0.19999841}
+  - {x: 0.027556146, y: 0, z: -0.19999754}
+  - {x: 0.027556734, y: 0, z: 0.0000013172161}
+  - {x: -0.0000006377585, y: 0, z: 0.0000004231464}
+  pathRadii:
+  - 0
+  - 0
+  - 0
+  - 0
+  closed: 0
+  loopCutStep: 1
+  roundBevel: 0

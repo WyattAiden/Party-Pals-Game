@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 7040257688458295818}
   - component: {fileID: 4076425006739495974}
   - component: {fileID: 7054618050024422177}
-  - component: {fileID: 8902519311963775582}
   m_Layer: 0
   m_Name: Player input manager
   m_TagString: Untagged
@@ -179,40 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4108086922205321148, guid: e2ed000514b6edb488197fd8919e478a, type: 3}
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &8902519311963775582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3657951350762601891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6928c97710797e14180fe5a5dac26c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cannonball: {fileID: 6624104398224631606, guid: 2cb6278e8ef59a84e9523e90500740e4, type: 3}
-  cannonballSpeed: 15
-  minFireInterval: 1
-  maxFireInterval: 20
-  topSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  bottomSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
