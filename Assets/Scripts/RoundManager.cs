@@ -88,8 +88,9 @@ public class RoundManager : MonoBehaviour
         }
         mapVote.ShowBallot(players);
         roundScreen.SetActive(true);
-        yield return new WaitForSeconds(roundScreenTime);
-        NextRound();
+        while (!mapVote.IsDone())
+        yield return null;
+        NextRound(mapVote.GetWinningMap());
     }
 
     private IEnumerator EndRoundAfterDelay()
@@ -210,9 +211,9 @@ public class RoundManager : MonoBehaviour
         return GameSettings.roundsPlayed >= GameSettings.totalRounds && GetLeader() != -1;
     }
 
-    private void NextRound()
+    private void NextRound(string nextMap)
     {
-        string nextMap = GameSettings.mapNames[Random.Range(0, GameSettings.mapNames.Length)];
+        
         Debug.Log("Next map: " + nextMap);
         SceneManager.LoadScene(nextMap);
     }

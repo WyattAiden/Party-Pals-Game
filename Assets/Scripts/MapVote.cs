@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MapVote : MonoBehaviour
 {
@@ -10,27 +11,42 @@ public class MapVote : MonoBehaviour
     [SerializeField] private Image[] optionImages;
     [SerializeField] private TMP_Text[] optionNames;
     [SerializeField] private Sprite[] mapSprites;
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private float voteTime = 15f;
+    private int optionCount;
     private int[] choices = new int[4];
     private bool[] locked = new bool[4];
-    private int optionCount;
     private bool voting;
+    private float timeLeft;
     private List<PlayerInput> voters;
+    private int[] ballot = new int[3];
 
     public void ShowBallot(List<PlayerInput> players)
     {
+        List<int> hat = new List<int>();
+        string current = SceneManager.GetActiveScene().name;
+        
+        for (int m = 0; m < GameSettings.mapNames.Length; m++)
+        {
+            if (GameSettings.mapNames[m] != current) hat.Add(m);
+        }
+        optionCount = Mathf.Min(optionImages.Length, hat.Count);
 
         for ( int i = 0; i < optionImages.Length; i++ )
         {
-            bool hasMap = i < GameSettings.mapNames.Length;
+            bool hasMap = i < optionCount;
             optionImages[i].gameObject.SetActive(hasMap);
             if (hasMap)
             {
-                optionImages[i].sprite = mapSprites[i];
-                optionNames[i].text = GameSettings.mapNames[i];
+                int pick = Random.Range(0, hat.Count);
+                ballot[i] = hat[pick];
+                hat.RemoveAt(pick);
+                optionImages[i].sprite = mapSprites[ballot[i]];
+                optionNames[i].text = GameSettings.mapNames[ballot[i]];
             }
         }
 
-        optionCount = Mathf.Min(optionImages.Length, GameSettings.mapNames.Length);
+        
         choices = new int[4];
         locked = new bool[4];
         voters = players;
@@ -41,12 +57,16 @@ public class MapVote : MonoBehaviour
 
             
         }
+        timeLeft = voteTime;
         voting = true;
     }
 
     private void Update()
     {
         if (!voting) return;
+        timeLeft -= Time.deltaTime;
+        timerText.text = Mathf.CeilToInt(timeLeft).ToString();
+
         for (int p = 0; p < voters.Count; p++)
         {
             if (voters[p] == null || locked[p]) continue;
@@ -92,5 +112,34 @@ public class MapVote : MonoBehaviour
             }
 
         }
+    }
+
+    public bool IsDone()
+    {
+        if (timeLeft <= 0f) return true;
+        for (int p = 0; p < voters.Count; p++)
+        if (!locked[p]) return false;
+        return true;
+    }
+
+    public string GetWinningMap()
+    {
+        voting = false;
+        int[] votes = new int[optionCount];
+
+        for (int p = 0; p < voters.Count; p++)
+            votes[choices[p]]++;
+        
+        int most = 0;
+        for (int i = 0; i < optionCount; i++)
+        if (votes[i] > most) most = votes[i];
+
+        List<int> tied = new List<int>();
+        for (int i = 0; i < optionCount; i++)
+            if (votes[i] == most) tied.Add(i);
+
+        int winner = tied[Random.Range(0, tied.Count)];
+
+        return GameSettings.mapNames[ballot[winner]];
     }
 }
