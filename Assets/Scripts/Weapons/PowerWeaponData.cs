@@ -32,6 +32,10 @@ public class PowerWeaponData : ScriptableObject
     [Tooltip("How far in front of the player it gets placed.")]
     public float placeDistance = 0.9f;
 
+    [Header("Attached (instead of shooting)")]
+    [Tooltip("If set, pressing shoot spawns this on the player's fire point and it follows their aim (e.g. a beam).")]
+    public GameObject attachedPrefab;
+
     [Header("Limits")]
     [Tooltip("Seconds before the weapon is taken away even with ammo left. 0 = no time limit.")]
     [Min(0f)] public float maxHoldTime = 0f;

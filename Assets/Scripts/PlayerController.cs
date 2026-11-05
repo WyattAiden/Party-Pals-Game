@@ -131,7 +131,8 @@ public class PlayerController : MonoBehaviour
         if (lookInput.sqrMagnitude > lookDeadzone * lookDeadzone)
         {
             Quaternion target = Quaternion.LookRotation(new Vector3(lookInput.x, 0f, lookInput.y));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, target, turnSpeed * Time.deltaTime);
+            float turn = turnSpeed * (statusEffects != null ? statusEffects.TurnMultiplier : 1f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, target, turn * Time.deltaTime);
         }
 
         // Gravity (reset while grounded so it doesn't build up forever)

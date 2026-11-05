@@ -14,6 +14,10 @@ public class PlayerStatusEffects : MonoBehaviour
 
     public float SpeedMultiplier => slowTimer > 0f ? slowMultiplier : 1f;
     public bool IsGlued => slowTimer > 0f;
+    public float TurnMultiplier => turnSlowTimer > 0f ? turnMultiplier : 1f;
+
+    private float turnSlowTimer;
+    private float turnMultiplier = 1f;
 
     private Health health;
     private float slowTimer;
@@ -41,15 +45,36 @@ public class PlayerStatusEffects : MonoBehaviour
         }
 
         if (slowDuration > 0f)
-        {
-            slowMultiplier = slowTimer > 0f ? Mathf.Min(slowMultiplier, slowTo) : slowTo;
-            slowTimer = Mathf.Max(slowTimer, slowDuration);
-            SetTint(true);
-        }
+            ApplySlow(slowTo, slowDuration, glueTint);
+    }
+
+    // Generic slow (used by glue, beams...). Re-applying refreshes the timer and keeps the strongest slow.
+    // Pass a tint colour so other players can see who is slowed, or null for no tint.
+    public void ApplySlow(float slowTo, float duration, Color? tint)
+    {
+        if (health != null && health.IsDead) return;
+        if (duration <= 0f) return;
+        slowMultiplier = slowTimer > 0f ? Mathf.Min(slowMultiplier, slowTo) : slowTo;
+        slowTimer = Mathf.Max(slowTimer, duration);
+        if (tint.HasValue) SetTint(true, tint.Value);
+    }
+
+    // Slows how fast the player can turn/aim (e.g. while firing a heavy beam)
+    public void ApplyTurnSlow(float turnTo, float duration)
+    {
+        if (duration <= 0f) return;
+        turnMultiplier = turnSlowTimer > 0f ? Mathf.Min(turnMultiplier, turnTo) : turnTo;
+        turnSlowTimer = Mathf.Max(turnSlowTimer, duration);
     }
 
     void Update()
     {
+        if (turnSlowTimer > 0f)
+        {
+            turnSlowTimer -= Time.deltaTime;
+            if (turnSlowTimer <= 0f) turnMultiplier = 1f;
+        }
+
         if (burnTimer > 0f)
         {
             burnTimer -= Time.deltaTime;
@@ -69,7 +94,9 @@ public class PlayerStatusEffects : MonoBehaviour
         }
     }
 
-    void SetTint(bool on)
+    void SetTint(bool on) => SetTint(on, glueTint);
+
+    void SetTint(bool on, Color color)
     {
         if (on)
         {
@@ -80,7 +107,7 @@ public class PlayerStatusEffects : MonoBehaviour
                 var mat = r.material; // per-player instance (PlayerColor already uses these)
                 if (!mat.HasProperty("_Color")) continue;
                 tinted.Add((mat, mat.color));
-                mat.color = Color.Lerp(mat.color, glueTint, tintStrength);
+                mat.color = Color.Lerp(mat.color, color, tintStrength);
             }
         }
         else
@@ -94,6 +121,7 @@ public class PlayerStatusEffects : MonoBehaviour
     void OnDisable()
     {
         slowTimer = 0f; slowMultiplier = 1f; burnTimer = 0f; burnDps = 0f;
+        turnSlowTimer = 0f; turnMultiplier = 1f;
         SetTint(false);
     }
 }

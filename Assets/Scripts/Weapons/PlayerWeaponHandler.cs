@@ -61,6 +61,14 @@ public class PlayerWeaponHandler : MonoBehaviour
         {
             Place(owner);
         }
+        else if (Current.attachedPrefab != null)
+        {
+            GameObject attached = Instantiate(Current.attachedPrefab, firePoint);
+            attached.transform.localPosition = Vector3.zero;
+            attached.transform.localRotation = Quaternion.identity;
+            foreach (var p in attached.GetComponentsInChildren<IPlacedByPlayer>())
+                p.SetOwner(owner);
+        }
         else
         {
             int count = Current.projectilesPerShot;
