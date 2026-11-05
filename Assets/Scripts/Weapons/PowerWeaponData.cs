@@ -6,9 +6,15 @@ public class PowerWeaponData : ScriptableObject
 {
     public string displayName = "Power Weapon";
 
+    [Header("Random roll")]
+    [Tooltip("If any are set, picking this up gives the player ONE of these at random instead (e.g. Rock / Paper / Scissors). Everything below is then ignored.")]
+    public PowerWeaponData[] randomVariants;
+
     [Header("Visuals")]
     [Tooltip("Optional model shown on the player while they hold this weapon.")]
     public GameObject heldModelPrefab;
+    [Tooltip("Where the held model sits relative to the player's fire point.")]
+    public Vector3 heldModelOffset = Vector3.zero;
 
     [Header("Firing")]
     [Tooltip("Projectile to fire. Make a variant of Projectile.prefab with more damage/knockback/speed.")]

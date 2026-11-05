@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2b4c0bc9505e04e84945ef7778218d, type: 3}
+  m_Name: RPS_Scissors
+  m_EditorClassIdentifier: Assembly-CSharp::PowerWeaponData
+  displayName: Scissors
+  randomVariants: []
+  heldModelPrefab: {fileID: 7064509671738066219, guid: 8c07982a5f9c7084ca59405344ef6521, type: 3}
+  heldModelOffset: {x: 0, y: 0.9, z: 0}
+  projectilePrefab: {fileID: 3753668060351318344, guid: ef8c341daf9052b4e80fc1c2832aaa8e, type: 3}
+  startingAmmo: 1
+  fireCooldown: 0.2
+  projectilesPerShot: 1
+  spreadAngle: 0
+  placeablePrefab: {fileID: 0}
+  placeDistance: 0.9
+  maxHoldTime: 0

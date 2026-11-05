@@ -31,6 +31,8 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public void Equip(PowerWeaponData weapon, Transform fallbackSocket)
     {
+        weapon = ResolveRandom(weapon);
+        if (weapon == null) return;
         Unequip();
         Current = weapon;
         Ammo = weapon.startingAmmo;
@@ -39,7 +41,10 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         Transform socket = weaponSocket != null ? weaponSocket : fallbackSocket;
         if (weapon.heldModelPrefab != null && socket != null)
+        {
             heldModel = Instantiate(weapon.heldModelPrefab, socket);
+            heldModel.transform.localPosition = weapon.heldModelOffset;
+        }
 
         AmmoChanged?.Invoke(Current, Ammo);
     }
@@ -74,6 +79,15 @@ public class PlayerWeaponHandler : MonoBehaviour
         AmmoChanged?.Invoke(Current, Ammo);
         if (Ammo <= 0) Unequip();
         return true;
+    }
+
+    // Weapons with random variants (Rock/Paper/Scissors) hand out one of them
+    private static PowerWeaponData ResolveRandom(PowerWeaponData weapon)
+    {
+        int guard = 0;
+        while (weapon != null && weapon.randomVariants != null && weapon.randomVariants.Length > 0 && guard++ < 5)
+            weapon = weapon.randomVariants[UnityEngine.Random.Range(0, weapon.randomVariants.Length)];
+        return weapon;
     }
 
     // Drops the weapon's placeable on the ground in front of the player

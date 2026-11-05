@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2b4c0bc9505e04e84945ef7778218d, type: 3}
+  m_Name: RPS_Rock
+  m_EditorClassIdentifier: Assembly-CSharp::PowerWeaponData
+  displayName: Rock
+  randomVariants: []
+  heldModelPrefab: {fileID: 622530284545589410, guid: 1fb151fdd048d404e9d4a84c41f2b76d, type: 3}
+  heldModelOffset: {x: 0, y: 0.9, z: 0}
+  projectilePrefab: {fileID: 1121519734704718714, guid: 9c23abee80c474d4e8f0c79b421cd25c, type: 3}
+  startingAmmo: 1
+  fireCooldown: 0.2
+  projectilesPerShot: 1
+  spreadAngle: 0
+  placeablePrefab: {fileID: 0}
+  placeDistance: 0.9
+  maxHoldTime: 0
