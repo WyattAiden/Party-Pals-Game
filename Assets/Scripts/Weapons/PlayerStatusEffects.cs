@@ -30,7 +30,96 @@ public class PlayerStatusEffects : MonoBehaviour
 
     private readonly List<(Material mat, Color original)> tinted = new List<(Material, Color)>();
 
-    void Awake() => health = GetComponent<Health>();
+    // ---- Bleed (stacking damage over time, e.g. from needles) ----
+    [Header("Bleed")]
+    [Tooltip("Most bleed stacks a player can have at once. Extra hits just refresh the oldest stack.")]
+    [SerializeField] private int maxBleedStacks = 4;
+    [SerializeField] private float bleedTickInterval = 0.5f;
+    [Tooltip("If on, bleed only hurts while the player is moving (move stick or dash). The bleed still wears off while standing still.")]
+    [SerializeField] private bool bleedOnlyWhileMoving = true;
+    [Tooltip("How far the move stick has to be pushed to count as moving.")]
+    [SerializeField] private float moveThreshold = 0.2f;
+
+    private class BleedStack
+    {
+        public float dps;
+        public float timeLeft;
+        public GameObject source;
+        public GameObject visual; // e.g. the needle stuck in the player
+    }
+    private readonly List<BleedStack> bleeds = new List<BleedStack>();
+    private float bleedTickTimer;
+
+    public int BleedStacks => bleeds.Count;
+
+    // Adds a bleed stack. 'stuckVisual' (optional) is destroyed when the stack runs out.
+    public void ApplyBleed(float damagePerSecond, float duration, GameObject source, GameObject stuckVisual = null)
+    {
+        if ((health != null && health.IsDead) || duration <= 0f)
+        {
+            if (stuckVisual != null) Destroy(stuckVisual);
+            return;
+        }
+
+        if (bleeds.Count >= maxBleedStacks)
+        {
+            // At the cap: refresh the stack closest to running out instead of adding another
+            BleedStack oldest = bleeds[0];
+            foreach (var b in bleeds) if (b.timeLeft < oldest.timeLeft) oldest = b;
+            oldest.timeLeft = Mathf.Max(oldest.timeLeft, duration);
+            oldest.source = source;
+            if (stuckVisual != null) Destroy(stuckVisual);
+            return;
+        }
+
+        if (bleeds.Count == 0) bleedTickTimer = bleedTickInterval;
+        bleeds.Add(new BleedStack { dps = damagePerSecond, timeLeft = duration, source = source, visual = stuckVisual });
+    }
+
+    private void UpdateBleed()
+    {
+        if (bleeds.Count == 0) return;
+
+        // Damage only builds up while moving (if enabled); the stacks still run out either way
+        if (!bleedOnlyWhileMoving || IsMoving)
+            bleedTickTimer -= Time.deltaTime;
+        if (bleedTickTimer <= 0f)
+        {
+            bleedTickTimer = bleedTickInterval;
+            float total = 0f;
+            GameObject lastSource = null;
+            foreach (var b in bleeds) { total += b.dps; lastSource = b.source; }
+            if (health != null && total > 0f) health.TakeDamage(total * bleedTickInterval, lastSource);
+        }
+
+        for (int i = bleeds.Count - 1; i >= 0; i--)
+        {
+            bleeds[i].timeLeft -= Time.deltaTime;
+            if (bleeds[i].timeLeft <= 0f)
+            {
+                if (bleeds[i].visual != null) Destroy(bleeds[i].visual);
+                bleeds.RemoveAt(i);
+            }
+        }
+    }
+
+    private void ClearBleed()
+    {
+        foreach (var b in bleeds) if (b.visual != null) Destroy(b.visual);
+        bleeds.Clear();
+    }
+
+    private PlayerController controller;
+
+    void Awake()
+    {
+        health = GetComponent<Health>();
+        controller = GetComponent<PlayerController>();
+    }
+
+    // Moving by choice (stick or dash) - being knocked back doesn't count
+    public bool IsMoving => controller != null &&
+        (controller.MoveInput.sqrMagnitude > moveThreshold * moveThreshold || controller.IsDashing);
 
     // Re-hits refresh the timers instead of stacking, and keep the strongest slow.
     public void ApplyGlue(float burnDamagePerSecond, float burnDuration, float slowTo, float slowDuration, GameObject source)
@@ -69,6 +158,8 @@ public class PlayerStatusEffects : MonoBehaviour
 
     void Update()
     {
+        UpdateBleed();
+
         if (turnSlowTimer > 0f)
         {
             turnSlowTimer -= Time.deltaTime;
@@ -122,6 +213,7 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         slowTimer = 0f; slowMultiplier = 1f; burnTimer = 0f; burnDps = 0f;
         turnSlowTimer = 0f; turnMultiplier = 1f;
+        ClearBleed();
         SetTint(false);
     }
 }
