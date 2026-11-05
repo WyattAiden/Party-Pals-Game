@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 473249cb0fb6c6c46b30278833615b9b
+guid: 4632f27fae2f07f418cead09d3b3fd06
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2074673362485989264
-    second: TestLevel_0
+      213: 6533909143531306826
+    second: MakerLevel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -99,19 +99,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -128,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestLevel_0
+      name: MakerLevel_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 728
-        height: 572
+        width: 1018
+        height: 722
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09f41fb5e68bacc10800000000000000
-      internalID: 2074673362485989264
+      spriteID: a4f3cd67fbb1daa50800000000000000
+      internalID: 6533909143531306826
       vertices: []
       indices: 
       edges: []
@@ -153,7 +140,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -162,7 +149,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MakerLevel_0: 6533909143531306826
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
