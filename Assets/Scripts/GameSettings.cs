@@ -11,7 +11,7 @@ public static class GameSettings
     public static int[] scores = new int[4];
     public static int roundsPlayed;
     public static int totalRounds = 3;
-    public static string[] mapNames = { "WarLevel", "PirateLevel", "MakerLevel"};
+    public static string[] mapNames = { "WarLevel", "PirateLevel", "MakerLevel", "GrayBoxLevel"};
 
 
     public static void ResetMatch()
