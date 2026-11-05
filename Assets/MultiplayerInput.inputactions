@@ -85,6 +85,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "PushBack",
+                    "type": "Button",
+                    "id": "a686350a-5477-459c-bb02-d5f4d83c88fc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -316,6 +326,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Running",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "929d2384-4930-41fa-ab26-a96090351fa1",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "PushBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b04fe614-b4e9-4e33-9d70-ad7b5ffbf850",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PushBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -81,12 +81,12 @@ public class RoundManager : MonoBehaviour
         roundTitleText.text = title;
 
         FillScoreboard(scoreTexts);
-        mapVote.ShowBallot();
 
         foreach (var p in players)
         {
             if (p != null) p.DeactivateInput();
         }
+        mapVote.ShowBallot(players);
         roundScreen.SetActive(true);
         yield return new WaitForSeconds(roundScreenTime);
         NextRound();

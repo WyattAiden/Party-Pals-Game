@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 15175482641129923}
   - component: {fileID: -9007545354000997154}
   - component: {fileID: 5802651828648839476}
+  - component: {fileID: 5192093173157409512}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -243,6 +244,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ca6e782a-78de-4b17-8e88-fe3e2b296ace
     m_ActionName: Gameplay/Running
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5192093173157409512}
+        m_TargetAssemblyTypeName: PlayerPushBack, Assembly-CSharp
+        m_MethodName: PushBack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a686350a-5477-459c-bb02-d5f4d83c88fc
+    m_ActionName: Gameplay/PushBack
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -406,6 +423,25 @@ MonoBehaviour:
   animator: {fileID: 1656909359005421682}
   sprintBlend: 1.6
   dampTime: 0.1
+--- !u!114 &5192093173157409512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c9bcec32780a145b47210814a7170a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPushBack
+  pushRange: 2.5
+  pushAngle: 90
+  pushForce: 25
+  pushCooldown: 0.75
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0
