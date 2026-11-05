@@ -20,5 +20,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI Scenes/LevelSelection.unity
     guid: 76e4ad50976664b4bb035c49e5217f68
+  - enabled: 1
+    path: Assets/Scenes/Game Levels/MakerLevel.unity
+    guid: c733ad9d4af483247b7d2eba3582dd60
+  - enabled: 1
+    path: Assets/Scenes/Game Levels/CityLevel.unity
+    guid: b932f70fb3695e249a84ba2a9853807f
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
