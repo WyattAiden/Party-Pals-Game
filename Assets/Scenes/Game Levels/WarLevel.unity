@@ -3636,6 +3636,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3647109984937722758, guid: 70c48be8697ff6140812ee8d2eccd1ef, type: 3}
   m_PrefabInstance: {fileID: 900288217}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &944711328
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731747433411847041, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389624352653173913, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+      propertyPath: m_Name
+      value: WeaponPickup_RocketLauncher
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
 --- !u!1 &945853635
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,3 +8084,4 @@ SceneRoots:
   - {fileID: 328909730}
   - {fileID: 594727289}
   - {fileID: 1130109920}
+  - {fileID: 944711328}
