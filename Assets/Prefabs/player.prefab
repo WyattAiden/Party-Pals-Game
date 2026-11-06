@@ -281,6 +281,8 @@ MonoBehaviour:
   - {fileID: 54108525304548688}
   - {fileID: 3375274147655882624}
   - {fileID: 4954126935433536798}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.1
 --- !u!114 &6402595843438280407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponHandler
   weaponSocket: {fileID: 0}
-  allowSwapping: 1
+  allowSwapping: 0
 --- !u!114 &787206253858394611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +437,10 @@ MonoBehaviour:
   glueTint: {r: 1, g: 0.85, b: 0.35, a: 1}
   tintStrength: 0.6
   burnTickInterval: 0.5
+  maxBleedStacks: 4
+  bleedTickInterval: 0.5
+  bleedOnlyWhileMoving: 1
+  moveThreshold: 0.2
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0

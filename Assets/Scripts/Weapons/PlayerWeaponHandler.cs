@@ -7,8 +7,8 @@ public class PlayerWeaponHandler : MonoBehaviour
 {
     [Tooltip("Where the held weapon model is attached. Uses the FirePoint if left empty.")]
     [SerializeField] private Transform weaponSocket;
-    [Tooltip("If true, walking over a pickup while already holding a power weapon swaps to the new one.")]
-    [SerializeField] private bool allowSwapping = true;
+    [Tooltip("If true, walking over a different pickup while already holding a power weapon swaps to the new one. If false, other pickups are ignored until your weapon runs out.")]
+    [SerializeField] private bool allowSwapping = false;
 
     public PowerWeaponData Current { get; private set; }
     public int Ammo { get; private set; }
