@@ -79,13 +79,14 @@ public class MapVote : MonoBehaviour
                 float x = navigate.ReadValue<Vector2>().x;
                 if(x < -0.5f && choices[p] > 0) choices[p]--;
                 if (x > 0.5f && choices[p] < optionCount - 1) choices[p]++;
-                Debug.Log("P" + (p + 1) +" option " + choices[p] + " Locked " + locked[p]);
+                //Debug.Log("P" + (p + 1) +" option " + choices[p] + " Locked " + locked[p]);
                 Debug.Log("List" + p + "playerIndex" + voters[p].playerIndex + "Pressed by" + navigate.activeControl.device.name);
             }
             if (confirm.WasPressedThisFrame())
             {
                 locked[p] = true;
-                Debug.Log("P" + (p + 1) + " Locked " + locked[p]);
+                Debug.Log("List" + p + "playerIndex" + voters[p].playerIndex + "Pressed by" + confirm.activeControl.device.name);
+                //Debug.Log("P" + (p + 1) + " Locked " + locked[p]);
             }
         }
         UpdateMarkers();
