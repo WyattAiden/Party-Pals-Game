@@ -6,7 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class Startscreen : MonoBehaviour
 {
-    
+
+    private void Update()
+    {
+        foreach (var gamepad in Gamepad.all)
+        {
+            if (gamepad.buttonSouth.wasPressedThisFrame)
+            {
+
+            }
+        }
+    }
+
+
     // Load scene by its exact string name
     public void LoadSceneByName(string sceneName)
     {
@@ -18,6 +30,8 @@ public class Startscreen : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+    
 }
 
 

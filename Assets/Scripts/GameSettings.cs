@@ -13,6 +13,10 @@ public static class GameSettings
     public static int totalRounds = 3;
     public static string[] mapNames = { "WarLevel", "PirateLevel", "MakerLevel", "CityLevel"};
 
+    public static void AddPlayer(string scheme, InputDevice device)
+    {
+        Players.Add(new PlayerSlot { scheme = scheme, device = device });
+    }
 
     public static void ResetMatch()
     {

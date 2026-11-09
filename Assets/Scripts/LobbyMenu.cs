@@ -62,7 +62,7 @@ public class LobbyMenu : MonoBehaviour
         if (GameSettings.Players.Count >= maxPlayers) return;
         if (GameSettings.Players.Exists(p => p.scheme == scheme && p.device == device)) return;
 
-        GameSettings.Players.Add(new GameSettings.PlayerSlot { scheme = scheme, device = device });
+        GameSettings.AddPlayer(scheme, device);
         if (GameSettings.Players.Count == 1)
         {
             uIModule.actionsAsset.devices = new[] { device };
