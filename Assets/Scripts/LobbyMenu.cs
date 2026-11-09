@@ -19,8 +19,10 @@ public class LobbyMenu : MonoBehaviour
 
     private void Start()
     {
-        GameSettings.Players.Clear();
-        GameSettings.ResetMatch();
+        if (GameSettings.Players.Count > 0)
+        {
+            uIModule.actionsAsset.devices = new[] { GameSettings.Players[0].device };
+        }
         UpdateChecks();
     }
 

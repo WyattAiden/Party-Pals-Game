@@ -13,7 +13,10 @@ public class Startscreen : MonoBehaviour
         {
             if (gamepad.buttonSouth.wasPressedThisFrame)
             {
-
+                GameSettings.Players.Clear();
+                GameSettings.ResetMatch();
+                GameSettings.AddPlayer("Gamepad", gamepad);
+                LoadSceneByName("PlayerReady");
             }
         }
     }
