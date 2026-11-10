@@ -1846,6 +1846,11 @@ MonoBehaviour:
   - {fileID: 1726598896}
   emptyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   uIModule: {fileID: 305311001}
+  spotLights:
+  - {fileID: 439959243}
+  - {fileID: 117246516}
+  - {fileID: 154969428}
+  - {fileID: 1012070569}
 --- !u!4 &1114155474
 Transform:
   m_ObjectHideFlags: 0
@@ -2192,7 +2197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5debe16d0a47e2c4993f42d010e6e67b, type: 3}
+  m_Texture: {fileID: 2800000, guid: c35346059c6189b44b93020ea4d257a8, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
