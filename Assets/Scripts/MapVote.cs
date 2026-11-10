@@ -102,7 +102,7 @@ public class MapVote : MonoBehaviour
             {
                 Image dot = markers.GetChild(p).GetComponent<Image>();
                 if (p >= voters.Count) { dot.color = Color.clear; continue; }
-                Color c = GameSettings.playerColors[p];
+                Color c = GameSettings.GetColors(p);
                 if (choices[p] != i) c.a = 0f;
                 else if (locked[p]) c.a = 1f;
                 else
