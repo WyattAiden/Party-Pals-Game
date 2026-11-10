@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarMover
   speed: 10
-  destroyDistance: 80
+  destroyDistance: 100
   localDirection: {x: 0, y: 0, z: -1}
   damage: 10
   knockbackForce: 25
