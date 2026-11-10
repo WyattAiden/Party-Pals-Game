@@ -131,7 +131,10 @@ public class LobbyMenu : MonoBehaviour
             playerIcons[i].color = isJoined ? GameSettings.GetColors(i) : emptyColor;
 
             spotLights[i].gameObject.SetActive(isJoined);
-            spotLights[i].color = GameSettings.GetColors(i);
+            Color c = GameSettings.GetColors(i);
+            c.a = 0.5f;
+            spotLights[i].color = c;
+
         }
     }
 
