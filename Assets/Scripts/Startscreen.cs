@@ -17,6 +17,7 @@ public class Startscreen : MonoBehaviour
                 GameSettings.ResetMatch();
                 GameSettings.AddPlayer("Gamepad", gamepad);
                 LoadSceneByName("PlayerReady");
+                return;
             }
         }
     }

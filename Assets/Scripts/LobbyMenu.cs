@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Profiling.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
@@ -51,6 +52,23 @@ public class LobbyMenu : MonoBehaviour
 
             if (gamepad.startButton.wasPressedThisFrame && GameSettings.Players.Count >= minPlayersToStart && gamepad == GameSettings.Players[0].device)
                 StartGame();
+            if (gamepad.leftShoulder.wasPressedThisFrame || gamepad.rightShoulder.wasPressedThisFrame)
+            {
+                int slot = GameSettings.Players.FindIndex(p =>p.device == gamepad);
+                if (slot == -1) continue;
+                int step = gamepad.rightShoulder.wasPressedThisFrame ? 1 : -1;
+                var slotData = GameSettings.Players[slot];
+                int count = GameSettings.playerColors.Length;
+                int newColor = slotData.colorIndex;
+                do
+                {
+                    newColor = (newColor + step + count) % count;
+                }
+                while (GameSettings.Players.Exists(p => p.colorIndex == newColor && p.device != gamepad));
+                slotData.colorIndex = newColor;
+                GameSettings.Players[slot] = slotData;
+                UpdateChecks();
+            }
         }
     }
 
@@ -109,7 +127,7 @@ public class LobbyMenu : MonoBehaviour
         for (int i = 0; i <GameSettings.Players.Count; i++)
         {
             bool isJoined = i < GameSettings.Players.Count;
-            playerIcons[i].color = isJoined ? GameSettings.playerColors[i] : emptyColor;
+            playerIcons[i].color = isJoined ? GameSettings.GetColors(i) : emptyColor;
         }
     }
 

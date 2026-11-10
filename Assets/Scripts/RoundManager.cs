@@ -166,7 +166,7 @@ public class RoundManager : MonoBehaviour
             if (joined)
             {
                 texts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
-                texts[i].color = GameSettings.playerColors[i];
+                texts[i].color = GameSettings.GetColors(i);
             }
         }
 
