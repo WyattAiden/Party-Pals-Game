@@ -17,6 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3aa1a67886685da48bc4b6b4e16be5a4, type: 2}
   - {fileID: 11400000, guid: 4cfa30500b88921488d5118f1f2d2c04, type: 2}
   - {fileID: 11400000, guid: 1bf81fdc81da5944897c7b0eb6539030, type: 2}
+  cycleVariants: 1
+  cycleInterval: 0.6
   heldModelPrefab: {fileID: 0}
   heldModelOffset: {x: 0, y: 0, z: 0}
   projectilePrefab: {fileID: 0}
@@ -26,4 +28,5 @@ MonoBehaviour:
   spreadAngle: 20
   placeablePrefab: {fileID: 0}
   placeDistance: 0.9
+  attachedPrefab: {fileID: 0}
   maxHoldTime: 0

@@ -18,6 +18,12 @@ public class PlayerWeaponHandler : MonoBehaviour
     public event Action<PowerWeaponData, int> AmmoChanged;
 
     private GameObject heldModel;
+    private Transform heldSocket;
+
+    // Cycling weapons (e.g. Rock / Paper / Scissors): which set we're cycling and where we are in it
+    private PowerWeaponData cycleSource;
+    private int cycleIndex;
+    private float nextCycleTime;
     private float nextFireTime;
     private float equipTime;
 
@@ -31,21 +37,55 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public void Equip(PowerWeaponData weapon, Transform fallbackSocket)
     {
-        weapon = ResolveRandom(weapon);
         if (weapon == null) return;
+
+        // Cycling set: start on a random one and keep switching while held
+        PowerWeaponData cycling = null;
+        if (weapon.cycleVariants && weapon.randomVariants != null && weapon.randomVariants.Length > 0)
+        {
+            cycling = weapon;
+            cycleIndex = UnityEngine.Random.Range(0, weapon.randomVariants.Length);
+            weapon = weapon.randomVariants[cycleIndex];
+        }
+        else
+        {
+            weapon = ResolveRandom(weapon);
+        }
+        if (weapon == null) return;
+
         Unequip();
         Current = weapon;
         Ammo = weapon.startingAmmo;
         equipTime = Time.time;
         nextFireTime = 0f;
+        cycleSource = cycling;
+        if (cycleSource != null) nextCycleTime = Time.time + cycleSource.cycleInterval;
 
-        Transform socket = weaponSocket != null ? weaponSocket : fallbackSocket;
-        if (weapon.heldModelPrefab != null && socket != null)
+        heldSocket = weaponSocket != null ? weaponSocket : fallbackSocket;
+        ShowHeldModel();
+
+        AmmoChanged?.Invoke(Current, Ammo);
+    }
+
+    private void ShowHeldModel()
+    {
+        if (heldModel != null) Destroy(heldModel);
+        heldModel = null;
+        if (Current != null && Current.heldModelPrefab != null && heldSocket != null)
         {
-            heldModel = Instantiate(weapon.heldModelPrefab, socket);
-            heldModel.transform.localPosition = weapon.heldModelOffset;
+            heldModel = Instantiate(Current.heldModelPrefab, heldSocket);
+            heldModel.transform.localPosition = Current.heldModelOffset;
         }
+    }
 
+    // Switch to the next variant in the cycle (keeps the ammo you have)
+    private void CycleToNext()
+    {
+        var variants = cycleSource.randomVariants;
+        cycleIndex = (cycleIndex + 1) % variants.Length;
+        if (variants[cycleIndex] == null) return;
+        Current = variants[cycleIndex];
+        ShowHeldModel();
         AmmoChanged?.Invoke(Current, Ammo);
     }
 
@@ -122,6 +162,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public void Unequip()
     {
+        cycleSource = null;
         if (heldModel != null) Destroy(heldModel);
         heldModel = null;
         bool hadWeapon = Current != null;
@@ -132,6 +173,12 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     void Update()
     {
+        if (HasPowerWeapon && cycleSource != null && Time.time >= nextCycleTime)
+        {
+            nextCycleTime = Time.time + cycleSource.cycleInterval;
+            CycleToNext();
+        }
+
         if (HasPowerWeapon && Current.maxHoldTime > 0f && Time.time - equipTime >= Current.maxHoldTime)
             Unequip();
     }

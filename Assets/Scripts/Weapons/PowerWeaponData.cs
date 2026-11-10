@@ -9,6 +9,10 @@ public class PowerWeaponData : ScriptableObject
     [Header("Random roll")]
     [Tooltip("If any are set, picking this up gives the player ONE of these at random instead (e.g. Rock / Paper / Scissors). Everything below is then ignored.")]
     public PowerWeaponData[] randomVariants;
+    [Tooltip("Instead of rolling one variant on pickup, keep cycling through them while held. Firing uses whichever one is showing.")]
+    public bool cycleVariants = false;
+    [Tooltip("Seconds each variant shows before switching to the next.")]
+    [Min(0.1f)] public float cycleInterval = 0.6f;
 
     [Header("Visuals")]
     [Tooltip("Optional model shown on the player while they hold this weapon.")]
