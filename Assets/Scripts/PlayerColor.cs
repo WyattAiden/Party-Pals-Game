@@ -45,7 +45,7 @@ public class PlayerColor : MonoBehaviour
     void Start()
     {
         int Palet = GetComponent<PlayerInput>().playerIndex;
-        baseColor = GameSettings.playerColors[Palet];
+        baseColor = GameSettings.GetColors(Palet);
         SetColor(baseColor);
     }
 
