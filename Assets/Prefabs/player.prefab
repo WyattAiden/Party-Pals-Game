@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -9007545354000997154}
   - component: {fileID: 5802651828648839476}
   - component: {fileID: 5192093173157409512}
+  - component: {fileID: -7915507756004936153}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -442,6 +443,30 @@ MonoBehaviour:
   playerLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-7915507756004936153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108086922205321148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3817f3f9dff60640afa6f936ec91756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerOcclusionIndicator
+  occluderLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  ignoreOtherPlayers: 1
+  hiddenFraction: 0.6
+  showDelay: 0.1
+  pointerSize: 48
+  screenOffset: 30
+  fadeSpeed: 10
+  bobAmount: 6
+  bobSpeed: 5
+  showPlayerNumber: 1
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0
