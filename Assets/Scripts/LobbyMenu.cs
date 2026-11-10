@@ -16,6 +16,7 @@ public class LobbyMenu : MonoBehaviour
     [SerializeField] private Image[] playerIcons;
     [SerializeField] private Color emptyColor = Color.gray;
     [SerializeField] private InputSystemUIInputModule uIModule;
+    [SerializeField] private Image[] spotLights;
 
 
     private void Start()
@@ -128,6 +129,9 @@ public class LobbyMenu : MonoBehaviour
         {
             bool isJoined = i < GameSettings.Players.Count;
             playerIcons[i].color = isJoined ? GameSettings.GetColors(i) : emptyColor;
+
+            spotLights[i].gameObject.SetActive(isJoined);
+            spotLights[i].color = GameSettings.GetColors(i);
         }
     }
 
