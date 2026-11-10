@@ -115,7 +115,7 @@ public class RoundManager : MonoBehaviour
         if (IsMatchOver())
         {
             int leader = GetLeader();
-            winnerFace.color = GameSettings.playerColors[leader];
+            winnerFace.color = GameSettings.GetColors(leader);
             ShowWinScreen($"Player {leader + 1} wins!!");
         }
         else
@@ -166,7 +166,7 @@ public class RoundManager : MonoBehaviour
             if (joined)
             {
                 texts[i].text = $"Player {i + 1}: {GameSettings.scores[i]}";
-                texts[i].color = GameSettings.playerColors[i];
+                texts[i].color = GameSettings.GetColors(i);
             }
         }
 
