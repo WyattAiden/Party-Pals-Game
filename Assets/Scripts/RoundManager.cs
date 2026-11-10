@@ -115,7 +115,7 @@ public class RoundManager : MonoBehaviour
         if (IsMatchOver())
         {
             int leader = GetLeader();
-            winnerFace.color = GameSettings.playerColors[leader];
+            winnerFace.color = GameSettings.GetColors(leader);
             ShowWinScreen($"Player {leader + 1} wins!!");
         }
         else
