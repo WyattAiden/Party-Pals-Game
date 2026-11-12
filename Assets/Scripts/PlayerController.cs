@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [Header("Aiming")]
     [SerializeField] private float turnSpeed = 720f;       // degrees per second
     [SerializeField] private float lookDeadzone = 0.2f;
+    [Tooltip("Camera that aiming is relative to (stick up = away from the camera). Leave empty to use the Main Camera.")]
+    [SerializeField] private Transform aimCamera;
 
     [Header("Shooting")]
     [SerializeField] private Projectile projectilePrefab;
@@ -52,6 +54,16 @@ public class PlayerController : MonoBehaviour
         knockbackVelocity += force;
     }
 
+
+    // Turns a stick direction into a world direction as seen from the camera
+    // (only the camera's left/right facing counts, not its downward tilt).
+    private Vector3 CameraRelative(Vector2 stick)
+    {
+        if (aimCamera == null && Camera.main != null) aimCamera = Camera.main.transform;
+        Vector3 dir = new Vector3(stick.x, 0f, stick.y);
+        if (aimCamera == null) return dir;
+        return Quaternion.Euler(0f, aimCamera.eulerAngles.y, 0f) * dir;
+    }
 
     void Awake()
     {
@@ -130,9 +142,18 @@ public class PlayerController : MonoBehaviour
         // Right stick: face the direction it is pushed; keep last facing when released
         if (lookInput.sqrMagnitude > lookDeadzone * lookDeadzone)
         {
-            Quaternion target = Quaternion.LookRotation(new Vector3(lookInput.x, 0f, lookInput.y));
-            float turn = turnSpeed * (statusEffects != null ? statusEffects.TurnMultiplier : 1f);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, target, turn * Time.deltaTime);
+            Quaternion target = Quaternion.LookRotation(CameraRelative(lookInput));
+            float turnMult = statusEffects != null ? statusEffects.TurnMultiplier : 1f;
+            if (turnMult >= 1f)
+            {
+                // 1:1 aiming: face exactly where the right stick points, no smoothing
+                transform.rotation = target;
+            }
+            else
+            {
+                // Slowed (e.g. hit by glue): keep the sluggish turn as part of the debuff
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, target, turnSpeed * turnMult * Time.deltaTime);
+            }
         }
 
         // Gravity (reset while grounded so it doesn't build up forever)
