@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 15175482641129923}
   - component: {fileID: -9007545354000997154}
   - component: {fileID: 5802651828648839476}
-  - component: {fileID: 5192093173157409512}
-  - component: {fileID: -7915507756004936153}
+  - component: {fileID: 8681321899328664148}
+  - component: {fileID: 787206253858394611}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -246,21 +246,9 @@ MonoBehaviour:
     m_ActionId: ca6e782a-78de-4b17-8e88-fe3e2b296ace
     m_ActionName: Gameplay/Running
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5192093173157409512}
-        m_TargetAssemblyTypeName: PlayerPushBack, Assembly-CSharp
-        m_MethodName: PushBack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: a686350a-5477-459c-bb02-d5f4d83c88fc
-    m_ActionName: Gameplay/PushBack
+    m_ActionName: 'Gameplay/PushBack[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -298,7 +286,7 @@ MonoBehaviour:
   - {fileID: 3375274147655882624}
   - {fileID: 4954126935433536798}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashDuration: 0.4
+  flashDuration: 0.1
 --- !u!114 &6402595843438280407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +318,7 @@ MonoBehaviour:
   visuals: {fileID: 5428379274979856562}
   aimline: {fileID: 6329468530330640500}
   bodyRenderer: {fileID: 4108086922205317184}
-  healthBarCanvas: {fileID: 4108086922205321148}
+  healthBarCanvas: {fileID: 4152330805667599690}
 --- !u!114 &8650299634992715964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +412,7 @@ MonoBehaviour:
   animator: {fileID: 1656909359005421682}
   sprintBlend: 1.6
   dampTime: 0.1
---- !u!114 &5192093173157409512
+--- !u!114 &8681321899328664148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -433,17 +421,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4108086922205321148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91c9bcec32780a145b47210814a7170a, type: 3}
+  m_Script: {fileID: 11500000, guid: e3f51d11e7308db41a6c5accd24818bf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerPushBack
-  pushRange: 2.5
-  pushAngle: 90
-  pushForce: 25
-  pushCooldown: 0.75
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &-7915507756004936153
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponHandler
+  weaponSocket: {fileID: 0}
+  allowSwapping: 0
+--- !u!114 &787206253858394611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,21 +435,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4108086922205321148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3817f3f9dff60640afa6f936ec91756, type: 3}
+  m_Script: {fileID: 11500000, guid: 787bbab7a8ed1064faa96caa14fd717d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerOcclusionIndicator
-  occluderLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  ignoreOtherPlayers: 1
-  hiddenFraction: 0.6
-  showDelay: 0.1
-  pointerSize: 48
-  screenOffset: 30
-  fadeSpeed: 10
-  bobAmount: 6
-  bobSpeed: 5
-  showPlayerNumber: 1
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffects
+  glueTint: {r: 1, g: 0.85, b: 0.35, a: 1}
+  tintStrength: 0.6
+  burnTickInterval: 0.5
+  maxBleedStacks: 4
+  bleedTickInterval: 0.5
+  bleedOnlyWhileMoving: 1
+  moveThreshold: 0.2
 --- !u!1 &4152330805667599690
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +459,7 @@ GameObject:
   - component: {fileID: 4477993428592559945}
   - component: {fileID: 9154732402453919969}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Health bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

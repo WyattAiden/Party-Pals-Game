@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +15,12 @@ public class WeaponPickup : MonoBehaviour
     [SerializeField] private float spinSpeed = 90f;
     [SerializeField] private float bobHeight = 0.25f;
     [SerializeField] private float bobSpeed = 2f;
+
+    // Raised when a player picks this up (used by WeaponSpawnPoint)
+    public event Action<WeaponPickup> PickedUp;
+
+    // Disappear for good once picked up (the spawn point decides what comes next)
+    public void MakeOneTime() => respawnDelay = 0f;
 
     private Collider col;
     private Renderer[] renderers;
@@ -40,6 +47,7 @@ public class WeaponPickup : MonoBehaviour
 
         var controller = other.GetComponentInParent<PlayerController>();
         handler.Equip(weapon, controller != null ? controller.FirePoint : null);
+        PickedUp?.Invoke(this);
 
         if (respawnDelay > 0f) StartCoroutine(Respawn());
         else Destroy(gameObject);

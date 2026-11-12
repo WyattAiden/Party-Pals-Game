@@ -7,8 +7,8 @@ public class PlayerWeaponHandler : MonoBehaviour
 {
     [Tooltip("Where the held weapon model is attached. Uses the FirePoint if left empty.")]
     [SerializeField] private Transform weaponSocket;
-    [Tooltip("If true, walking over a pickup while already holding a power weapon swaps to the new one.")]
-    [SerializeField] private bool allowSwapping = true;
+    [Tooltip("If true, walking over a different pickup while already holding a power weapon swaps to the new one. If false, other pickups are ignored until your weapon runs out.")]
+    [SerializeField] private bool allowSwapping = false;
 
     public PowerWeaponData Current { get; private set; }
     public int Ammo { get; private set; }
@@ -18,6 +18,12 @@ public class PlayerWeaponHandler : MonoBehaviour
     public event Action<PowerWeaponData, int> AmmoChanged;
 
     private GameObject heldModel;
+    private Transform heldSocket;
+
+    // Cycling weapons (e.g. Rock / Paper / Scissors): which set we're cycling and where we are in it
+    private PowerWeaponData cycleSource;
+    private int cycleIndex;
+    private float nextCycleTime;
     private float nextFireTime;
     private float equipTime;
 
@@ -31,16 +37,55 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public void Equip(PowerWeaponData weapon, Transform fallbackSocket)
     {
+        if (weapon == null) return;
+
+        // Cycling set: start on a random one and keep switching while held
+        PowerWeaponData cycling = null;
+        if (weapon.cycleVariants && weapon.randomVariants != null && weapon.randomVariants.Length > 0)
+        {
+            cycling = weapon;
+            cycleIndex = UnityEngine.Random.Range(0, weapon.randomVariants.Length);
+            weapon = weapon.randomVariants[cycleIndex];
+        }
+        else
+        {
+            weapon = ResolveRandom(weapon);
+        }
+        if (weapon == null) return;
+
         Unequip();
         Current = weapon;
         Ammo = weapon.startingAmmo;
         equipTime = Time.time;
         nextFireTime = 0f;
+        cycleSource = cycling;
+        if (cycleSource != null) nextCycleTime = Time.time + cycleSource.cycleInterval;
 
-        Transform socket = weaponSocket != null ? weaponSocket : fallbackSocket;
-        if (weapon.heldModelPrefab != null && socket != null)
-            heldModel = Instantiate(weapon.heldModelPrefab, socket);
+        heldSocket = weaponSocket != null ? weaponSocket : fallbackSocket;
+        ShowHeldModel();
 
+        AmmoChanged?.Invoke(Current, Ammo);
+    }
+
+    private void ShowHeldModel()
+    {
+        if (heldModel != null) Destroy(heldModel);
+        heldModel = null;
+        if (Current != null && Current.heldModelPrefab != null && heldSocket != null)
+        {
+            heldModel = Instantiate(Current.heldModelPrefab, heldSocket);
+            heldModel.transform.localPosition = Current.heldModelOffset;
+        }
+    }
+
+    // Switch to the next variant in the cycle (keeps the ammo you have)
+    private void CycleToNext()
+    {
+        var variants = cycleSource.randomVariants;
+        cycleIndex = (cycleIndex + 1) % variants.Length;
+        if (variants[cycleIndex] == null) return;
+        Current = variants[cycleIndex];
+        ShowHeldModel();
         AmmoChanged?.Invoke(Current, Ammo);
     }
 
@@ -52,15 +97,30 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (Time.time < nextFireTime) return true;
         nextFireTime = Time.time + Current.fireCooldown;
 
-        int count = Current.projectilesPerShot;
-        for (int i = 0; i < count; i++)
+        if (Current.placeablePrefab != null)
         {
-            float angle = count > 1
-                ? Mathf.Lerp(-Current.spreadAngle * 0.5f, Current.spreadAngle * 0.5f, i / (float)(count - 1))
-                : 0f;
-            Quaternion rot = firePoint.rotation * Quaternion.Euler(0f, angle, 0f);
-            Projectile proj = Instantiate(Current.projectilePrefab, firePoint.position, rot);
-            proj.owner = owner;
+            Place(owner);
+        }
+        else if (Current.attachedPrefab != null)
+        {
+            GameObject attached = Instantiate(Current.attachedPrefab, firePoint);
+            attached.transform.localPosition = Vector3.zero;
+            attached.transform.localRotation = Quaternion.identity;
+            foreach (var p in attached.GetComponentsInChildren<IPlacedByPlayer>())
+                p.SetOwner(owner);
+        }
+        else
+        {
+            int count = Current.projectilesPerShot;
+            for (int i = 0; i < count; i++)
+            {
+                float angle = count > 1
+                    ? Mathf.Lerp(-Current.spreadAngle * 0.5f, Current.spreadAngle * 0.5f, i / (float)(count - 1))
+                    : 0f;
+                Quaternion rot = firePoint.rotation * Quaternion.Euler(0f, angle, 0f);
+                Projectile proj = Instantiate(Current.projectilePrefab, firePoint.position, rot);
+                proj.owner = owner;
+            }
         }
 
         Ammo--;
@@ -69,8 +129,40 @@ public class PlayerWeaponHandler : MonoBehaviour
         return true;
     }
 
+    // Weapons with random variants (Rock/Paper/Scissors) hand out one of them
+    private static PowerWeaponData ResolveRandom(PowerWeaponData weapon)
+    {
+        int guard = 0;
+        while (weapon != null && weapon.randomVariants != null && weapon.randomVariants.Length > 0 && guard++ < 5)
+            weapon = weapon.randomVariants[UnityEngine.Random.Range(0, weapon.randomVariants.Length)];
+        return weapon;
+    }
+
+    // Drops the weapon's placeable on the ground in front of the player
+    private void Place(GameObject owner)
+    {
+        Vector3 fwd = owner.transform.forward;
+        fwd.y = 0f;
+        fwd = fwd.sqrMagnitude > 0.001f ? fwd.normalized : Vector3.forward;
+
+        Vector3 spot = owner.transform.position + fwd * Current.placeDistance;
+        Vector3 pos;
+        if (Physics.Raycast(spot + Vector3.up, Vector3.down, out RaycastHit hit, 6f, ~0, QueryTriggerInteraction.Ignore))
+            pos = hit.point;
+        else
+        {
+            var cc = owner.GetComponent<CharacterController>();
+            pos = new Vector3(spot.x, cc != null ? cc.bounds.min.y : owner.transform.position.y, spot.z);
+        }
+
+        GameObject placed = Instantiate(Current.placeablePrefab, pos, Quaternion.LookRotation(fwd));
+        foreach (var p in placed.GetComponentsInChildren<IPlacedByPlayer>())
+            p.SetOwner(owner);
+    }
+
     public void Unequip()
     {
+        cycleSource = null;
         if (heldModel != null) Destroy(heldModel);
         heldModel = null;
         bool hadWeapon = Current != null;
@@ -81,6 +173,12 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     void Update()
     {
+        if (HasPowerWeapon && cycleSource != null && Time.time >= nextCycleTime)
+        {
+            nextCycleTime = Time.time + cycleSource.cycleInterval;
+            CycleToNext();
+        }
+
         if (HasPowerWeapon && Current.maxHoldTime > 0f && Time.time - equipTime >= Current.maxHoldTime)
             Unequip();
     }

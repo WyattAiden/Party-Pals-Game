@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2b4c0bc9505e04e84945ef7778218d, type: 3}
+  m_Name: JackInTheBox
+  m_EditorClassIdentifier: Assembly-CSharp::PowerWeaponData
+  displayName: Jack-in-the-Box
+  heldModelPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  startingAmmo: 3
+  fireCooldown: 0.6
+  projectilesPerShot: 1
+  spreadAngle: 20
+  placeablePrefab: {fileID: 7940335212753078533, guid: 95fc5e42ae869e041b3e9e1d49a62919, type: 3}
+  placeDistance: 0.9
+  maxHoldTime: 0

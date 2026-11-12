@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2b4c0bc9505e04e84945ef7778218d, type: 3}
+  m_Name: RockPaperScissors
+  m_EditorClassIdentifier: Assembly-CSharp::PowerWeaponData
+  displayName: Rock Paper Scissors
+  randomVariants:
+  - {fileID: 11400000, guid: 3aa1a67886685da48bc4b6b4e16be5a4, type: 2}
+  - {fileID: 11400000, guid: 4cfa30500b88921488d5118f1f2d2c04, type: 2}
+  - {fileID: 11400000, guid: 1bf81fdc81da5944897c7b0eb6539030, type: 2}
+  cycleVariants: 1
+  cycleInterval: 0.6
+  heldModelPrefab: {fileID: 0}
+  heldModelOffset: {x: 0, y: 0, z: 0}
+  projectilePrefab: {fileID: 0}
+  startingAmmo: 5
+  fireCooldown: 0.3
+  projectilesPerShot: 1
+  spreadAngle: 20
+  placeablePrefab: {fileID: 0}
+  placeDistance: 0.9
+  attachedPrefab: {fileID: 0}
+  maxHoldTime: 0
