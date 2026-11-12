@@ -51,8 +51,6 @@ public class LobbyMenu : MonoBehaviour
             if (gamepad.buttonSouth.wasPressedThisFrame)
                 TryJoin("Gamepad", gamepad);
 
-            if (gamepad.startButton.wasPressedThisFrame && GameSettings.Players.Count >= minPlayersToStart && gamepad == GameSettings.Players[0].device)
-                StartGame();
             if (gamepad.leftShoulder.wasPressedThisFrame || gamepad.rightShoulder.wasPressedThisFrame)
             {
                 int slot = GameSettings.Players.FindIndex(p =>p.device == gamepad);
