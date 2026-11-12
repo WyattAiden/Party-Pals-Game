@@ -415,7 +415,7 @@ Transform:
   m_GameObject: {fileID: 111733563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 76.61888, y: 65.24635, z: 5.840843}
+  m_LocalPosition: {x: 76.61888, y: 65.24635, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -428,58 +428,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111733563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
-  kind: 2
-  useCustomColor: 0
-  customColor: {r: 1, g: 1, b: 1, a: 1}
-  radius: 0.5
-  arrowDirection: {x: 0, y: 0, z: 0}
-  arrowLength: 2
-  showLabel: 1
-  label: 
---- !u!1 &154207052
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 154207053}
-  - component: {fileID: 154207054}
-  m_Layer: 0
-  m_Name: CBSpawn8
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &154207053
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154207052}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 66.61888, y: 65.24635, z: -28.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2114465126}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &154207054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154207052}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
@@ -756,11 +704,9 @@ Transform:
   - {fileID: 111733565}
   - {fileID: 998300376}
   - {fileID: 1146912972}
-  - {fileID: 1874588595}
   - {fileID: 2131248048}
   - {fileID: 1026052472}
   - {fileID: 1700381376}
-  - {fileID: 818154724}
   m_Father: {fileID: 1712167316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &213703892
@@ -1947,58 +1893,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 360574102679d9f49bd674033c79e96d, type: 3}
---- !u!1 &818154722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 818154724}
-  - component: {fileID: 818154725}
-  m_Layer: 0
-  m_Name: CBSpawn8
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &818154724
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818154722}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 66.61888, y: 65.24635, z: 5.840843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 200334493}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &818154725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818154722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
-  kind: 2
-  useCustomColor: 0
-  customColor: {r: 1, g: 1, b: 1, a: 1}
-  radius: 0.5
-  arrowDirection: {x: 0, y: 0, z: 0}
-  arrowLength: 2
-  showLabel: 1
-  label: 
 --- !u!1 &981094034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,7 +2085,7 @@ Transform:
   m_GameObject: {fileID: 998300374}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 78.61888, y: 65.24635, z: 5.840843}
+  m_LocalPosition: {x: 78.61888, y: 65.24635, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2373,7 +2267,7 @@ Transform:
   m_GameObject: {fileID: 1026052470}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 70.61888, y: 65.24635, z: 5.840843}
+  m_LocalPosition: {x: 70.61888, y: 65.24635, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7369,7 +7263,7 @@ Transform:
   m_GameObject: {fileID: 1146912970}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80.61888, y: 65.24635, z: 5.840843}
+  m_LocalPosition: {x: 80.61888, y: 65.24635, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7518,58 +7412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
   kind: 0
-  useCustomColor: 0
-  customColor: {r: 1, g: 1, b: 1, a: 1}
-  radius: 0.5
-  arrowDirection: {x: 0, y: 0, z: 0}
-  arrowLength: 2
-  showLabel: 1
-  label: 
---- !u!1 &1184682949
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1184682950}
-  - component: {fileID: 1184682951}
-  m_Layer: 0
-  m_Name: CBSpawn4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1184682950
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184682949}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.61888, y: 65.24635, z: -28.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2114465126}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1184682951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184682949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
-  kind: 2
   useCustomColor: 0
   customColor: {r: 1, g: 1, b: 1, a: 1}
   radius: 0.5
@@ -11487,7 +11329,7 @@ Transform:
   m_GameObject: {fileID: 1700381374}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.61888, y: 65.24635, z: 5.840843}
+  m_LocalPosition: {x: 68.61888, y: 65.24635, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11567,20 +11409,20 @@ MonoBehaviour:
   - {fileID: 111733565}
   - {fileID: 998300376}
   - {fileID: 1146912972}
-  - {fileID: 1874588595}
+  - {fileID: 0}
   - {fileID: 2131248048}
   - {fileID: 1026052472}
   - {fileID: 1700381376}
-  - {fileID: 818154724}
+  - {fileID: 0}
   bottomSpawnPoints:
   - {fileID: 2023988865}
   - {fileID: 192860801}
   - {fileID: 1466201026}
-  - {fileID: 1184682950}
+  - {fileID: 0}
   - {fileID: 1203147549}
   - {fileID: 531131841}
   - {fileID: 1046868375}
-  - {fileID: 154207053}
+  - {fileID: 0}
 --- !u!1001 &1723970796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12235,58 +12077,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7233355286381660974, guid: 3318a0dcc90627d4394e56a36f632ee6, type: 3}
   m_PrefabInstance: {fileID: 1858445021}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1874588593
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1874588595}
-  - component: {fileID: 1874588596}
-  m_Layer: 0
-  m_Name: CBSpawn4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1874588595
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874588593}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.61888, y: 65.24635, z: 5.840843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 200334493}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1874588596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874588593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc566974950c8b5439830205b907edbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointGizmo
-  kind: 2
-  useCustomColor: 0
-  customColor: {r: 1, g: 1, b: 1, a: 1}
-  radius: 0.5
-  arrowDirection: {x: 0, y: 0, z: 0}
-  arrowLength: 2
-  showLabel: 1
-  label: 
 --- !u!1 &1884384378
 GameObject:
   m_ObjectHideFlags: 0
@@ -15762,11 +15552,9 @@ Transform:
   - {fileID: 2023988865}
   - {fileID: 192860801}
   - {fileID: 1466201026}
-  - {fileID: 1184682950}
   - {fileID: 1203147549}
   - {fileID: 531131841}
   - {fileID: 1046868375}
-  - {fileID: 154207053}
   m_Father: {fileID: 1712167316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2118639902
@@ -15837,7 +15625,7 @@ Transform:
   m_GameObject: {fileID: 2131248046}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 72.61888, y: 65.24635, z: 5.840843}
+  m_LocalPosition: {x: 72.61888, y: 65.24635, z: 27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
