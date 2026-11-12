@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     public void Shoot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (isRunning) return; // can't shoot while running
 
         // Power weapon takes over the shot while the player has one
         if (weaponHandler != null && weaponHandler.HasPowerWeapon)
