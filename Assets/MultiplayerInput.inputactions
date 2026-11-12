@@ -70,7 +70,7 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "2b72d2bd-a033-4318-901a-c26ab23dcbf5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false,
@@ -90,6 +90,26 @@
                     "name": "PushBack",
                     "type": "Button",
                     "id": "a686350a-5477-459c-bb02-d5f4d83c88fc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "ExtendAim",
+                    "type": "Button",
+                    "id": "e7c4aeba-40ae-4f9a-aaf4-71441f0791d0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "ShrinkAim",
+                    "type": "Button",
+                    "id": "77716802-67c9-413c-856d-370b16c17232",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -299,7 +319,7 @@
                 {
                     "name": "",
                     "id": "3a47b4e7-2b43-4ec7-8723-bae46ee84e4b",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -343,11 +363,55 @@
                 {
                     "name": "",
                     "id": "b04fe614-b4e9-4e33-9d70-ad7b5ffbf850",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "PushBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b9063cf-c3e9-493b-a124-9f1bb9485a78",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ExtendAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b111929f-ff0f-4852-a10b-16bd195b5d7a",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "ExtendAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e264d9c7-d9c2-4103-b290-d0534baf10c1",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ShrinkAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2c6cc6b-e1b7-4d27-8fda-76666016c234",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "ShrinkAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
