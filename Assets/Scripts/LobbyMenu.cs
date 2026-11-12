@@ -16,6 +16,7 @@ public class LobbyMenu : MonoBehaviour
     [SerializeField] private Image[] playerIcons;
     [SerializeField] private Color emptyColor = Color.gray;
     [SerializeField] private InputSystemUIInputModule uIModule;
+    [SerializeField] private Image[] spotLights;
 
 
     private void Start()
@@ -50,8 +51,6 @@ public class LobbyMenu : MonoBehaviour
             if (gamepad.buttonSouth.wasPressedThisFrame)
                 TryJoin("Gamepad", gamepad);
 
-            if (gamepad.startButton.wasPressedThisFrame && GameSettings.Players.Count >= minPlayersToStart && gamepad == GameSettings.Players[0].device)
-                StartGame();
             if (gamepad.leftShoulder.wasPressedThisFrame || gamepad.rightShoulder.wasPressedThisFrame)
             {
                 int slot = GameSettings.Players.FindIndex(p =>p.device == gamepad);
@@ -128,6 +127,12 @@ public class LobbyMenu : MonoBehaviour
         {
             bool isJoined = i < GameSettings.Players.Count;
             playerIcons[i].color = isJoined ? GameSettings.GetColors(i) : emptyColor;
+
+            spotLights[i].gameObject.SetActive(isJoined);
+            Color c = GameSettings.GetColors(i);
+            c.a = 0.5f;
+            spotLights[i].color = c;
+
         }
     }
 
