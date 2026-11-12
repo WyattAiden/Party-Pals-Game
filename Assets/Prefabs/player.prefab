@@ -341,7 +341,7 @@ MonoBehaviour:
   fireCooldown: 0.5
   runSpeed: 10
   dashSpeed: 20
-  dashDuration: 0.2
+  dashDuration: 0.1
   dashCooldown: 3
   knockbackDecay: 8
 --- !u!114 &-4287474654746257082
@@ -390,12 +390,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4108086922205321148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb5460a777b354542810e00404c87a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 20
+  dashSpeed: 10
   dashDuration: 0.2
   dashCooldown: 1
 --- !u!114 &5802651828648839476
