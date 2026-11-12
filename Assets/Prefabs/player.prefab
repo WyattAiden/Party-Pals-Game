@@ -335,13 +335,14 @@ MonoBehaviour:
   gravity: -9.81
   turnSpeed: 180
   lookDeadzone: 0.2
+  aimCamera: {fileID: 0}
   projectilePrefab: {fileID: 4313019375993735946, guid: ba0ea7d29c39969479930f5d6d143ea6, type: 3}
   firePoint: {fileID: 5587249667997080775}
   fireCooldown: 0.5
   runSpeed: 10
   dashSpeed: 20
   dashDuration: 0.2
-  dashCooldown: 1
+  dashCooldown: 3
   knockbackDecay: 8
 --- !u!114 &-4287474654746257082
 MonoBehaviour:
