@@ -70,7 +70,7 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "2b72d2bd-a033-4318-901a-c26ab23dcbf5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false,
@@ -299,7 +299,7 @@
                 {
                     "name": "",
                     "id": "3a47b4e7-2b43-4ec7-8723-bae46ee84e4b",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
