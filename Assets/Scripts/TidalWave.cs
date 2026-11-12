@@ -71,8 +71,12 @@ public class TidalWave : MonoBehaviour
     [Tooltip("Extra height where water piles up against a building's corners.")]
     [SerializeField] private float pileUp = 0.12f;
 
+    [Header("Warning banner (optional)")]
+    [SerializeField] private GameObject warningBanner;      // shown while the wave rises
+    [SerializeField] private TMP_Text warningText;          // blinks inside the banner
+    [SerializeField, TextArea] private string warningMessage = "TSUNAMI WARNING!\n<size=60%>Get to shelter behind a building!</size>";
+
     [Header("Optional")]
-    [SerializeField] private TMP_Text warningText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip warningSound;
     [SerializeField] private AudioClip crashSound;
@@ -121,7 +125,7 @@ public class TidalWave : MonoBehaviour
         frontZ = backEdgeZ;
         SetVisual(hiddenY, backEdgeZ);
         RebuildMesh();
-        if (warningText != null) warningText.gameObject.SetActive(false);
+        ShowWarning(false);
         StartCoroutine(Loop());
     }
 
@@ -155,11 +159,8 @@ public class TidalWave : MonoBehaviour
         ResetFill();
 
         // 1) Warning: the wave rises out of the water at the starting side
-        if (warningText != null)
-        {
-            warningText.text = fromBack ? "WAVE INCOMING!\n(from the back)" : "WAVE INCOMING!\n(from the front)";
-            warningText.gameObject.SetActive(true);
-        }
+        if (warningText != null && !string.IsNullOrEmpty(warningMessage)) warningText.text = warningMessage;
+        ShowWarning(true);
         Play(warningSound);
         for (float t = 0f; t < warningTime; t += Time.deltaTime)
         {
@@ -169,7 +170,7 @@ public class TidalWave : MonoBehaviour
             if (warningText != null) warningText.enabled = Mathf.Repeat(t, 0.4f) < 0.25f; // blink
             yield return null;
         }
-        if (warningText != null) warningText.gameObject.SetActive(false);
+        ShowWarning(false);
         Play(crashSound);
 
         // 2) Sweep across the platform, carrying players with it
@@ -433,6 +434,13 @@ public class TidalWave : MonoBehaviour
         if (waveVisual == null) return;
         // Mesh is centred, so shift it back by half its depth from the leading face
         waveVisual.position = new Vector3(0f, y, leadingZ - dir.z * waveDepth * 0.5f);
+    }
+
+    void ShowWarning(bool show)
+    {
+        if (warningBanner != null) warningBanner.SetActive(show);
+        else if (warningText != null) warningText.gameObject.SetActive(show);
+        if (warningText != null) warningText.enabled = true;
     }
 
     bool IsPaused()
