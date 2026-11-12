@@ -1019,7 +1019,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -15455,8 +15455,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f1980556fa9a8a40bc5d84088421c80, type: 2}
-  - {fileID: 2100000, guid: 54f14a6ee2d8f88419a114b5ed46972a, type: 2}
+  - {fileID: 2100000, guid: 3942fa501473eb447a69234aa21083de, type: 2}
+  - {fileID: 2100000, guid: fe05539ffbe56224ab8e3d64751084ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19451,7 +19451,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1181468577}
-  m_VersionIndex: 1003
+  m_VersionIndex: 1045
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -23514,7 +23514,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1365966311}
-  m_VersionIndex: 1045
+  m_VersionIndex: 1087
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
