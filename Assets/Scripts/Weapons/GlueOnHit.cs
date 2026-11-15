@@ -16,6 +16,8 @@ public class GlueOnHit : MonoBehaviour, IProjectileHitEffect
     [Header("Puddle")]
     [Tooltip("Spawned where the glue hits a surface. Leave empty for no puddles.")]
     [SerializeField] private GluePuddle puddlePrefab;
+    [Tooltip("If a puddle is already this close (on the same surface), the glue joins it and it grows, instead of making a new one.")]
+    [SerializeField] private float mergeRadius = 0.9f;
 
     // Called by Projectile when it hits something
     public void OnProjectileHit(Collider target, GameObject owner, Vector3 fromPosition)
@@ -55,6 +57,9 @@ public class GlueOnHit : MonoBehaviour, IProjectileHitEffect
                 normal = Vector3.up;
             }
         }
+
+        GluePuddle near = GluePuddle.FindNear(point, normal, mergeRadius);
+        if (near != null) { near.Feed(); return; }
 
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, normal) * Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
         Instantiate(puddlePrefab, point + normal * 0.02f, rot);
