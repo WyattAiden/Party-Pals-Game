@@ -21,11 +21,36 @@ using UnityEngine.SceneManagement;
 ///   performance.csv- average FPS and worst frame for every second
 ///   summary.txt    - quick human-readable totals, rewritten after every round
 ///
-/// Turn it off with PlaytestLogger.Enabled = false, or launch a build with -noplaytestlog.
+/// Turning it on and off (the setting is saved between launches, default ON):
+///   - Editor: tick/untick  Party Pals > Playtest Logging  (works during Play Mode too)
+///   - In game: press F9 to toggle; a small ON/OFF message shows in the top-left corner
+///   - Code:    PlaytestLogger.Enabled = false;
+///   - Build launch flags (this launch only, not saved): -noplaytestlog / -playtestlog
+/// Turning it off mid-game closes the current session's files cleanly; turning it back on
+/// starts a new session folder (players already in a round are picked up).
 /// </summary>
 public class PlaytestLogger : MonoBehaviour
 {
-    public static bool Enabled = true;
+    const string PrefKey = "PartyPals.PlaytestLogging";
+    const Key ToggleKey = Key.F9;
+
+    static bool? launchOverride; // set by -noplaytestlog / -playtestlog, never saved
+
+    /// <summary>The on/off switch. Saved between launches. Changing it while the game runs takes effect immediately.</summary>
+    public static bool Enabled
+    {
+        get => launchOverride ?? PlayerPrefs.GetInt(PrefKey, 1) == 1;
+        set
+        {
+            launchOverride = null;
+            PlayerPrefs.SetInt(PrefKey, value ? 1 : 0);
+            PlayerPrefs.Save();
+            if (instance != null) instance.Apply(true);
+        }
+    }
+
+    /// <summary>True while a session is actually being written to disk.</summary>
+    public static bool IsLogging => instance != null && instance.events != null;
 
     const float PositionInterval = 0.5f;
     const float PerfInterval = 1f;
@@ -41,6 +66,8 @@ public class PlaytestLogger : MonoBehaviour
         public int id;                 // 1-based player number
         public string scheme;
         public string lastHitBy = "";
+        public Action<float, GameObject> onDamaged;
+        public Action onDied;
         public readonly List<(InputAction action, Action<InputAction.CallbackContext> handler)> subs = new();
         public string Label => "P" + id;
     }
@@ -74,14 +101,21 @@ public class PlaytestLogger : MonoBehaviour
 
     float Now => Time.realtimeSinceStartup - sessionStart;
 
+    string toast;
+    float toastUntil;
+
     // ================= bootstrap =================
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Bootstrap()
     {
-        if (!Enabled || instance != null) return;
-        if (Environment.GetCommandLineArgs().Contains("-noplaytestlog")) return;
+        if (instance != null) return;
+        var args = Environment.GetCommandLineArgs();
+        launchOverride = args.Contains("-noplaytestlog") ? false
+                       : args.Contains("-playtestlog") ? true
+                       : (bool?)null;
 
+        // The object always exists (so the F9 toggle works); it only writes files while Enabled.
         var go = new GameObject("[PlaytestLogger]");
         DontDestroyOnLoad(go);
         instance = go.AddComponent<PlaytestLogger>();
@@ -94,10 +128,42 @@ public class PlaytestLogger : MonoBehaviour
 
     void Awake()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        PlayerInputManagerV2.OnPlayerJoined += OnPlayerJoined;
+        Apply(false);
+        if (!Enabled) Debug.Log($"[Playtest] Logging is OFF (turn on: Party Pals > Playtest Logging, or press {ToggleKey} in game)");
+    }
+
+    /// <summary>Starts or stops the session so it matches Enabled.</summary>
+    void Apply(bool announce)
+    {
+        bool want = Enabled;
+        if (want && events == null) StartSession();
+        else if (!want && events != null) StopSession();
+        else return;
+
+        if (announce)
+        {
+            toast = "Playtest logging " + (IsLogging ? "ON" : "OFF");
+            toastUntil = Time.unscaledTime + 2f;
+        }
+    }
+
+    void StartSession()
+    {
         sessionStart = Time.realtimeSinceStartup;
         currentScene = SceneManager.GetActiveScene().name;
         sessionStartClock = DateTime.Now;
         folder = Path.Combine(RootFolder, sessionStartClock.ToString("yyyy-MM-dd_HH-mm-ss", Inv));
+
+        // Fresh numbers for every session
+        roundNumber = 0; roundActive = false;
+        roundStartTime = lastDeathTime = 0f;
+        totals.Clear(); roundResults.Clear();
+        roundsFinished = roundsAbandoned = 0;
+        nextPositionTime = perfTimer = perfWorstFrame = fpsSum = 0f;
+        fpsWorst = float.MaxValue;
+        perfFrames = fpsSamples = 0;
 
         try
         {
@@ -108,16 +174,34 @@ public class PlaytestLogger : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogWarning("[Playtest] Could not create log files, logging disabled: " + e.Message);
-            enabled = false;
+            Debug.LogWarning("[Playtest] Could not create log files, logging stays off: " + e.Message);
+            CloseFiles();
+            folder = null;
             return;
         }
 
         Debug.Log("[Playtest] Logging this session to " + folder);
         LogEvent("session_start", detail: $"{Application.platform} {Screen.width}x{Screen.height} v{Application.version}");
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        PlayerInputManagerV2.OnPlayerJoined += OnPlayerJoined;
+        // Turned on mid-game: pick up players who already joined
+        foreach (var pi in PlayerInput.all) OnPlayerJoined(pi);
+    }
+
+    void StopSession()
+    {
+        if (events == null) return;
+        if (roundActive) AbandonRound();
+        LogEvent("session_end", value: Now);
+        WriteSummary();
+        ClearRoundPlayers();
+        CloseFiles();
+        Debug.Log("[Playtest] Logging stopped. Files saved in " + folder);
+    }
+
+    void CloseFiles()
+    {
+        events?.Dispose(); positions?.Dispose(); perf?.Dispose();
+        events = positions = perf = null;
     }
 
     StreamWriter Open(string file, string header)
@@ -131,24 +215,17 @@ public class PlaytestLogger : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         PlayerInputManagerV2.OnPlayerJoined -= OnPlayerJoined;
+        StopSession();
         if (instance == this) instance = null;
     }
 
-    void OnApplicationQuit()
-    {
-        if (events == null) return;
-        if (roundActive) AbandonRound();
-        LogEvent("session_end", value: Now);
-        WriteSummary();
-        events.Dispose(); positions.Dispose(); perf.Dispose();
-        events = null;
-    }
+    void OnApplicationQuit() => StopSession();
 
     // ================= scene & round flow =================
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (mode != LoadSceneMode.Single) return;
+        if (events == null || mode != LoadSceneMode.Single) return;
         if (roundActive) AbandonRound();
         ClearRoundPlayers();
         currentScene = scene.name;
@@ -157,6 +234,7 @@ public class PlaytestLogger : MonoBehaviour
 
     void OnPlayerJoined(PlayerInput input)
     {
+        if (events == null || input == null) return;
         if (!roundActive)
         {
             ClearRoundPlayers();
@@ -182,8 +260,10 @@ public class PlaytestLogger : MonoBehaviour
 
         if (info.health != null)
         {
-            info.health.Damaged += (amount, source) => OnDamaged(info, amount, source);
-            info.health.Died += () => OnDied(info);
+            info.onDamaged = (amount, source) => OnDamaged(info, amount, source);
+            info.onDied = () => OnDied(info);
+            info.health.Damaged += info.onDamaged;
+            info.health.Died += info.onDied;
         }
 
         // Count button presses per action (Shoot, Jump, Pause...). Analog sticks are skipped.
@@ -206,15 +286,22 @@ public class PlaytestLogger : MonoBehaviour
     {
         // Player 1 can share the original actions asset, which outlives the scene, so unhook explicitly.
         foreach (var p in roundPlayers)
+        {
             foreach (var (action, handler) in p.subs)
                 if (action != null) action.performed -= handler;
+            if (p.health != null)
+            {
+                if (p.onDamaged != null) p.health.Damaged -= p.onDamaged;
+                if (p.onDied != null) p.health.Died -= p.onDied;
+            }
+        }
         roundPlayers.Clear();
     }
 
     /// <summary>Called by RoundManager when a round is decided. winner == null means a draw.</summary>
     public static void RoundEnded(PlayerInput winner)
     {
-        if (instance == null || !instance.roundActive) return;
+        if (!IsLogging || !instance.roundActive) return;
         instance.EndRound(winner);
     }
 
@@ -249,7 +336,7 @@ public class PlaytestLogger : MonoBehaviour
     /// <summary>Called by PlayerController each time a shot actually fires.</summary>
     public static void Shot(GameObject shooter)
     {
-        if (instance == null) return;
+        if (!IsLogging) return;
         var p = instance.FindPlayer(shooter);
         if (p == null) return;
         instance.T(p.id).shots++;
@@ -299,6 +386,9 @@ public class PlaytestLogger : MonoBehaviour
 
     void Update()
     {
+        var kb = Keyboard.current;
+        if (kb != null && kb[ToggleKey].wasPressedThisFrame) Enabled = !Enabled;
+
         if (events == null) return;
 
         // Performance: one row per second
@@ -331,6 +421,13 @@ public class PlaytestLogger : MonoBehaviour
                     F(pos.x), F(pos.z), p.health != null ? F(p.health.Current) : ""));
             }
         }
+    }
+
+    void OnGUI()
+    {
+        if (toast == null || Time.unscaledTime > toastUntil) return;
+        var style = new GUIStyle(GUI.skin.box) { fontSize = 20, alignment = TextAnchor.MiddleCenter };
+        GUI.Box(new Rect(10, 10, 300, 40), toast, style);
     }
 
     // ================= helpers =================
