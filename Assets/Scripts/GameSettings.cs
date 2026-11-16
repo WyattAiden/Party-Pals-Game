@@ -11,10 +11,10 @@ public static class GameSettings
     public static int[] scores = new int[4];
     public static int roundsPlayed;
     public static int totalRounds = 3;
-    public static string[] mapNames = { "WarLevel", "PirateLevel", "MakerLevel", "CityLevel"};
+    public static string[] mapNames = { "WarLevel", "PirateLevel", "MakerLevel", "CityLevel", "WaterVillageLevel", "CaveLevel" };
 
     public static void AddPlayer(string scheme, InputDevice device)
-    {       
+    {
         int freeColor = 0;
         while (Players.Exists(p => p.colorIndex == freeColor))
             freeColor++;
