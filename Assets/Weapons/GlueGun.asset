@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: GlueGun
   m_EditorClassIdentifier: Assembly-CSharp::PowerWeaponData
   displayName: Glue Gun
+  randomVariants: []
+  cycleVariants: 0
+  cycleInterval: 0.6
   heldModelPrefab: {fileID: 0}
+  heldModelOffset: {x: 0, y: 0, z: 0}
   projectilePrefab: {fileID: 3221777380641542019, guid: 70a3116861c107045ab50e613b232b21, type: 3}
   startingAmmo: 8
-  fireCooldown: 0.35
+  fireCooldown: 0.45
   projectilesPerShot: 1
   spreadAngle: 0
+  placeablePrefab: {fileID: 0}
+  placeDistance: 0.9
+  attachedPrefab: {fileID: 581931921678998518, guid: 7794bc258b576a941a4af19610621f5a, type: 3}
   maxHoldTime: 0
