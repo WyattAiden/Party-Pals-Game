@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7669777760540461721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 463498445568460899}
+  - component: {fileID: 298049530573471783}
+  m_Layer: 0
+  m_Name: RandomWeaponSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &463498445568460899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669777760540461721}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &298049530573471783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669777760540461721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70a8449a430f27479c993785f94dba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomWeaponSpawner
+  weapons:
+  - pickupPrefab: {fileID: 1830103511000227535, guid: 58247ad5a8dead3488408d7f188dd419, type: 3}
+    rarity: 0
+  - pickupPrefab: {fileID: 2214565614187350462, guid: dfbaf5bfc233b684dadb77819c976426, type: 3}
+    rarity: 0
+  - pickupPrefab: {fileID: 5003849096432911174, guid: fe93f13482877404296fa0569e858252, type: 3}
+    rarity: 0
+  - pickupPrefab: {fileID: 919213614446093603, guid: 8ce99f3c5383a3541acfca7a3513dd06, type: 3}
+    rarity: 0
+  - pickupPrefab: {fileID: 9024329815881485461, guid: 03ed74b24915ffb48892d0ef38c66f30, type: 3}
+    rarity: 0
+  - pickupPrefab: {fileID: 8301580210513473141, guid: d095a5a2bea170a4090e72095e375f63, type: 3}
+    rarity: 0
+  fallbackPool: {fileID: 11400000, guid: 8e3b61ec784a3524b927b9e317549eb1, type: 2}
+  commonWeight: 60
+  uncommonWeight: 25
+  rareWeight: 12
+  legendaryWeight: 3
+  avoidRepeats: 1
+  maxOnMap: 3
+  startingCount: 1
+  maxPerRound: 0
+  firstSpawnDelay: {x: 3, y: 6}
+  spawnInterval: {x: 6, y: 12}
+  pickupLifetime: 0
+  location: 0
+  pickupHeight: 1
+  minDistanceFromPlayers: 3
+  minDistanceBetweenPickups: 3
+  areaSize: {x: 30, y: 10, z: 30}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxSlope: 30
+  clearanceRadius: 0.6
