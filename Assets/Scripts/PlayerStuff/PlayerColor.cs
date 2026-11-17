@@ -17,6 +17,34 @@ public class PlayerColor : MonoBehaviour
     private Health health;
     private Color baseColor;
     private Coroutine flashRoutine;
+    private bool started;
+
+    // Status tint (glue, beam slow...) set by PlayerStatusEffects. Kept here so the
+    // damage flash goes back to "team colour + tint" instead of wiping the tint.
+    private Color? statusTint;
+    private float statusTintStrength;
+
+    private Color CurrentColor => statusTint.HasValue
+        ? Color.Lerp(baseColor, statusTint.Value, statusTintStrength)
+        : baseColor;
+
+    public void SetStatusTint(Color? tint, float strength)
+    {
+        statusTint = tint;
+        statusTintStrength = strength;
+        if (started && flashRoutine == null) SetColor(CurrentColor);
+    }
+
+    // True for the renderers this script colours (PlayerStatusEffects leaves those to us)
+    public bool Manages(Renderer r)
+    {
+        if (r == null) return false;
+        if (r == bodyrenderer) return true;
+        if (modelRenderers != null)
+            foreach (var m in modelRenderers)
+                if (m == r) return true;
+        return false;
+    }
 
     void Awake()
     {
@@ -37,7 +65,7 @@ public class PlayerColor : MonoBehaviour
         {
             StopCoroutine(flashRoutine);
             flashRoutine = null;
-            SetColor(baseColor);
+            SetColor(CurrentColor);
         }
     }
 
@@ -46,7 +74,8 @@ public class PlayerColor : MonoBehaviour
     {
         int Palet = GetComponent<PlayerInput>().playerIndex;
         baseColor = GameSettings.GetColors(Palet);
-        SetColor(baseColor);
+        started = true;
+        SetColor(CurrentColor);
     }
 
     void SetColor(Color c)
@@ -70,7 +99,7 @@ public class PlayerColor : MonoBehaviour
     {
         SetColor(flashColor);
         yield return new WaitForSeconds(flashDuration);
-        SetColor(baseColor);
+        SetColor(CurrentColor);
         flashRoutine = null;
     }
 }

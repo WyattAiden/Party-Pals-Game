@@ -41,8 +41,11 @@ public static class GameSettings
 
     public static Color GetColors(int player)
     {
+        // Pressing Play straight from a level skips the lobby, so Players can be empty.
+        // Use the player's lobby colour when it exists, otherwise fall back to the default order.
+        int colorIndex = (player >= 0 && player < Players.Count) ? Players[player].colorIndex : player;
 
-        return playerColors[Players[player].colorIndex];
-
+        if (colorIndex < 0 || playerColors.Length == 0) return Color.white;
+        return playerColors[colorIndex % playerColors.Length];
     }
 }

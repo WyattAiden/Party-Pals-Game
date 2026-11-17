@@ -29,6 +29,8 @@ public class PlayerStatusEffects : MonoBehaviour
     private GameObject burnSource;
 
     private readonly List<(Material mat, Color original)> tinted = new List<(Material, Color)>();
+    private bool tintActive;
+    private PlayerColor playerColor; // tints the body itself so the damage flash doesn't wipe the tint
 
     // ---- Bleed (stacking damage over time, e.g. from needles) ----
     [Header("Bleed")]
@@ -115,6 +117,7 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         health = GetComponent<Health>();
         controller = GetComponent<PlayerController>();
+        playerColor = GetComponent<PlayerColor>();
     }
 
     // Moving by choice (stick or dash) - being knocked back doesn't count
@@ -191,10 +194,13 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         if (on)
         {
-            if (tinted.Count > 0) return; // already tinted
+            if (tintActive) return; // already tinted
+            tintActive = true;
+            if (playerColor != null) playerColor.SetStatusTint(color, tintStrength);
             foreach (var r in GetComponentsInChildren<Renderer>())
             {
                 if (r is LineRenderer || r is ParticleSystemRenderer) continue;
+                if (playerColor != null && playerColor.Manages(r)) continue; // PlayerColor handles these
                 var mat = r.material; // per-player instance (PlayerColor already uses these)
                 if (!mat.HasProperty("_Color")) continue;
                 tinted.Add((mat, mat.color));
@@ -203,6 +209,8 @@ public class PlayerStatusEffects : MonoBehaviour
         }
         else
         {
+            if (tintActive && playerColor != null) playerColor.SetStatusTint(null, 0f);
+            tintActive = false;
             foreach (var (mat, original) in tinted)
                 if (mat != null) mat.color = original;
             tinted.Clear();

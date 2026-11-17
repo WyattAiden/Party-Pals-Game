@@ -41,7 +41,8 @@ public class MapVote : MonoBehaviour
                 int pick = Random.Range(0, hat.Count);
                 ballot[i] = hat[pick];
                 hat.RemoveAt(pick);
-                optionImages[i].sprite = mapSprites[ballot[i]];
+                // A map with no picture yet still shows up (name only) instead of breaking the vote
+                optionImages[i].sprite = ballot[i] < mapSprites.Length ? mapSprites[ballot[i]] : null;
                 optionNames[i].text = GameSettings.mapNames[ballot[i]];
             }
         }
