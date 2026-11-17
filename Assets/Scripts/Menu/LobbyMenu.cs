@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.Profiling.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
