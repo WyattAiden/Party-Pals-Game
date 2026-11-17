@@ -87,8 +87,8 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
         owner = newOwner;
         if (owner == null || ownerTintRenderers == null) return;
         var input = owner.GetComponent<PlayerInput>();
-        if (input == null || input.playerIndex < 0 || input.playerIndex >= GameSettings.playerColors.Length) return;
-        Color c = GameSettings.playerColors[input.playerIndex];
+        if (input == null || input.playerIndex < 0) return;
+        Color c = GameSettings.GetColors(input.playerIndex); // the colour they picked in the lobby
         foreach (var r in ownerTintRenderers)
             if (r != null) r.material.color = c;
     }

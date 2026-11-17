@@ -72,9 +72,10 @@ public class CartMover : MonoBehaviour
         alreadyHit.Add(health);
         health.TakeDamage(damage, gameObject);
 
-        EnemyKnockBack knockBack = health.GetComponent<EnemyKnockBack>();
-        if (knockBack != null)
-            knockBack.ApplyKnockback(GetPushDirection(health.transform.position), knockbackForce);
+        // Push through PlayerController so the player slides but can't be shoved through walls
+        PlayerController player = health.GetComponent<PlayerController>();
+        if (player != null)
+            player.ApplyKnockBack(GetPushDirection(health.transform.position) * knockbackForce);
     }
 
     // Shove the player forward along the track and out to the side they are on

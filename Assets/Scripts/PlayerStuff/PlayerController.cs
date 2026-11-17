@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyKnockBack(Vector3 force)
     {
-        Debug.Log("Knockback applied: " + force);
         knockbackVelocity += force;
     }
 
@@ -112,7 +111,6 @@ public class PlayerController : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log("Dash Called");
         if (!context.performed) return;
         if (isDashing || cooldownTimer > 0f) return;
 
@@ -130,7 +128,6 @@ public class PlayerController : MonoBehaviour
     public void Running(InputAction.CallbackContext context)
     {
         isRunning = context.ReadValueAsButton();
-        Debug.Log("Running: " + isRunning);
     }
 
     void Update()

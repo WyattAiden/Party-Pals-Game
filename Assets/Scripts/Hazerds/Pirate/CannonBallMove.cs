@@ -36,8 +36,13 @@ public class CannonBallMove : MonoBehaviour
         {
             health.TakeDamage(damage, gameObject);
 
-            if (other.TryGetComponent(out EnemyKnockBack enemy))
-                enemy.ApplyKnockback(transform.forward, knockbackForce);
+            // Push through PlayerController so the player slides but can't be shoved through walls
+            if (other.TryGetComponent(out PlayerController player))
+            {
+                Vector3 push = transform.forward;
+                push.y = 0f;
+                if (push.sqrMagnitude > 0.0001f) player.ApplyKnockBack(push.normalized * knockbackForce);
+            }
         }
 
         // Destroy the projectile after hitting something

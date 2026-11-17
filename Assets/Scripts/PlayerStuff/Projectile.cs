@@ -108,8 +108,14 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent(out Health health))
             health.TakeDamage(damage, owner);
 
-        if (other.TryGetComponent(out EnemyKnockBack enemy))
-            enemy.ApplyKnockback(transform.forward, knockbackForce);
+        // Push players through PlayerController so they slide but can't be shoved through walls
+        PlayerController hitPlayer = other.GetComponentInParent<PlayerController>();
+        if (hitPlayer != null && hitPlayer.gameObject != owner)
+        {
+            Vector3 push = transform.forward;
+            push.y = 0f;
+            if (push.sqrMagnitude > 0.0001f) hitPlayer.ApplyKnockBack(push.normalized * knockbackForce);
+        }
 
         // Special effects on this projectile (glue, etc.) - see IProjectileHitEffect
         foreach (var effect in GetComponents<IProjectileHitEffect>())
