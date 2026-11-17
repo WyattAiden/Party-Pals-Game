@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     public void Shoot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        if (isRunning) return; // can't shoot while running
+        if (isRunning) { PlaytestLogger.PressIgnored(gameObject, "Shoot", "running"); return; } // can't shoot while running
 
         // Power weapon takes over the shot while the player has one
         if (weaponHandler != null && weaponHandler.HasPowerWeapon)
@@ -96,10 +96,11 @@ public class PlayerController : MonoBehaviour
                 PlaytestLogger.Shot(gameObject);
                 Shot?.Invoke();
             }
+            else PlaytestLogger.PressIgnored(gameObject, "Shoot", "power_weapon_cooldown");
             return;
         }
 
-        if (Time.time < nextFireTime) return;
+        if (Time.time < nextFireTime) { PlaytestLogger.PressIgnored(gameObject, "Shoot", "cooldown"); return; }
 
         nextFireTime = Time.time + fireCooldown;
         Projectile proj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -112,7 +113,11 @@ public class PlayerController : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        if (isDashing || cooldownTimer > 0f) return;
+        if (isDashing || cooldownTimer > 0f)
+        {
+            PlaytestLogger.PressIgnored(gameObject, "Dash", isDashing ? "already_dashing" : "cooldown");
+            return;
+        }
 
         Vector3 inputDir = new Vector3(MoveInput.x, 0f, MoveInput.y);
 
@@ -123,6 +128,7 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         dashTimer = dashDuration;
         cooldownTimer = dashCooldown;
+        PlaytestLogger.Dashed(gameObject);
     }
 
     public void Running(InputAction.CallbackContext context)

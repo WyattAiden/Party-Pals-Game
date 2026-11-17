@@ -41,6 +41,9 @@ public class PlayerOcclusionIndicator : MonoBehaviour
     private float targetAlpha;
     private int playerIndex;
 
+    /// <summary>True while level geometry hides this player (the pointer is showing). Read by the playtest logger.</summary>
+    public bool IsHidden => hiddenTimer >= showDelay;
+
     private void Start()
     {
         bodyCollider = GetComponent<CharacterController>();
