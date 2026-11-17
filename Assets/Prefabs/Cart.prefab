@@ -731,7 +731,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CartMover
   speed: 10
-  travelDistance: 40
+  travelDistance: 100
+  damage: 20
+  knockbackForce: 20
+  sidewaysPush: 0.6
 --- !u!1 &6105960529648116982
 GameObject:
   m_ObjectHideFlags: 0
