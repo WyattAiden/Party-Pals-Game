@@ -52,7 +52,6 @@ public class PlayerDash : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log("Dash Called");
         if (!context.performed) return;
         if (isDashing || cooldownTimer > 0f) return;
 

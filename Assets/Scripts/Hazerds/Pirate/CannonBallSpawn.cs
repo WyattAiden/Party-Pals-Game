@@ -18,6 +18,9 @@ public class CannonBallSpawn : MonoBehaviour
     [SerializeField] private Transform[] topSpawnPoints;
     [SerializeField] private Transform[] bottomSpawnPoints;
 
+    [Tooltip("When on, each projectile travels the way its spawn point is facing (its blue Z arrow) instead of straight forward/back. Use this for carts on angled tracks.")]
+    [SerializeField] private bool useSpawnPointDirection = false;
+
     private void Start()
     {
         // Give every top spawn point its own firing routine
@@ -60,6 +63,9 @@ public class CannonBallSpawn : MonoBehaviour
         if (cannonball == null || spawnPoint == null)
             return;
 
+        if (useSpawnPointDirection)
+            direction = spawnPoint.forward;
+
         GameObject projectile = Instantiate(
             cannonball,
             spawnPoint.position,
@@ -72,6 +78,15 @@ public class CannonBallSpawn : MonoBehaviour
         if (movement != null)
         {
             movement.SetDirection(direction, cannonballSpeed);
+        }
+
+        // Minecarts use CartMover instead of CannonBallMove
+        CartMover cart =
+            projectile.GetComponent<CartMover>();
+
+        if (cart != null)
+        {
+            cart.SetDirection(direction, cannonballSpeed);
         }
     }
 }
