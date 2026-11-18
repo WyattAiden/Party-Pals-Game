@@ -9,7 +9,7 @@ public class DeathPlane : MonoBehaviour
         Health health = other.GetComponentInParent<Health>();
         if (health != null)
         {
-            health.TakeDamage(health.Current);
+            health.TakeDamage(health.Current, gameObject); // source lets the playtest log say "Fell"
         }
     }
 }
