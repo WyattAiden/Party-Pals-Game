@@ -11423,6 +11423,7 @@ MonoBehaviour:
   - {fileID: 531131841}
   - {fileID: 1046868375}
   - {fileID: 0}
+  useSpawnPointDirection: 0
 --- !u!1001 &1723970796
 PrefabInstance:
   m_ObjectHideFlags: 0
