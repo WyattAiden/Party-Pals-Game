@@ -91,7 +91,7 @@ public class PlayerStatusEffects : MonoBehaviour
             float total = 0f;
             GameObject lastSource = null;
             foreach (var b in bleeds) { total += b.dps; lastSource = b.source; }
-            if (health != null && total > 0f) health.TakeDamage(total * bleedTickInterval, lastSource);
+            if (health != null && total > 0f) PlaytestLogger.TickDamage(health, total * bleedTickInterval, lastSource);
         }
 
         for (int i = bleeds.Count - 1; i >= 0; i--)
@@ -176,7 +176,7 @@ public class PlayerStatusEffects : MonoBehaviour
             if (burnTickTimer <= 0f)
             {
                 burnTickTimer = burnTickInterval;
-                if (health != null) health.TakeDamage(burnDps * burnTickInterval, burnSource);
+                if (health != null) PlaytestLogger.TickDamage(health, burnDps * burnTickInterval, burnSource);
             }
             if (burnTimer <= 0f) { burnDps = 0f; burnTickTimer = 0f; }
         }
