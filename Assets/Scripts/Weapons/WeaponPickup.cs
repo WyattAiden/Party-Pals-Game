@@ -28,6 +28,12 @@ public class WeaponPickup : MonoBehaviour
         startPos = pivot + delta * (startPos - pivot);
     }
 
+    // Lets moving platforms (e.g. the Water Village boat) carry this pickup: follows the platform's move and turn.
+    public void CarryWith(Vector3 oldPivot, Vector3 newPivot, Quaternion delta)
+    {
+        startPos = newPivot + delta * (startPos - oldPivot);
+    }
+
     private Collider col;
     private Renderer[] renderers;
     private Vector3 startPos;
