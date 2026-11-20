@@ -22,6 +22,12 @@ public class WeaponPickup : MonoBehaviour
     // Disappear for good once picked up (the spawn point decides what comes next)
     public void MakeOneTime() => respawnDelay = 0f;
 
+    // Lets moving levels (e.g. the spinning space station) carry this pickup with the floor.
+    public void CarryAround(Vector3 pivot, Quaternion delta)
+    {
+        startPos = pivot + delta * (startPos - pivot);
+    }
+
     private Collider col;
     private Renderer[] renderers;
     private Vector3 startPos;
