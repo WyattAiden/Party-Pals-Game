@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     public void Shoot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (!enabled) return;   // turned off (e.g. dead, or sitting in a turret)
         if (isRunning) return; // can't shoot while running
 
         // Power weapon takes over the shot while the player has one
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (!enabled) return; // turned off (e.g. dead, or sitting in a turret)
         if (isDashing || cooldownTimer > 0f) return;
 
         Vector3 inputDir = new Vector3(MoveInput.x, 0f, MoveInput.y);
