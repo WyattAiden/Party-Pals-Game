@@ -17,7 +17,6 @@ public class EnemyKnockBack : MonoBehaviour
         direction.y = 0f;                       // keep it on the ground
         velocity = direction.normalized * force;
         timer = knockbackDuration;
-        Debug.Log("ApplyKnockBack called:" + force);
         knockbackVelocity = force;
     }
 
