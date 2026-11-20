@@ -1678,8 +1678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonBallSpawn
   cannonball: {fileID: 5671126955946990531, guid: 4a4d5e3ec2325804aa8dab8b38e3c5c2, type: 3}
   cannonballSpeed: 15
-  minFireInterval: 1
-  maxFireInterval: 4
+  minFireInterval: 4
+  maxFireInterval: 8
   topSpawnPoints:
   - {fileID: 625843740}
   bottomSpawnPoints: []
@@ -3947,8 +3947,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonBallSpawn
   cannonball: {fileID: 5671126955946990531, guid: 4a4d5e3ec2325804aa8dab8b38e3c5c2, type: 3}
   cannonballSpeed: 15
-  minFireInterval: 1
-  maxFireInterval: 4
+  minFireInterval: 4
+  maxFireInterval: 8
   topSpawnPoints:
   - {fileID: 1301062934}
   bottomSpawnPoints: []
@@ -6141,8 +6141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonBallSpawn
   cannonball: {fileID: 5671126955946990531, guid: 4a4d5e3ec2325804aa8dab8b38e3c5c2, type: 3}
   cannonballSpeed: 15
-  minFireInterval: 1
-  maxFireInterval: 4
+  minFireInterval: 4
+  maxFireInterval: 8
   topSpawnPoints: []
   bottomSpawnPoints:
   - {fileID: 2106290928}
