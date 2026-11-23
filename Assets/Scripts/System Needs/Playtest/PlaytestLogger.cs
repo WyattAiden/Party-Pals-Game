@@ -38,6 +38,11 @@ using UnityEngine.SceneManagement;
 ///     (value = ms, detail notes "glued"/"timeout" when relevant)
 ///   summary.txt    - quick human-readable totals, rewritten after every round
 ///
+///   Accuracy = shots that hit someone / shots fired. Burn/bleed ticks (marked "tick" in
+///   events.csv) and 0-damage hits don't count, and one shot counts once even if its splash
+///   hits the same player twice. FPS stats skip seconds with a freeze over 1 s (editor
+///   alt-tab, Play Mode stop) and the second right after a scene loads; freezes are counted separately.
+///
 /// Turning it on and off (the setting is saved between launches, default ON):
 ///   - Editor: tick/untick  Party Pals > Playtest Logging  (works during Play Mode too)
 ///   - In game: press F9 to toggle; a small ON/OFF message shows in the top-left corner
@@ -54,6 +59,9 @@ public class PlaytestLogger : MonoBehaviour
     const float ScreenEdge = 0.05f;          // viewport margin that counts as "near the edge"
     const float MinSpanToLog = 0.3f;         // hidden/offscreen stretches shorter than this aren't written as events
     const float WeaponLingerTime = 4f;       // damage this long after losing a power weapon still counts for it
+    const float SameHitWindow = 0.25f;       // repeat damage on the same victim this soon = the same shot (splash + direct)
+    const float FreezeFrameSec = 1f;         // a single frame longer than this = a freeze, not real gameplay FPS
+    const float SceneLoadGrace = 1.5f;       // seconds after a scene load that FPS stats ignore
 
     static bool? launchOverride; // set by -noplaytestlog / -playtestlog, never saved
 
@@ -117,6 +125,7 @@ public class PlaytestLogger : MonoBehaviour
         public PlayerOcclusionIndicator occ;
         public float hiddenSince = -1f, offSince = -1f;
         public string lastHitWeapon = "";
+        public readonly Dictionary<PlayerInfo, float> lastHitOn = new(); // victim -> time this player last scored a hit on them
     }
 
     // ---------- whole-session totals per player number ----------
@@ -157,6 +166,19 @@ public class PlaytestLogger : MonoBehaviour
 
     float nextPositionTime, nextStickTime, perfTimer, perfWorstFrame, fpsSum, fpsWorst = float.MaxValue;
     int perfFrames, fpsSamples;
+    float roundFpsSum, sceneLoadTime;
+    int roundFpsSamples, freezes;
+
+    static bool tickDamage; // true while a damage-over-time tick is being applied
+
+    /// <summary>Apply burn/bleed tick damage so the logger doesn't count it as a shot hitting.</summary>
+    public static void TickDamage(Health health, float amount, GameObject source)
+    {
+        if (health == null) return;
+        tickDamage = true;
+        try { health.TakeDamage(amount, source); }
+        finally { tickDamage = false; }
+    }
 
     float Now => Time.realtimeSinceStartup - sessionStart;
 
@@ -224,6 +246,8 @@ public class PlaytestLogger : MonoBehaviour
         nextPositionTime = nextStickTime = perfTimer = perfWorstFrame = fpsSum = 0f;
         fpsWorst = float.MaxValue;
         perfFrames = fpsSamples = 0;
+        roundFpsSum = 0f; roundFpsSamples = freezes = 0;
+        sceneLoadTime = 0f;
 
         try
         {
@@ -290,6 +314,7 @@ public class PlaytestLogger : MonoBehaviour
         if (roundActive) AbandonRound();
         ClearRoundPlayers();
         currentScene = scene.name;
+        sceneLoadTime = Now;
         LogEvent("scene_loaded", detail: scene.name);
     }
 
@@ -502,16 +527,24 @@ public class PlaytestLogger : MonoBehaviour
             T(attacker.id).weaponDamage += amount;
         }
 
+        bool tick = tickDamage;
         T(victim.id).damageTaken += amount;
         if (attacker != null && attacker != victim)
         {
             var at = T(attacker.id);
             at.damageDealt += amount;
-            at.hits++;
+            // A hit = a shot landing: no DoT ticks, no 0-damage splashes, one per shot per victim
+            bool sameShot = attacker.lastHitOn.TryGetValue(victim, out var lastHit) && Now - lastHit < SameHitWindow;
+            if (!tick && amount > 0f && !sameShot && at.hits < at.shots)
+            {
+                at.hits++;
+                attacker.lastHitOn[victim] = Now;
+            }
         }
         LogEvent("damage", victim, value: amount, target: src,
                  detail: "hp=" + (victim.health != null ? victim.health.Current.ToString("0", Inv) : "?")
-                         + (weapon != "" ? " weapon=" + weapon : ""));
+                         + (weapon != "" ? " weapon=" + weapon : "")
+                         + (tick ? " tick" : ""));
     }
 
     void OnDied(PlayerInfo victim)
@@ -561,10 +594,14 @@ public class PlaytestLogger : MonoBehaviour
         {
             float fps = perfFrames / perfTimer;
             perf.WriteLine(Row(F(Now), roundNumber.ToString(Inv), Esc(currentScene), F(fps), F(perfWorstFrame * 1000f)));
-            if (Now > 3f) // ignore the loading spike at startup
+            bool froze = perfWorstFrame > FreezeFrameSec;     // editor alt-tab / Play Mode stop / long load
+            bool justLoaded = Now - sceneLoadTime < SceneLoadGrace;
+            if (froze && Now > 3f) freezes++;
+            if (Now > 3f && !froze && !justLoaded && Application.isFocused) // ignore startup, loads and freezes
             {
                 fpsSum += fps; fpsSamples++;
                 fpsWorst = Mathf.Min(fpsWorst, fps);
+                if (roundActive) { roundFpsSum += fps; roundFpsSamples++; }
             }
             perfTimer = 0f; perfFrames = 0; perfWorstFrame = 0f;
             events.Flush(); positions.Flush(); perf.Flush(); sticks.Flush();
@@ -785,7 +822,8 @@ public class PlaytestLogger : MonoBehaviour
         sb.AppendLine($"Party Pals playtest - {sessionStartClock.ToString("yyyy-MM-dd HH:mm", Inv)}");
         sb.AppendLine($"Session length: {FormatTime(Now)}   Rounds finished: {roundsFinished}   Left early: {roundsAbandoned}");
         if (fpsSamples > 0)
-            sb.AppendLine($"Average FPS: {fpsSum / fpsSamples:0}   Worst second: {fpsWorst:0} FPS");
+            sb.AppendLine($"Average FPS: {fpsSum / fpsSamples:0}   In rounds: {(roundFpsSamples > 0 ? (roundFpsSum / roundFpsSamples).ToString("0", Inv) : "-")}   " +
+                          $"Worst second: {fpsWorst:0} FPS   Freezes over {FreezeFrameSec:0} s (not counted): {freezes}");
         if (pauses > 0 || bookmarks > 0)
             sb.AppendLine($"Pause menu opened: {pauses} (quit from it: {pauseQuits})   Bookmarks (F10): {bookmarks}");
         sb.AppendLine();
