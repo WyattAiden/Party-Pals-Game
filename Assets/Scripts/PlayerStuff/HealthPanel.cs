@@ -11,6 +11,7 @@ public class HealthPanel : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private Image Ring;
     [SerializeField] private Image panelArt;
+    [SerializeField] private Image scribbleLayer;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Sprite[] panelFrames;
 
@@ -27,8 +28,23 @@ public class HealthPanel : MonoBehaviour
 
     void OnChanged(float current, float max)
     {
-        int chunks = Mathf.CeilToInt(current / max * 4);
+        float exact = current / max * 4;
+        int chunks = Mathf.CeilToInt(exact);
+        float progress = chunks - exact;
         panelArt.sprite = panelFrames [4 - chunks];
+        if (chunks > 0)
+        {
+            scribbleLayer.sprite = panelFrames[5 - chunks];
+            Color c = scribbleLayer.color;
+            c.a = progress;
+            scribbleLayer.color = c;
+        }
+        else
+        {
+            Color c = scribbleLayer.color;
+            c.a = 0;
+            scribbleLayer.color = c;
+        }
     }
 
     void OnDestroy()
