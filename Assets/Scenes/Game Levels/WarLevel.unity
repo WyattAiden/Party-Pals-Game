@@ -1767,6 +1767,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3647109984937722758, guid: 70c48be8697ff6140812ee8d2eccd1ef, type: 3}
   m_PrefabInstance: {fileID: 416534403}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &433988093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5873167003978871394, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+  m_PrefabInstance: {fileID: 1517077181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c62b7073cc89e4cb1f0c56b4d47ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPanel
 --- !u!1 &449859555
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,6 +4469,17 @@ MonoBehaviour:
   arrowLength: 2
   showLabel: 1
   label: 
+--- !u!114 &1180496542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6418526295425136954, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+  m_PrefabInstance: {fileID: 1517077181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c62b7073cc89e4cb1f0c56b4d47ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPanel
 --- !u!1001 &1184802333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4989,6 +5011,17 @@ MonoBehaviour:
   respawnDelay: {x: 10, y: 16}
   avoidRepeats: 1
   pickupHeight: 1
+--- !u!114 &1287665633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7797160225256093498, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+  m_PrefabInstance: {fileID: 1517077181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c62b7073cc89e4cb1f0c56b4d47ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPanel
 --- !u!1 &1301725991
 GameObject:
   m_ObjectHideFlags: 0
@@ -6312,12 +6345,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: --Important level stuff--
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8902519311963775582, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 963130022502508707, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1517077183}
   m_SourcePrefab: {fileID: 100100000, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+--- !u!1 &1517077182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 963130022502508707, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+  m_PrefabInstance: {fileID: 1517077181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1517077183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517077182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd8ea9a3fd95594e8658870729d8d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHUD
+  panels:
+  - {fileID: 1517077187}
+  - {fileID: 433988093}
+  - {fileID: 1180496542}
+  - {fileID: 1287665633}
+--- !u!114 &1517077187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7497409119083755980, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+  m_PrefabInstance: {fileID: 1517077181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c62b7073cc89e4cb1f0c56b4d47ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPanel
 --- !u!1001 &1527631836
 PrefabInstance:
   m_ObjectHideFlags: 0
