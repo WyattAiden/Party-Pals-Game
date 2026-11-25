@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Levels/CityLevel.unity
     guid: b932f70fb3695e249a84ba2a9853807f
+  - enabled: 1
+    path: Assets/Scenes/Game Levels/WaterVillageLevel.unity
+    guid: fce4abe789aa87443970b3e491ef62aa
+  - enabled: 1
+    path: Assets/Scenes/Game Levels/CaveLevel.unity
+    guid: e272315563a3a2741afccef36bd9832b
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
