@@ -41,6 +41,7 @@ public class HealthPanel : MonoBehaviour
         }
         else
         {
+            panelArt.sprite = panelFrames[5];
             Color c = scribbleLayer.color;
             c.a = 0;
             scribbleLayer.color = c;
