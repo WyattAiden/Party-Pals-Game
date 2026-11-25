@@ -353,8 +353,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: --Important level stuff--
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8902519311963775582, guid: 360574102679d9f49bd674033c79e96d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

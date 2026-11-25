@@ -37,6 +37,7 @@ public class WeaponPickup : MonoBehaviour
     private Collider col;
     private Renderer[] renderers;
     private Vector3 startPos;
+    private bool taken;
 
     void Awake()
     {
@@ -44,6 +45,15 @@ public class WeaponPickup : MonoBehaviour
         col.isTrigger = true;
         renderers = GetComponentsInChildren<Renderer>();
         startPos = transform.position;
+    }
+
+    void Start() => PlaytestLogger.WeaponSpawned(this, weapon != null ? weapon.displayName : name);
+
+    void OnDestroy()
+    {
+        // Removed without anyone grabbing it (e.g. the random spawner timed it out). Ignore scene unloads.
+        if (!taken && gameObject.scene.isLoaded)
+            PlaytestLogger.WeaponDespawned(this, weapon != null ? weapon.displayName : name);
     }
 
     void Update()
@@ -62,7 +72,7 @@ public class WeaponPickup : MonoBehaviour
         PickedUp?.Invoke(this);
 
         if (respawnDelay > 0f) StartCoroutine(Respawn());
-        else Destroy(gameObject);
+        else { taken = true; Destroy(gameObject); }
     }
 
     IEnumerator Respawn()
@@ -70,6 +80,7 @@ public class WeaponPickup : MonoBehaviour
         SetVisible(false);
         yield return new WaitForSeconds(respawnDelay);
         SetVisible(true);
+        PlaytestLogger.WeaponSpawned(this, weapon != null ? weapon.displayName : name);
     }
 
     void SetVisible(bool visible)

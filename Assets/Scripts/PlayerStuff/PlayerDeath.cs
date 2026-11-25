@@ -5,13 +5,12 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] Health health;
     [SerializeField] PlayerController controller;
     [SerializeField] CharacterController characterController;
-    [SerializeField] GameObject visuals; // model + health bar canvas
+    [SerializeField] GameObject visuals; // model  canvas
     [SerializeField] private LineRenderer aimline; // the line renderer aiming
 
     void OnEnable() => health.Died += OnDied;
     void OnDisable() => health.Died -= OnDied;
     [SerializeField] Renderer bodyRenderer;   // the capsule's MeshRenderer
-    [SerializeField] GameObject healthBarCanvas;
 
     void OnDied()
     {
@@ -19,7 +18,6 @@ public class PlayerDeath : MonoBehaviour
         characterController.enabled = false;
         if (bodyRenderer != null) bodyRenderer.enabled = false;
         if (visuals != null) visuals.SetActive(false);
-        healthBarCanvas.SetActive(false);
         aimline.enabled = false;
     }
 }

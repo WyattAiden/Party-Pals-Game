@@ -14,6 +14,13 @@ public class PlayerWeaponHandler : MonoBehaviour
     public int Ammo { get; private set; }
     public bool HasPowerWeapon => Current != null;
 
+    // For the playtest logger: lingering damage (burns, puddles, mines) after the weapon is gone still counts for it
+    public string LastWeaponName { get; private set; } = "";
+    // Name of the pickup the weapon came from (e.g. "Rock Paper Scissors" even while holding "Rock")
+    public string FamilyName { get; private set; } = "";
+    public float LastWeaponLostTime { get; private set; } = -999f;
+    private string unequipReason = "";
+
     // (weapon or null, ammo left) - hook a HUD/ammo counter up to this
     public event Action<PowerWeaponData, int> AmmoChanged;
 
@@ -38,6 +45,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public void Equip(PowerWeaponData weapon, Transform fallbackSocket)
     {
         if (weapon == null) return;
+        string family = weapon.displayName;
 
         // Cycling set: start on a random one and keep switching while held
         PowerWeaponData cycling = null;
@@ -53,8 +61,10 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
         if (weapon == null) return;
 
+        unequipReason = "swapped";
         Unequip();
         Current = weapon;
+        FamilyName = family;
         Ammo = weapon.startingAmmo;
         equipTime = Time.time;
         nextFireTime = 0f;
@@ -65,6 +75,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         ShowHeldModel();
 
         AmmoChanged?.Invoke(Current, Ammo);
+        PlaytestLogger.WeaponPickedUp(gameObject, FamilyName, Current.displayName, Ammo);
     }
 
     private void ShowHeldModel()
@@ -125,7 +136,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         Ammo--;
         AmmoChanged?.Invoke(Current, Ammo);
-        if (Ammo <= 0) Unequip();
+        if (Ammo <= 0) { unequipReason = "out_of_ammo"; Unequip(); }
         return true;
     }
 
@@ -166,6 +177,13 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (heldModel != null) Destroy(heldModel);
         heldModel = null;
         bool hadWeapon = Current != null;
+        if (hadWeapon)
+        {
+            LastWeaponName = FamilyName;
+            LastWeaponLostTime = Time.time;
+            PlaytestLogger.WeaponLost(gameObject, FamilyName, Ammo, string.IsNullOrEmpty(unequipReason) ? "other" : unequipReason);
+        }
+        unequipReason = "";
         Current = null;
         Ammo = 0;
         if (hadWeapon) AmmoChanged?.Invoke(null, 0);
@@ -180,8 +198,11 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
 
         if (HasPowerWeapon && Current.maxHoldTime > 0f && Time.time - equipTime >= Current.maxHoldTime)
+        {
+            unequipReason = "time_up";
             Unequip();
+        }
     }
 
-    void OnDisable() => Unequip(); // e.g. player dies/despawns
+    void OnDisable() { unequipReason = "died_or_despawned"; Unequip(); } // e.g. player dies/despawns
 }

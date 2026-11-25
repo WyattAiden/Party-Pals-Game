@@ -33,13 +33,19 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
     [SerializeField] private Transform visualRoot;
     [Tooltip("Hinge of the lid - rotates open when it pops.")]
     [SerializeField] private Transform lidPivot;
-    [Tooltip("Spins around its local X axis while ticking.")]
+    [Tooltip("Spins around Crank Axis while ticking.")]
     [SerializeField] private Transform crank;
     [Tooltip("The jack (spring + head). Hidden until it pops.")]
     [SerializeField] private Transform jack;
     [Tooltip("Tinted with the owner's player colour so everyone can tell whose mine it is.")]
     [SerializeField] private Renderer[] ownerTintRenderers;
     [SerializeField] private float crankSpeed = 180f;
+    [Tooltip("Crank's spin axis in its OWN local space (the shaft direction). Blender exports often differ from Unity's axes - BlastInTheBox's shaft is local Z.")]
+    [SerializeField] private Vector3 crankAxis = Vector3.forward;
+    [Tooltip("Lid's hinge axis in its OWN local space. BlastInTheBox's hinge runs along the lid's local Y.")]
+    [SerializeField] private Vector3 lidHingeAxis = Vector3.up;
+    [Tooltip("How far the lid swings open (degrees). Flip the sign if it opens into the box.")]
+    [SerializeField] private float lidOpenAngle = 120f;
     [Tooltip("Turn so the front of the box (where the jack's face points) faces the camera when placed.")]
     [SerializeField] private bool faceCamera = true;
 
@@ -52,6 +58,7 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
     private float popTime;
     private Vector3 jackFullScale = Vector3.one;
     private Vector3 visualBasePos;
+    private Quaternion lidRestRotation = Quaternion.identity;
 
     void Awake()
     {
@@ -63,6 +70,8 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
             jack.gameObject.SetActive(false);
         }
         if (visualRoot != null) visualBasePos = visualRoot.localPosition;
+        // Keep the lid's imported rotation and open relative to it (Blender models come in pre-rotated)
+        if (lidPivot != null) lidRestRotation = lidPivot.localRotation;
     }
 
     void Start()
@@ -103,7 +112,7 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
         if (crank != null)
         {
             float speed = windingUp ? crankSpeed * 5f : armed ? crankSpeed : crankSpeed * 0.25f;
-            crank.Rotate(speed * Time.deltaTime, 0f, 0f, Space.Self);
+            crank.Rotate(crankAxis.normalized, speed * Time.deltaTime, Space.Self);
         }
 
         if (windingUp)
@@ -171,7 +180,10 @@ public class JackInTheBoxMine : MonoBehaviour, IPlacedByPlayer
     {
         float t = Time.time - popTime;
         if (lidPivot != null)
-            lidPivot.localRotation = Quaternion.Euler(Mathf.Lerp(0f, -120f, Mathf.Clamp01(t / 0.12f)), 0f, 0f);
+        {
+            float angle = Mathf.Lerp(0f, lidOpenAngle, Mathf.Clamp01(t / 0.12f));
+            lidPivot.localRotation = lidRestRotation * Quaternion.AngleAxis(angle, lidHingeAxis.normalized);
+        }
         if (jack != null)
         {
             // springy overshoot: shoots past full size then settles, wobbling
