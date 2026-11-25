@@ -6252,18 +6252,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2779143485862711548, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: glueGunName
-      value: GlueGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 2779143485862711548, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerFullX
-      value: 41.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2779143485862711548, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerEmptyX
-      value: 141.3
-      objectReference: {fileID: 0}
     - target: {fileID: 5872985652545886657, guid: 360574102679d9f49bd674033c79e96d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08448
@@ -6304,18 +6292,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6772357575237880475, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: glueGunName
-      value: GlueGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772357575237880475, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerFullX
-      value: 41.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772357575237880475, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerEmptyX
-      value: 141.3
-      objectReference: {fileID: 0}
     - target: {fileID: 7054618050024422177, guid: 360574102679d9f49bd674033c79e96d, type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
       value: 
@@ -6332,33 +6308,9 @@ PrefabInstance:
       propertyPath: 'spawnPoints.Array.data[3]'
       value: 
       objectReference: {fileID: 981094035}
-    - target: {fileID: 7736118965778478132, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: glueGunName
-      value: GlueGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736118965778478132, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerFullX
-      value: 41.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736118965778478132, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerEmptyX
-      value: 141.3
-      objectReference: {fileID: 0}
     - target: {fileID: 7914599855700180709, guid: 360574102679d9f49bd674033c79e96d, type: 3}
       propertyPath: m_Name
       value: --Important level stuff--
-      objectReference: {fileID: 0}
-    - target: {fileID: 8489091606178580918, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: glueGunName
-      value: GlueGun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8489091606178580918, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerFullX
-      value: 41.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8489091606178580918, guid: 360574102679d9f49bd674033c79e96d, type: 3}
-      propertyPath: plungerEmptyX
-      value: 141.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
