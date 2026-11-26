@@ -32,6 +32,7 @@ public class PlayerHUD : MonoBehaviour
             var panel = panels[index];
             panel.gameObject.SetActive(true);
             panel.Setup(playerInput.GetComponent<Health>(), GameSettings.GetColors(index), index + 1);
+            panel.GetComponent<AmmoDisplay>().Setup(playerInput.GetComponent<PlayerWeaponHandler>());
         }
     }
 }

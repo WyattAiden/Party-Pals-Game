@@ -107,6 +107,8 @@ public class Projectile : MonoBehaviour
 
         if (other.TryGetComponent(out Health health))
             health.TakeDamage(damage, owner);
+        else if (target != null && target.GetComponent<PlayerController>() == null)
+            target.TakeDamage(damage, owner); // e.g. a turret: its Health is on the parent of the part that got hit
 
         // Push players through PlayerController so they slide but can't be shoved through walls
         PlayerController hitPlayer = other.GetComponentInParent<PlayerController>();

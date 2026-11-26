@@ -5,7 +5,7 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] Health health;
     [SerializeField] PlayerController controller;
     [SerializeField] CharacterController characterController;
-    [SerializeField] GameObject visuals; // model + health bar canvas
+    [SerializeField] GameObject visuals; // model  canvas
     [SerializeField] private LineRenderer aimline; // the line renderer aiming
 
     void OnEnable() => health.Died += OnDied;
