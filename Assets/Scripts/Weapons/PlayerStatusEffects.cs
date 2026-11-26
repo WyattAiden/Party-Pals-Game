@@ -29,6 +29,8 @@ public class PlayerStatusEffects : MonoBehaviour
     private GameObject burnSource;
 
     private readonly List<(Material mat, Color original)> tinted = new List<(Material, Color)>();
+    private bool tintActive;
+    private PlayerColor playerColor; // tints the body itself so the damage flash doesn't wipe the tint
 
     // ---- Bleed (stacking damage over time, e.g. from needles) ----
     [Header("Bleed")]
@@ -89,7 +91,7 @@ public class PlayerStatusEffects : MonoBehaviour
             float total = 0f;
             GameObject lastSource = null;
             foreach (var b in bleeds) { total += b.dps; lastSource = b.source; }
-            if (health != null && total > 0f) health.TakeDamage(total * bleedTickInterval, lastSource);
+            if (health != null && total > 0f) PlaytestLogger.TickDamage(health, total * bleedTickInterval, lastSource);
         }
 
         for (int i = bleeds.Count - 1; i >= 0; i--)
@@ -115,6 +117,7 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         health = GetComponent<Health>();
         controller = GetComponent<PlayerController>();
+        playerColor = GetComponent<PlayerColor>();
     }
 
     // Moving by choice (stick or dash) - being knocked back doesn't count
@@ -173,7 +176,7 @@ public class PlayerStatusEffects : MonoBehaviour
             if (burnTickTimer <= 0f)
             {
                 burnTickTimer = burnTickInterval;
-                if (health != null) health.TakeDamage(burnDps * burnTickInterval, burnSource);
+                if (health != null) PlaytestLogger.TickDamage(health, burnDps * burnTickInterval, burnSource);
             }
             if (burnTimer <= 0f) { burnDps = 0f; burnTickTimer = 0f; }
         }
@@ -191,10 +194,13 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         if (on)
         {
-            if (tinted.Count > 0) return; // already tinted
+            if (tintActive) return; // already tinted
+            tintActive = true;
+            if (playerColor != null) playerColor.SetStatusTint(color, tintStrength);
             foreach (var r in GetComponentsInChildren<Renderer>())
             {
                 if (r is LineRenderer || r is ParticleSystemRenderer) continue;
+                if (playerColor != null && playerColor.Manages(r)) continue; // PlayerColor handles these
                 var mat = r.material; // per-player instance (PlayerColor already uses these)
                 if (!mat.HasProperty("_Color")) continue;
                 tinted.Add((mat, mat.color));
@@ -203,6 +209,8 @@ public class PlayerStatusEffects : MonoBehaviour
         }
         else
         {
+            if (tintActive && playerColor != null) playerColor.SetStatusTint(null, 0f);
+            tintActive = false;
             foreach (var (mat, original) in tinted)
                 if (mat != null) mat.color = original;
             tinted.Clear();

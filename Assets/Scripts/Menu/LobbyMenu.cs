@@ -1,0 +1,140 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class LobbyMenu : MonoBehaviour
+{
+    [SerializeField] private string gameSceneName = "GameScene";
+    [SerializeField] private int maxPlayers = 4;
+    [SerializeField] private int minPlayersToStart = 2;
+
+    [Header("Join indicators")]
+    [SerializeField] private Image[] playerIcons;
+    [SerializeField] private Color emptyColor = Color.gray;
+    [SerializeField] private InputSystemUIInputModule uIModule;
+    [SerializeField] private Image[] spotLights;
+
+
+    private void Start()
+    {
+        if (GameSettings.Players.Count > 0)
+        {
+            uIModule.actionsAsset.devices = new[] { GameSettings.Players[0].device };
+        }
+        UpdateChecks();
+    }
+
+    private void Update()
+    {
+        var keyboard = Keyboard.current;
+
+        if (keyboard != null)
+        {
+            if (keyboard.spaceKey.wasPressedThisFrame)
+                TryJoin("WASD", keyboard);
+
+            if (keyboard.rightShiftKey.wasPressedThisFrame)
+                TryJoin("Arrows", keyboard);
+
+            if (keyboard.enterKey.wasPressedThisFrame)
+                StartGame();
+        }
+
+
+
+        foreach (var gamepad in Gamepad.all)
+        {
+            if (gamepad.buttonSouth.wasPressedThisFrame)
+                TryJoin("Gamepad", gamepad);
+
+            if (gamepad.leftShoulder.wasPressedThisFrame || gamepad.rightShoulder.wasPressedThisFrame)
+            {
+                int slot = GameSettings.Players.FindIndex(p =>p.device == gamepad);
+                if (slot == -1) continue;
+                int step = gamepad.rightShoulder.wasPressedThisFrame ? 1 : -1;
+                var slotData = GameSettings.Players[slot];
+                int count = GameSettings.playerColors.Length;
+                int newColor = slotData.colorIndex;
+                do
+                {
+                    newColor = (newColor + step + count) % count;
+                }
+                while (GameSettings.Players.Exists(p => p.colorIndex == newColor && p.device != gamepad));
+                slotData.colorIndex = newColor;
+                GameSettings.Players[slot] = slotData;
+                UpdateChecks();
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        uIModule.actionsAsset.devices = null;
+    }
+
+    private void TryJoin(string scheme, InputDevice device)
+    {
+        if (GameSettings.Players.Count >= maxPlayers) return;
+        if (GameSettings.Players.Exists(p => p.scheme == scheme && p.device == device)) return;
+
+        GameSettings.AddPlayer(scheme, device);
+        if (GameSettings.Players.Count == 1)
+        {
+            uIModule.actionsAsset.devices = new[] { device };
+        }
+  
+        UpdateChecks();
+    }
+    public void LoadLevel(string sceneName)
+    {
+        if (GameSettings.Players.Count >= minPlayersToStart)
+        {
+
+            SceneManager.LoadScene(sceneName);
+        }
+        else 
+        {
+            Debug.Log("Not enough players to start the game.");
+        }
+        
+           
+
+        
+
+    }
+
+    public void StartGame()
+    {
+        if (GameSettings.Players.Count >= minPlayersToStart)
+        {
+
+            SceneManager.LoadScene(gameSceneName);
+        }
+        else
+        {
+            Debug.Log("Not enough players to start the game.");
+
+        }
+    }
+
+    private void UpdateChecks()
+    {
+        for (int i = 0; i <GameSettings.Players.Count; i++)
+        {
+            bool isJoined = i < GameSettings.Players.Count;
+            playerIcons[i].color = isJoined ? GameSettings.GetColors(i) : emptyColor;
+
+            spotLights[i].gameObject.SetActive(isJoined);
+            Color c = GameSettings.GetColors(i);
+            c.a = 0.5f;
+            spotLights[i].color = c;
+
+        }
+    }
+
+
+
+}

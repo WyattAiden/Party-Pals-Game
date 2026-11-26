@@ -1,0 +1,192 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+
+    [Header("Aiming")]
+    [SerializeField] private float turnSpeed = 720f;       // degrees per second
+    [SerializeField] private float lookDeadzone = 0.2f;
+    [Tooltip("Camera that aiming is relative to (stick up = away from the camera). Leave empty to use the Main Camera.")]
+    [SerializeField] private Transform aimCamera;
+
+    [Header("Shooting")]
+    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    public Transform FirePoint => firePoint;
+    [SerializeField] private float fireCooldown = 0.5f;
+
+    [Header("Running")]
+    [SerializeField] private float runSpeed = 8f;
+    private bool isRunning;
+    public bool IsRunning => isRunning;
+
+    // Raised every time a shot is fired (used by PlayerAnimator)
+    public event System.Action Shot;
+
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed = 20f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 1f;
+    private bool isDashing;
+    private float dashTimer;
+    private float cooldownTimer;
+    private Vector3 dashDirection;
+    public bool IsDashing => isDashing;
+
+    private CharacterController controller;
+    private PlayerWeaponHandler weaponHandler;
+    private PlayerStatusEffects statusEffects;
+    public Vector2 MoveInput => moveInput;
+    private Vector2 moveInput;
+    private Vector2 lookInput;
+    private Vector3 velocity;
+    private float nextFireTime;
+    Vector3 knockbackVelocity;
+    public float knockbackDecay = 8f;
+
+    public void ApplyKnockBack(Vector3 force)
+    {
+        knockbackVelocity += force;
+    }
+
+
+    // Turns a stick direction into a world direction as seen from the camera
+    // (only the camera's left/right facing counts, not its downward tilt).
+    private Vector3 CameraRelative(Vector2 stick)
+    {
+        if (aimCamera == null && Camera.main != null) aimCamera = Camera.main.transform;
+        Vector3 dir = new Vector3(stick.x, 0f, stick.y);
+        if (aimCamera == null) return dir;
+        return Quaternion.Euler(0f, aimCamera.eulerAngles.y, 0f) * dir;
+    }
+
+    void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        weaponHandler = GetComponent<PlayerWeaponHandler>();
+        statusEffects = GetComponent<PlayerStatusEffects>();
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void Look(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
+
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (isRunning) { PlaytestLogger.PressIgnored(gameObject, "Shoot", "running"); return; } // can't shoot while running
+
+        // Power weapon takes over the shot while the player has one
+        if (weaponHandler != null && weaponHandler.HasPowerWeapon)
+        {
+            int ammoBefore = weaponHandler.Ammo;
+            weaponHandler.TryFire(firePoint, gameObject);
+            if (weaponHandler.Ammo != ammoBefore) // a shot actually went out (not on cooldown)
+            {
+                PlaytestLogger.Shot(gameObject);
+                Shot?.Invoke();
+            }
+            else PlaytestLogger.PressIgnored(gameObject, "Shoot", "power_weapon_cooldown");
+            return;
+        }
+
+        if (Time.time < nextFireTime) { PlaytestLogger.PressIgnored(gameObject, "Shoot", "cooldown"); return; }
+
+        nextFireTime = Time.time + fireCooldown;
+        Projectile proj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        proj.owner = gameObject;
+        PlaytestLogger.Shot(gameObject);
+        Shot?.Invoke();
+    }
+
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (isDashing || cooldownTimer > 0f)
+        {
+            PlaytestLogger.PressIgnored(gameObject, "Dash", isDashing ? "already_dashing" : "cooldown");
+            return;
+        }
+
+        Vector3 inputDir = new Vector3(MoveInput.x, 0f, MoveInput.y);
+
+        dashDirection = inputDir.sqrMagnitude > 0.01f
+           ? inputDir.normalized
+           : transform.forward;
+
+        isDashing = true;
+        dashTimer = dashDuration;
+        cooldownTimer = dashCooldown;
+        PlaytestLogger.Dashed(gameObject);
+    }
+
+    public void Running(InputAction.CallbackContext context)
+    {
+        isRunning = context.ReadValueAsButton();
+    }
+
+    void Update()
+    {
+
+        // Left stick: move in world space (stick up = +Z), independent of facing
+        Vector3 move = Vector3.ClampMagnitude(new Vector3(moveInput.x, 0f, moveInput.y), 1f);
+
+
+        // Right stick: face the direction it is pushed; keep last facing when released
+        if (lookInput.sqrMagnitude > lookDeadzone * lookDeadzone)
+        {
+            Quaternion target = Quaternion.LookRotation(CameraRelative(lookInput));
+            float turnMult = statusEffects != null ? statusEffects.TurnMultiplier : 1f;
+            if (turnMult >= 1f)
+            {
+                // 1:1 aiming: face exactly where the right stick points, no smoothing
+                transform.rotation = target;
+            }
+            else
+            {
+                // Slowed (e.g. hit by glue): keep the sluggish turn as part of the debuff
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, target, turnSpeed * turnMult * Time.deltaTime);
+            }
+        }
+
+        // Gravity (reset while grounded so it doesn't build up forever)
+        if (controller.isGrounded && velocity.y < 0f) velocity.y = -2f;
+        velocity.y += gravity * Time.deltaTime;
+
+        float speed = isRunning ? runSpeed : moveSpeed;
+        if (statusEffects != null) speed *= statusEffects.SpeedMultiplier; // e.g. glued
+        Vector3 total = (move * speed) + knockbackVelocity + new Vector3(0f, velocity.y, 0f);
+        controller.Move(total * Time.deltaTime);
+
+        knockbackVelocity = Vector3.Lerp(knockbackVelocity, Vector3.zero, knockbackDecay * Time.deltaTime);
+
+        // Dash stuff
+        if (cooldownTimer > 0f)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
+
+        if (isDashing)
+        {
+            controller.Move(dashDirection * dashSpeed * Time.deltaTime);
+
+            dashTimer -= Time.deltaTime;
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+        }
+        
+    }
+}
