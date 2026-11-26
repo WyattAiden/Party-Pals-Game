@@ -722,7 +722,7 @@ MonoBehaviour:
   plungerFullX: 41.3
   plungerEmptyX: 141.3
   weaponIcon: {fileID: 1253504490838406265}
-  glueGunName: GlueGun
+  glueGunName: Glue Gun
 --- !u!1 &920429793736780959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,7 +1558,7 @@ MonoBehaviour:
   plungerFullX: 41.3
   plungerEmptyX: 141.3
   weaponIcon: {fileID: 6980272470954952515}
-  glueGunName: GlueGun
+  glueGunName: Glue Gun
 --- !u!1 &2581789859481317754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,7 +2677,7 @@ MonoBehaviour:
   plungerFullX: 41.3
   plungerEmptyX: 141.3
   weaponIcon: {fileID: 3818160477539063244}
-  glueGunName: GlueGun
+  glueGunName: Glue Gun
 --- !u!1 &4260210465061445842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3199,7 +3199,7 @@ MonoBehaviour:
   plungerFullX: 41.3
   plungerEmptyX: 141.3
   weaponIcon: {fileID: 8363102039375340163}
-  glueGunName: GlueGun
+  glueGunName: Glue Gun
 --- !u!1 &6185869213142102822
 GameObject:
   m_ObjectHideFlags: 0
