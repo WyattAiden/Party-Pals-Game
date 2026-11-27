@@ -111,6 +111,28 @@ public class PlayerStatusEffects : MonoBehaviour
         bleeds.Clear();
     }
 
+    // ---- Grabbed (e.g. by the Sticky Hand): can't move, dash or shoot ----
+    public GameObject GrabbedBy { get; private set; }
+    private float grabStunTimer;
+    // True while held, and for a short stun after being yanked in
+    public bool IsGrabbed => GrabbedBy != null || grabStunTimer > 0f;
+
+    // Returns false if this player can't be grabbed right now (dead, or someone already has them)
+    public bool TryGrab(GameObject by)
+    {
+        if (by == null || (health != null && health.IsDead) || GrabbedBy != null) return false;
+        GrabbedBy = by;
+        return true;
+    }
+
+    // Let go. 'stun' = seconds they still can't act afterwards.
+    public void ReleaseGrab(GameObject by, float stun)
+    {
+        if (GrabbedBy != by) return;
+        GrabbedBy = null;
+        grabStunTimer = Mathf.Max(grabStunTimer, stun);
+    }
+
     private PlayerController controller;
 
     void Awake()
@@ -162,6 +184,8 @@ public class PlayerStatusEffects : MonoBehaviour
     void Update()
     {
         UpdateBleed();
+
+        if (grabStunTimer > 0f) grabStunTimer -= Time.deltaTime;
 
         if (turnSlowTimer > 0f)
         {
@@ -221,6 +245,7 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         slowTimer = 0f; slowMultiplier = 1f; burnTimer = 0f; burnDps = 0f;
         turnSlowTimer = 0f; turnMultiplier = 1f;
+        GrabbedBy = null; grabStunTimer = 0f;
         ClearBleed();
         SetTint(false);
     }

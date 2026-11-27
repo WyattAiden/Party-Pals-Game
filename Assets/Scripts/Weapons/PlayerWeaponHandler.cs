@@ -27,6 +27,17 @@ public class PlayerWeaponHandler : MonoBehaviour
     private GameObject heldModel;
     private Transform heldSocket;
 
+    // ---- Defensive slot (one-use weapons like the Sticky Hand) ----
+    public enum DefensiveUse { None, Thrown, Pulled, Busy }
+    public PowerWeaponData Defensive { get; private set; }
+    // A sticky hand is currently flying / holding someone
+    public bool IsHandOut => activeHand != null;
+    public bool HasDefensiveWeapon => Defensive != null || activeHand != null;
+    // (defensive weapon held, or null) - hook a HUD icon up to this
+    public event Action<PowerWeaponData> DefensiveChanged;
+    private StickyHand activeHand;
+    private GameObject heldDefensiveModel;
+
     // Cycling weapons (e.g. Rock / Paper / Scissors): which set we're cycling and where we are in it
     private PowerWeaponData cycleSource;
     private int cycleIndex;
@@ -37,6 +48,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public bool CanPickUp(PowerWeaponData weapon)
     {
         if (weapon == null) return false;
+        if (weapon.category == WeaponCategory.Defensive) return !HasDefensiveWeapon; // separate slot, one at a time
         if (!HasPowerWeapon) return true;
         if (Current == weapon) return Ammo < weapon.startingAmmo; // same weapon: refill
         return allowSwapping;
@@ -45,6 +57,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public void Equip(PowerWeaponData weapon, Transform fallbackSocket)
     {
         if (weapon == null) return;
+        if (weapon.category == WeaponCategory.Defensive) { EquipDefensive(weapon, fallbackSocket); return; }
         string family = weapon.displayName;
 
         // Cycling set: start on a random one and keep switching while held
@@ -140,6 +153,48 @@ public class PlayerWeaponHandler : MonoBehaviour
         return true;
     }
 
+    // ---------- Defensive weapons ----------
+
+    private void EquipDefensive(PowerWeaponData weapon, Transform fallbackSocket)
+    {
+        ClearDefensive("swapped");
+        Defensive = weapon;
+        Transform socket = weaponSocket != null ? weaponSocket : fallbackSocket;
+        if (weapon.heldModelPrefab != null && socket != null)
+        {
+            heldDefensiveModel = Instantiate(weapon.heldModelPrefab, socket);
+            heldDefensiveModel.transform.localPosition = weapon.heldModelOffset;
+        }
+        DefensiveChanged?.Invoke(Defensive);
+        PlaytestLogger.WeaponPickedUp(gameObject, weapon.displayName, weapon.displayName, 1);
+    }
+
+    // Shoot pressed with a defensive weapon held or a sticky hand out.
+    public DefensiveUse UseDefensive(Transform firePoint, GameObject owner)
+    {
+        if (activeHand != null) return activeHand.PressShoot() ? DefensiveUse.Pulled : DefensiveUse.Busy;
+        if (Defensive == null) return DefensiveUse.None;
+
+        PowerWeaponData data = Defensive;
+        ClearDefensive("used"); // one use
+        activeHand = StickyHand.Throw(data.stickyHand, firePoint, owner, OnHandFinished);
+        DefensiveChanged?.Invoke(null);
+        return DefensiveUse.Thrown;
+    }
+
+    private void OnHandFinished(StickyHand hand)
+    {
+        if (activeHand == hand) activeHand = null;
+    }
+
+    private void ClearDefensive(string reason)
+    {
+        if (heldDefensiveModel != null) Destroy(heldDefensiveModel);
+        heldDefensiveModel = null;
+        if (Defensive != null) PlaytestLogger.WeaponLost(gameObject, Defensive.displayName, 0, reason);
+        Defensive = null;
+    }
+
     // Weapons with random variants (Rock/Paper/Scissors) hand out one of them
     private static PowerWeaponData ResolveRandom(PowerWeaponData weapon)
     {
@@ -204,5 +259,14 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
     }
 
-    void OnDisable() { unequipReason = "died_or_despawned"; Unequip(); } // e.g. player dies/despawns
+    void OnDisable() // e.g. player dies/despawns
+    {
+        if (activeHand != null) activeHand.Cancel();
+        activeHand = null;
+        bool hadDefensive = Defensive != null;
+        ClearDefensive("died_or_despawned");
+        if (hadDefensive) DefensiveChanged?.Invoke(null);
+        unequipReason = "died_or_despawned";
+        Unequip();
+    }
 }

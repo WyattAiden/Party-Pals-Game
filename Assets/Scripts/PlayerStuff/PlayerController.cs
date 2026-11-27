@@ -84,7 +84,28 @@ public class PlayerController : MonoBehaviour
     public void Shoot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (statusEffects != null && statusEffects.IsGrabbed) { PlaytestLogger.PressIgnored(gameObject, "Shoot", "grabbed"); return; } // held by a sticky hand
+
+        // Sticky hand is out: shoot again to yank whoever it grabbed (works even while running)
+        if (weaponHandler != null && weaponHandler.IsHandOut)
+        {
+            if (weaponHandler.UseDefensive(firePoint, gameObject) == PlayerWeaponHandler.DefensiveUse.Pulled) Shot?.Invoke();
+            else PlaytestLogger.PressIgnored(gameObject, "Shoot", "sticky_hand_busy");
+            return;
+        }
+
         if (isRunning) { PlaytestLogger.PressIgnored(gameObject, "Shoot", "running"); return; } // can't shoot while running
+
+        // Defensive weapon (one use) takes over the shot until it's used
+        if (weaponHandler != null && weaponHandler.Defensive != null)
+        {
+            if (weaponHandler.UseDefensive(firePoint, gameObject) == PlayerWeaponHandler.DefensiveUse.Thrown)
+            {
+                PlaytestLogger.Shot(gameObject);
+                Shot?.Invoke();
+            }
+            return;
+        }
 
         // Power weapon takes over the shot while the player has one
         if (weaponHandler != null && weaponHandler.HasPowerWeapon)
@@ -113,6 +134,7 @@ public class PlayerController : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (statusEffects != null && statusEffects.IsGrabbed) { PlaytestLogger.PressIgnored(gameObject, "Dash", "grabbed"); return; }
         if (isDashing || cooldownTimer > 0f)
         {
             PlaytestLogger.PressIgnored(gameObject, "Dash", isDashing ? "already_dashing" : "cooldown");
@@ -141,6 +163,10 @@ public class PlayerController : MonoBehaviour
 
         // Left stick: move in world space (stick up = +Z), independent of facing
         Vector3 move = Vector3.ClampMagnitude(new Vector3(moveInput.x, 0f, moveInput.y), 1f);
+
+        // Grabbed by a sticky hand: no walking or dashing (the hand drags them around instead)
+        bool grabbed = statusEffects != null && statusEffects.IsGrabbed;
+        if (grabbed) { move = Vector3.zero; isDashing = false; }
 
 
         // Right stick: face the direction it is pushed; keep last facing when released

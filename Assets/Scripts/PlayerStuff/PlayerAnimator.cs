@@ -11,7 +11,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Animator animator;
     [Tooltip("Blend-tree value used while sprinting (normal move = 1)")]
     [SerializeField] private float sprintBlend = 1.6f;
-    [SerializeField] private float dampTime = 0.1f;
+    [SerializeField] private float dampTime = 0f;
 
     static readonly int MoveX = Animator.StringToHash("MoveX");
     static readonly int MoveZ = Animator.StringToHash("MoveZ");

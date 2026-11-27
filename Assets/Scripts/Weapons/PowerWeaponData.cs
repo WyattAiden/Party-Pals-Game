@@ -1,10 +1,18 @@
 using UnityEngine;
 
+// Power = replaces your normal shot until the ammo runs out.
+// Defensive = held in its own slot (you can carry one alongside a power weapon); takes over the shoot button until it's used.
+public enum WeaponCategory { Power, Defensive }
+
 // One asset per power weapon: right-click in the Project window > Create > Party Pals > Power Weapon
 [CreateAssetMenu(menuName = "Party Pals/Power Weapon", fileName = "NewPowerWeapon")]
 public class PowerWeaponData : ScriptableObject
 {
     public string displayName = "Power Weapon";
+
+    [Header("Category")]
+    [Tooltip("Power = normal power weapon. Defensive = one-use weapon in its own slot (e.g. the Sticky Hand). Defensive weapons only use Display Name, Visuals and the Sticky Hand settings.")]
+    public WeaponCategory category = WeaponCategory.Power;
 
     [Header("Random roll")]
     [Tooltip("If any are set, picking this up gives the player ONE of these at random instead (e.g. Rock / Paper / Scissors). Everything below is then ignored.")]
@@ -43,4 +51,8 @@ public class PowerWeaponData : ScriptableObject
     [Header("Limits")]
     [Tooltip("Seconds before the weapon is taken away even with ammo left. 0 = no time limit.")]
     [Min(0f)] public float maxHoldTime = 0f;
+
+    [Header("Defensive: Sticky Hand (only used when Category = Defensive)")]
+    [Tooltip("Shoot throws the hand. If it grabs a player they can't move or shoot and are tied to you. Shoot again to yank them in.")]
+    public StickyHandSettings stickyHand = new StickyHandSettings();
 }
