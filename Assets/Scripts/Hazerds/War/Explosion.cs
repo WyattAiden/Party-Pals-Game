@@ -30,7 +30,7 @@ namespace DuelShooter
 
                     Health health = col.GetComponentInParent<Health>();
                     if (health != null && damaged.Add(health))
-                        health.TakeDamage(Damage);
+                        health.TakeDamage(Damage, gameObject); // source lets the playtest log say "Bomb"
 
                     PlayerController player = col.GetComponentInParent<PlayerController>();
                     if (player != null && hitPlayers.Add(player))

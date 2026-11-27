@@ -35,12 +35,14 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pauseScreen.SetActive(false);
+        PlaytestLogger.Pause("resume");
     }
 
     private void PauseGame()
     {
         isPaused = true;
         Time.timeScale = 0f;
+        PlaytestLogger.Pause("open");
         pauseScreen.SetActive(true);
         firstSelectedButton.GetComponent<Button>().Select();
 
@@ -49,12 +51,14 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Time.timeScale = 1f;
+        PlaytestLogger.Pause("quit");
         LoadSceneByName("StartScreen");
     }
 
 
     public void LoadSceneByName(string sceneName)
     {
+        if (sceneName != "StartScreen") PlaytestLogger.Pause("load " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
 }
